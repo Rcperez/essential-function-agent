@@ -1,0 +1,24 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+venv/
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.DS_Store
+.ipynb_checkpoints/
+
+# Local data and caches (large, regenerated)
+examples/outputs/*.json
+src/efa/kg/cache/
+*.cache/
+
+# Secrets
+.env
