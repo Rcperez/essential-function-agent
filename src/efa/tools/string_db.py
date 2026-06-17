@@ -8,9 +8,6 @@ STRING REST documentation: https://string-db.org/help/api/
 
 STRING returns scores as floats 0-1; this module converts them to ints
 0-1000 to match STRING's display convention.
-
-TODO: extract _make_session to a shared src/efa/tools/_http.py. Currently
-duplicated across uniprot.py, kegg.py, and this module (three copies).
 """
 
 from __future__ import annotations
@@ -22,8 +19,8 @@ from pathlib import Path
 from typing import Any, Optional
 
 import requests
-from requests.adapters import HTTPAdapter
-from urllib3.util.retry import Retry
+
+from ._http import make_session
 
 
 STRING_BASE = "https://string-db.org/api"
@@ -32,10 +29,6 @@ DEFAULT_RATE_LIMIT_S = 1.0
 DEFAULT_CACHE_DIR = Path(
     "/content/drive/MyDrive/RP_RTP_Repo_Bundles/"
     "essential-function-agent/cache/string"
-)
-USER_AGENT = (
-    "essential-function-agent/0.1.0 "
-    "(https://github.com/Rcperez/essential-function-agent)"
 )
 
 
@@ -71,29 +64,6 @@ class STRINGNetwork:
     raw_string_url: str
 
 
-def _make_session() -> requests.Session:
-    """Build a requests.Session with retry adapter and polite headers."""
-    s = requests.Session()
-    retry = Retry(
-        total=4,
-        connect=3,
-        read=3,
-        status=3,
-        backoff_factor=1.0,
-        status_forcelist=[429, 500, 502, 503, 504],
-        allowed_methods=["GET"],
-        raise_on_status=False,
-    )
-    adapter = HTTPAdapter(max_retries=retry)
-    s.mount("https://", adapter)
-    s.mount("http://", adapter)
-    s.headers.update({
-        "User-Agent": USER_AGENT,
-        "Accept": "application/json",
-    })
-    return s
-
-
 class STRINGRetriever:
     """Retriever for STRING protein-protein interaction networks.
 
@@ -116,7 +86,7 @@ class STRINGRetriever:
         self.timeout_s = timeout_s
         self.rate_limit_s = rate_limit_s
         self._last_request_t = 0.0
-        self._session = _make_session()
+        self._session = make_session("application/json")
 
     def _throttle(self) -> None:
         elapsed = time.monotonic() - self._last_request_t
