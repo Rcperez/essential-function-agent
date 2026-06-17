@@ -31,4 +31,5 @@ where = ["src"]
 testpaths = ["tests"]
 markers = [
     "network: tests requiring internet connectivity (UniProt, KEGG, STRING)",
+    "gpu: tests that require CUDA-capable GPU and large model artifacts",
 ]
