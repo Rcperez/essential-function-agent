@@ -27,8 +27,9 @@ class FakeEvo2Tokenizer:
 class FakeEvo2Model:
     """Mock Evo2 model returning deterministic logits given inputs.
 
-    Shape contract matches arcinstitute/evo2: __call__ returns
-    (logits, _) where logits is shape (batch, length, vocab_size).
+    Shape contract matches arcinstitute/evo2 0.5.5: __call__ returns
+    ((logits, None), None) where logits has shape
+    (batch, length, vocab_size).
     """
 
     def __init__(self, vocab_size: int = 256) -> None:
@@ -39,7 +40,8 @@ class FakeEvo2Model:
         B, L = input_ids.shape
         torch.manual_seed(int(input_ids.sum().item()))
         logits = torch.randn(B, L, self.vocab_size)
-        return logits, None
+        # Match Evo2 0.5.5's nested return: ((logits, None), None)
+        return (logits, None), None
 
 
 @pytest.fixture

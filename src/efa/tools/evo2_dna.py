@@ -165,7 +165,9 @@ class Evo2DNATool:
             [tokens], dtype=torch.long, device=self.device,
         )
         with torch.no_grad():
-            logits, _ = self._model(input_ids)
+            # Evo2 0.5.5 returns ((logits, None), None) from model(...);
+            # double-unpack to extract the logits tensor.
+            (logits, _), _ = self._model(input_ids)
         log_probs = torch.log_softmax(logits[:, :-1, :].float(), dim=-1)
         targets = input_ids[:, 1:].unsqueeze(-1)
         per_pos = log_probs.gather(-1, targets).squeeze(-1).squeeze(0)
