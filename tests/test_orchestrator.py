@@ -24,6 +24,7 @@ def sample_case() -> Case:
         gene_symbol="rpsB",
         locus_tag="b0169",
         organism_taxon=511145,
+        uniprot_taxon=83333,
         organism_strain="Escherichia coli K-12 MG1655",
         kegg_gene_id="eco:b0169",
         string_species=511145,
@@ -190,7 +191,9 @@ def test_gather_calls_tools_with_expected_args(sample_case):
     gather_all_evidence(sample_case, tools={
         "uniprot": u, "kegg": k, "string": s, "esm2": e, "evo2": v,
     })
-    u.get_annotation.assert_called_once_with("b0169", 511145)
+    u.get_annotation.assert_called_once_with(
+        "b0169", 83333, gene_symbol="rpsB"
+    )
     k.fetch_gene.assert_called_once_with("eco", "b0169")
     s.fetch_interaction_partners.assert_called_once_with("rpsB", 511145)
     e.embed.assert_called_once_with("MATVSMR")
@@ -200,7 +203,7 @@ def test_gather_calls_tools_with_expected_args(sample_case):
 def test_gather_skips_esm2_if_protein_sequence_empty():
     case = Case(
         case_id="x", gene_symbol="g", locus_tag="b0001",
-        organism_taxon=1, organism_strain="x", kegg_gene_id="x",
+        organism_taxon=1, uniprot_taxon=1, organism_strain="x", kegg_gene_id="x",
         string_species=1, metabolic_model="x",
         protein_sequence="", dna_sequence="",
         design_axis="x", ground_truth_essentiality="x",
@@ -281,7 +284,7 @@ def test_orchestrator_run_end_to_end_mocked(sample_case):
 def test_load_cases_from_synthetic_json(tmp_path: Path):
     data = {"schema_version": "0.1.0", "cases": [{
         "case_id": "t1", "gene_symbol": "g", "locus_tag": "b1",
-        "organism_taxon": 511145, "organism_strain": "E. coli",
+        "organism_taxon": 511145, "uniprot_taxon": 83333, "organism_strain": "E. coli",
         "kegg_gene_id": "eco:b1", "string_species": 511145,
         "metabolic_model": "iML1515",
         "protein_sequence": "", "dna_sequence": "",

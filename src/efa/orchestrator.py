@@ -76,6 +76,7 @@ class Case:
     gene_symbol: str
     locus_tag: str
     organism_taxon: int
+    uniprot_taxon: int
     organism_strain: str
     kegg_gene_id: str
     string_species: int
@@ -445,7 +446,11 @@ def gather_all_evidence(
     if "uniprot" in tools:
         try:
             m = getattr(tools["uniprot"], methods["uniprot"])
-            bundle.uniprot = m(case.locus_tag, case.organism_taxon)
+            bundle.uniprot = m(
+                case.locus_tag,
+                case.uniprot_taxon,
+                gene_symbol=case.gene_symbol,
+            )
         except Exception as e:
             bundle.errors["uniprot"] = f"{type(e).__name__}: {e}"
 
