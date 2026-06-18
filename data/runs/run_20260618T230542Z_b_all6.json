@@ -1,0 +1,2913 @@
+{
+  "run_stamp": "20260618T230542Z",
+  "architecture": "B_tool_use_loop",
+  "model": "claude-sonnet-4-6",
+  "channels_available": [
+    "uniprot",
+    "kegg",
+    "string",
+    "esm2",
+    "evo2",
+    "fba"
+  ],
+  "metabolic_model": "iML1515",
+  "n_cases": 5,
+  "records": [
+    {
+      "case_id": "rpsB_ecoli_k12",
+      "gene_symbol": "rpsB",
+      "ground_truth": "essential",
+      "ground_truth_source": "Baba 2006 Keio collection (BW25113); essential phenotype.",
+      "design_axis": "1_universal_essential_translation",
+      "verdict": {
+        "case_id": "rpsB_ecoli_k12",
+        "classification": "essential",
+        "confidence": 0.97,
+        "reasoning": "rpsB encodes the 30S ribosomal protein S2 (uS2), which is required for ribosomal protein S1 to bind the small ribosomal subunit and is a core structural constituent of the 30S subunit. Disruption abolishes cytoplasmic translation, a process with no bypass. All evidence channels converge: UniProt/KEGG confirm its irreplaceable structural role, STRING shows it is embedded in an ultra-high-confidence (combined score 999) ribosomal protein network with strong experimental support, and ESM-2/Evo2 indicate strong purifying selection at both protein and DNA levels. FBA absence is expected for a non-metabolic gene and does not weaken the essentiality call.",
+        "raw_response": "Excellent \u2014 all six channels have returned. Here is my integrated analysis:\n\n---\n\n## Evidence Integration\n\n### 1. UniProt \u2014 Strong functional annotation\nrpsB encodes **Small ribosomal subunit protein uS2 (30S ribosomal protein S2)**. It is a **structural constituent of the ribosome** (GO:0003735) and is specifically annotated as **required for ribosomal protein bS1 (rpsA) to bind to the 30S subunit**. Loss of this protein would disrupt 30S subunit assembly and thus abolish cytoplasmic translation (GO:0002181). This is a core ribosomal function with no known bypass.\n\n### 2. KEGG \u2014 Ribosome pathway membership\nrpsB is assigned to the **Ribosome pathway (eco03010)** with KO K02967. Ribosomal proteins are essentially universally required for protein synthesis, the most fundamental cellular process.\n\n### 3. STRING \u2014 Extremely high-confidence ribosomal network\nAll 10 top partners are **other ribosomal proteins** (rplP, rpsE, rplC, rpsL, rpsN, rplY, rpsS, rpsD, rplQ, rpsC), all with **combined scores of 999** and very high experimental sub-scores (945\u2013986). This places rpsB at the core of the ribosome structural network with overwhelming experimental interaction evidence \u2014 entirely consistent with its essential role in 30S assembly.\n\n### 4. ESM-2 \u2014 Strong evolutionary constraint\nMean log-likelihood of **\u22120.162** and mean variant effect of **0.023** both indicate the protein sequence is under strong **purifying selection**. Very few amino acid substitutions are tolerated, consistent with its conserved structural role across all bacteria.\n\n### 5. Evo2 \u2014 DNA-level constraint\nMean causal log-likelihood of **\u22120.221** is relatively high (less negative), indicating the **nucleotide sequence is constrained** \u2014 consistent with essentiality at the genomic level.\n\n### 6. FBA \u2014 Expected absence from metabolic model\nThe FBA query correctly returned a `KeyError` (gene b0169 not in iML1515). This is **fully expected**: ribosomal proteins are not part of the metabolic network model. This absence is **informative** \u2014 it means FBA cannot speak to essentiality here, but UniProt/KEGG/STRING provide overwhelming non-metabolic evidence of essentiality. Per our reasoning principles, for translation genes we weight annotation channels heavily.\n\n---\n\n## Verdict\n\nAll functional channels unanimously converge: rpsB encodes a **core structural component of the 30S ribosomal subunit**, required for ribosomal protein S1 docking and thus 30S assembly and translation initiation. It is deeply conserved at both the protein (ESM-2) and DNA (Evo2) levels, embedded in a ultra-high-confidence ribosomal protein interaction network, and has no known bypass. Its absence from the FBA model is expected and non-contradictory. Single-gene deletion studies in *E. coli* confirm that essentially all small ribosomal subunit proteins are essential.\n\n```json\n{\n  \"classification\": \"essential\",\n  \"confidence\": 0.97,\n  \"reasoning\": \"rpsB encodes the 30S ribosomal protein S2 (uS2), which is required for ribosomal protein S1 to bind the small ribosomal subunit and is a core structural constituent of the 30S subunit. Disruption abolishes cytoplasmic translation, a process with no bypass. All evidence channels converge: UniProt/KEGG confirm its irreplaceable structural role, STRING shows it is embedded in an ultra-high-confidence (combined score 999) ribosomal protein network with strong experimental support, and ESM-2/Evo2 indicate strong purifying selection at both protein and DNA levels. FBA absence is expected for a non-metabolic gene and does not weaken the essentiality call.\"\n}\n```"
+      },
+      "bundle": {
+        "case": {
+          "case_id": "rpsB_ecoli_k12",
+          "gene_symbol": "rpsB",
+          "locus_tag": "b0169",
+          "organism_taxon": 511145,
+          "uniprot_taxon": 83333,
+          "organism_strain": "Escherichia coli K-12 MG1655",
+          "kegg_gene_id": "eco:b0169",
+          "string_species": 511145,
+          "metabolic_model": "iML1515",
+          "protein_sequence": "MATVSMRDMLKAGVHFGHQTRYWNPKMKPFIFGARNKVHIINLEKTVPMFNEALAELNKIASRKGKILFVGTKRAASEAVKDAALSCDQFFVNHRWLGGMLTNWKTVRQSIKRLKDLETQSQDGTFDKLTKKEALMRTRELEKLENSLGGIKDMGGLPDALFVIDADHEHIAIKEANNLGIPVFAIVDTNSDPDGVDFVIPGNDDAIRAVTLYLGAVAATVREGRSQDLASQAEESFVEAE",
+          "dna_sequence": "ATGGCAACTGTTTCCATGCGCGACATGCTCAAGGCTGGTGTTCACTTCGGTCACCAGACCCGTTACTGGAACCCGAAAATGAAGCCGTTCATCTTCGGTGCGCGTAACAAAGTTCACATCATCAACCTTGAGAAAACTGTACCGATGTTCAACGAAGCTCTGGCTGAACTGAACAAGATTGCTTCTCGCAAAGGTAAAATCCTTTTCGTTGGTACTAAACGCGCTGCAAGCGAAGCGGTGAAAGACGCTGCTCTGAGCTGCGACCAGTTCTTCGTGAACCATCGCTGGCTGGGCGGTATGCTGACTAACTGGAAAACCGTTCGTCAGTCCATCAAACGTCTGAAAGACCTGGAAACTCAGTCTCAGGACGGTACTTTCGACAAGCTGACCAAGAAAGAAGCGCTGATGCGCACTCGTGAGCTGGAGAAACTGGAAAACAGCCTGGGCGGTATCAAAGACATGGGCGGTCTGCCGGACGCTCTGTTTGTAATCGATGCTGACCACGAACACATTGCTATCAAAGAAGCAAACAACCTGGGTATTCCGGTATTTGCTATCGTTGATACCAACTCTGATCCGGACGGTGTTGACTTCGTTATCCCGGGTAACGACGACGCAATCCGTGCTGTGACCCTGTACCTGGGCGCTGTTGCTGCAACCGTACGTGAAGGCCGTTCTCAGGATCTGGCTTCCCAGGCGGAAGAAAGCTTCGTAGAAGCTGAGTAA",
+          "design_axis": "1_universal_essential_translation",
+          "ground_truth_essentiality": "essential",
+          "ground_truth_source": "Baba 2006 Keio collection (BW25113); essential phenotype.",
+          "design_rationale": "30S ribosomal protein S2, universally essential in bacteria. Translation machinery is not modeled in metabolic GSMs (FBA should NOT flag). Tests whether the agent correctly identifies non-FBA-detectable essentiality from UniProt/KEGG/STRING annotation alone."
+        },
+        "uniprot": {
+          "accession": "P0A7V0",
+          "locus_tag": "b0169",
+          "protein_name": "Small ribosomal subunit protein uS2",
+          "gene_name": "rpsB",
+          "organism_name": "Escherichia coli (strain K12)",
+          "organism_taxon": 83333,
+          "sequence": "MATVSMRDMLKAGVHFGHQTRYWNPKMKPFIFGARNKVHIINLEKTVPMFNEALAELNKIASRKGKILFVGTKRAASEAVKDAALSCDQFFVNHRWLGGMLTNWKTVRQSIKRLKDLETQSQDGTFDKLTKKEALMRTRELEKLENSLGGIKDMGGLPDALFVIDADHEHIAIKEANNLGIPVFAIVDTNSDPDGVDFVIPGNDDAIRAVTLYLGAVAATVREGRSQDLASQAEESFVEAE",
+          "sequence_length_aa": 241,
+          "function_description": "Required for ribosomal protein bS1 (rpsA) to bind to the 30S subunit",
+          "ec_numbers": [],
+          "pfam_domains": [
+            "PF00318"
+          ],
+          "interpro_ids": [
+            "IPR001865",
+            "IPR005706",
+            "IPR018130",
+            "IPR023591"
+          ],
+          "go_terms": [
+            {
+              "go_id": "GO:0005737",
+              "name": "cytoplasm",
+              "aspect": "C"
+            },
+            {
+              "go_id": "GO:0022627",
+              "name": "cytosolic small ribosomal subunit",
+              "aspect": "C"
+            },
+            {
+              "go_id": "GO:0003735",
+              "name": "structural constituent of ribosome",
+              "aspect": "F"
+            },
+            {
+              "go_id": "GO:0008270",
+              "name": "zinc ion binding",
+              "aspect": "F"
+            },
+            {
+              "go_id": "GO:0002181",
+              "name": "cytoplasmic translation",
+              "aspect": "P"
+            },
+            {
+              "go_id": "GO:0000028",
+              "name": "ribosomal small subunit assembly",
+              "aspect": "P"
+            }
+          ],
+          "subcellular_locations": [],
+          "kegg_xrefs": [
+            "ecj:JW0164",
+            "eco:b0169",
+            "ecoc:C3026_00770"
+          ],
+          "eggnog_xrefs": [
+            "COG0052"
+          ],
+          "pdb_xrefs": [
+            "2YKR",
+            "3J9Y",
+            "3J9Z",
+            "3JA1",
+            "3JBU",
+            "3JBV",
+            "3JCD",
+            "3JCE",
+            "3JCJ",
+            "3JCN",
+            "4A2I",
+            "4ADV",
+            "4ODL",
+            "4ODM",
+            "4ODN",
+            "4ODP",
+            "4TOI",
+            "4U1U",
+            "4U1V",
+            "4U20",
+            "4U24",
+            "4U25",
+            "4U26",
+            "4U27",
+            "4V48",
+            "4V4H",
+            "4V4Q",
+            "4V4V",
+            "4V4W",
+            "4V50",
+            "4V52",
+            "4V53",
+            "4V54",
+            "4V55",
+            "4V56",
+            "4V57",
+            "4V5B",
+            "4V5H",
+            "4V5Y",
+            "4V64",
+            "4V65",
+            "4V66",
+            "4V69",
+            "4V6C",
+            "4V6D",
+            "4V6E",
+            "4V6K",
+            "4V6L",
+            "4V6M",
+            "4V6N",
+            "4V6O",
+            "4V6P",
+            "4V6Q",
+            "4V6R",
+            "4V6S",
+            "4V6T",
+            "4V6V",
+            "4V6Y",
+            "4V6Z",
+            "4V70",
+            "4V71",
+            "4V72",
+            "4V73",
+            "4V74",
+            "4V75",
+            "4V76",
+            "4V77",
+            "4V78",
+            "4V79",
+            "4V7A",
+            "4V7B",
+            "4V7C",
+            "4V7D",
+            "4V7I",
+            "4V7S",
+            "4V7T",
+            "4V7U",
+            "4V7V",
+            "4V85",
+            "4V89",
+            "4V9C",
+            "4V9D",
+            "4V9O",
+            "4V9P",
+            "4WF1",
+            "4WOI",
+            "4WWW",
+            "4YBB",
+            "5AFI",
+            "5H5U",
+            "5IQR",
+            "5IT8",
+            "5J5B",
+            "5J7L",
+            "5J88",
+            "5J8A",
+            "5J91",
+            "5JC9",
+            "5JTE",
+            "5JU8",
+            "5KCR",
+            "5KCS",
+            "5KPS",
+            "5KPV",
+            "5KPW",
+            "5KPX",
+            "5L3P",
+            "5LZA",
+            "5LZB",
+            "5LZC",
+            "5LZD",
+            "5LZE",
+            "5LZF",
+            "5MDV",
+            "5MDW",
+            "5MDY",
+            "5MDZ",
+            "5ME0",
+            "5ME1",
+            "5MGP",
+            "5MY1",
+            "5NO3",
+            "5NP6",
+            "5NWY",
+            "5O2R",
+            "5U4I",
+            "5U9F",
+            "5U9G",
+            "5UYK",
+            "5UYL",
+            "5UYM",
+            "5UYN",
+            "5UYP",
+            "5UYQ",
+            "5UZ4",
+            "5WDT",
+            "5WE4",
+            "5WE6",
+            "5WF0",
+            "5WFK",
+            "5WFS",
+            "6AWB",
+            "6AWC",
+            "6AWD",
+            "6BU8",
+            "6BY1",
+            "6C4I",
+            "6DNC",
+            "6ENF",
+            "6ENJ",
+            "6ENU",
+            "6GWT",
+            "6GXM",
+            "6GXN",
+            "6GXO",
+            "6GXP",
+            "6H4N",
+            "6H58",
+            "6HRM",
+            "6I7V",
+            "6NQB",
+            "6O7K",
+            "6O9J",
+            "6O9K",
+            "6OFX",
+            "6OG7",
+            "6OGF",
+            "6OGG",
+            "6OGI",
+            "6OM6",
+            "6ORE",
+            "6ORL",
+            "6OSK",
+            "6OSQ",
+            "6OST",
+            "6OT3",
+            "6OUO",
+            "6Q97",
+            "6Q98",
+            "6Q9A",
+            "6SZS",
+            "6TBV",
+            "6TC3",
+            "6VU3",
+            "6VWL",
+            "6VWM",
+            "6VWN",
+            "6VYQ",
+            "6VYR",
+            "6VYS",
+            "6VYT",
+            "6VYU",
+            "6VYW",
+            "6VYX",
+            "6VYY",
+            "6VYZ",
+            "6VZ2",
+            "6VZ3",
+            "6VZ5",
+            "6VZ7",
+            "6VZJ",
+            "6W7M",
+            "6WD0",
+            "6WD1",
+            "6WD2",
+            "6WD3",
+            "6WD4",
+            "6WD5",
+            "6WD6",
+            "6WD7",
+            "6WD8",
+            "6WD9",
+            "6WDA",
+            "6WDB",
+            "6WDC",
+            "6WDD",
+            "6WDE",
+            "6WDF",
+            "6WDG",
+            "6WDH",
+            "6WDI",
+            "6WDJ",
+            "6WDK",
+            "6WDL",
+            "6WDM",
+            "6WNV",
+            "6WNW",
+            "6X6T",
+            "6X7F",
+            "6X7K",
+            "6X9Q",
+            "6XDQ",
+            "6XDR",
+            "6XE0",
+            "6XGF",
+            "6XII",
+            "6XIJ",
+            "6XZA",
+            "6XZB",
+            "6Y69",
+            "6ZTJ",
+            "6ZTL",
+            "6ZTM",
+            "6ZTN",
+            "6ZTO",
+            "6ZTP",
+            "6ZU1",
+            "7ABZ",
+            "7AC7",
+            "7ACJ",
+            "7ACR",
+            "7AF3",
+            "7AF5",
+            "7AF8",
+            "7AFA",
+            "7AFD",
+            "7AFH",
+            "7AFK",
+            "7AFN",
+            "7BOE",
+            "7BOH",
+            "7D6Z",
+            "7D80",
+            "7JSS",
+            "7JSW",
+            "7JSZ",
+            "7JT1",
+            "7JT2",
+            "7JT3",
+            "7K00",
+            "7K50",
+            "7K51",
+            "7K52",
+            "7K53",
+            "7K54",
+            "7K55",
+            "7LV0",
+            "7M5D",
+            "7N1P",
+            "7N2C",
+            "7N2U",
+            "7N2V",
+            "7N30",
+            "7N31",
+            "7NAR",
+            "7NAT",
+            "7NAU",
+            "7NAV",
+            "7NAW",
+            "7NAX",
+            "7NBU",
+            "7O19",
+            "7O1A",
+            "7O1C",
+            "7O5H",
+            "7OE0",
+            "7OE1",
+            "7OIZ",
+            "7OJ0",
+            "7OXG",
+            "7OXH",
+            "7OXI",
+            "7OXJ",
+            "7OXK",
+            "7P3K",
+            "7PJU",
+            "7PJV",
+            "7PJY",
+            "7QG8",
+            "7QGN",
+            "7QGR",
+            "7S1G",
+            "7S1H",
+            "7S1I",
+            "7S1J",
+            "7S1K",
+            "7SA4",
+            "7SS9",
+            "7SSD",
+            "7SSL",
+            "7SSN",
+            "7SSO",
+            "7SSW",
+            "7ST2",
+            "7ST6",
+            "7ST7",
+            "7TOS",
+            "7UG7",
+            "7UPH",
+            "7Y7C",
+            "7Y7D",
+            "7Y7E",
+            "7Y7F",
+            "7Y7G",
+            "7Y7H",
+            "7ZTA",
+            "8A3L",
+            "8AKN",
+            "8AM9",
+            "8AYE",
+            "8B0X",
+            "8B7Y",
+            "8BF7",
+            "8BGE",
+            "8BGH",
+            "8BH4",
+            "8BHJ",
+            "8BHL",
+            "8BHN",
+            "8BHP",
+            "8BIL",
+            "8BIM",
+            "8CAI",
+            "8CAZ",
+            "8CF1",
+            "8CF8",
+            "8CGJ",
+            "8EIU",
+            "8EKC",
+            "8EMM",
+            "8EYT",
+            "8FIZ",
+            "8FTO",
+            "8FZD",
+            "8FZE",
+            "8FZF",
+            "8FZG",
+            "8FZH",
+            "8FZI",
+            "8FZJ",
+            "8G2U",
+            "8G31",
+            "8G34",
+            "8G38",
+            "8G6W",
+            "8G7P",
+            "8G7Q",
+            "8G7R",
+            "8G7S",
+            "8HSP",
+            "8HTZ",
+            "8HU1",
+            "8IFB",
+            "8IFC",
+            "8JSG",
+            "8K3O",
+            "8K4E",
+            "8P16",
+            "8P17",
+            "8P18",
+            "8PEG",
+            "8PHJ",
+            "8PKL",
+            "8PVA",
+            "8QBT",
+            "8QK7",
+            "8QOA",
+            "8R3V",
+            "8R6C",
+            "8R8M",
+            "8RCL",
+            "8RCM",
+            "8RCS",
+            "8RCT",
+            "8SYL",
+            "8T5D",
+            "8UPO",
+            "8UPR",
+            "8UQL",
+            "8UQM",
+            "8UQP",
+            "8UR0",
+            "8URH",
+            "8URI",
+            "8URM",
+            "8URX",
+            "8URY",
+            "8UTJ",
+            "8UX8",
+            "8UXB",
+            "8UZG",
+            "8V03",
+            "8VKV",
+            "8VL1",
+            "8VOO",
+            "8VOP",
+            "8VOQ",
+            "8VOR",
+            "8VOS",
+            "8VS9",
+            "8VSA",
+            "8Y5K",
+            "8Y5L",
+            "8Y5M",
+            "8Y5N",
+            "8Y5O",
+            "8Y5P",
+            "8Y5Q",
+            "8Y5R",
+            "8Y5S",
+            "8Y5T",
+            "8YDE",
+            "8YDF",
+            "8YDG",
+            "8YDH",
+            "8YDI",
+            "8YDJ",
+            "8YUO",
+            "8YUP",
+            "8YUQ",
+            "8YUR",
+            "8YUS",
+            "8ZEJ",
+            "8ZFF",
+            "8ZFG",
+            "8ZFI",
+            "8ZTU",
+            "8ZTV",
+            "9DUK",
+            "9DUL",
+            "9FBV",
+            "9GFT",
+            "9GGR",
+            "9GHA",
+            "9GHB",
+            "9GHC",
+            "9GHD",
+            "9GHE",
+            "9GHF",
+            "9GR1",
+            "9GUP",
+            "9GUQ",
+            "9GUS",
+            "9GUT",
+            "9GUU",
+            "9GUV",
+            "9GUW",
+            "9GUX",
+            "9GXX",
+            "9H0L",
+            "9H9H",
+            "9H9I",
+            "9H9K",
+            "9H9M",
+            "9IOT",
+            "9MKK",
+            "9MOR",
+            "9MQ4",
+            "9N2B",
+            "9N2C",
+            "9NJF",
+            "9NJV",
+            "9NKL",
+            "9NL5",
+            "9NL6",
+            "9NL7",
+            "9NLB",
+            "9NLE",
+            "9NLF",
+            "9NLH",
+            "9NLJ",
+            "9NLQ",
+            "9NLS",
+            "9PZG",
+            "9Q87",
+            "9RTU",
+            "9RTV",
+            "9WNQ",
+            "9WNR"
+          ],
+          "raw_uniprot_url": "https://www.uniprot.org/uniprotkb/P0A7V0"
+        },
+        "kegg": {
+          "kegg_gene_id": "eco:b0169",
+          "organism_code": "eco",
+          "locus_tag": "b0169",
+          "gene_name": "rpsB",
+          "definition": "30S ribosomal subunit protein S2",
+          "orthologies": [
+            {
+              "ko_id": "K02967",
+              "description": "small subunit ribosomal protein S2"
+            }
+          ],
+          "pathways": [
+            {
+              "pathway_id": "eco03010",
+              "name": "Ribosome"
+            }
+          ],
+          "motif_pfam": [
+            "Ribosomal_S2",
+            "GIP4"
+          ],
+          "aa_sequence": "MATVSMRDMLKAGVHFGHQTRYWNPKMKPFIFGARNKVHIINLEKTVPMFNEALAELNKIASRKGKILFVGTKRAASEAVKDAALSCDQFFVNHRWLGGMLTNWKTVRQSIKRLKDLETQSQDGTFDKLTKKEALMRTRELEKLENSLGGIKDMGGLPDALFVIDADHEHIAIKEANNLGIPVFAIVDTNSDPDGVDFVIPGNDDAIRAVTLYLGAVAATVREGRSQDLASQAEESFVEAE",
+          "aa_length": 241,
+          "nt_sequence": "ATGGCAACTGTTTCCATGCGCGACATGCTCAAGGCTGGTGTTCACTTCGGTCACCAGACCCGTTACTGGAACCCGAAAATGAAGCCGTTCATCTTCGGTGCGCGTAACAAAGTTCACATCATCAACCTTGAGAAAACTGTACCGATGTTCAACGAAGCTCTGGCTGAACTGAACAAGATTGCTTCTCGCAAAGGTAAAATCCTTTTCGTTGGTACTAAACGCGCTGCAAGCGAAGCGGTGAAAGACGCTGCTCTGAGCTGCGACCAGTTCTTCGTGAACCATCGCTGGCTGGGCGGTATGCTGACTAACTGGAAAACCGTTCGTCAGTCCATCAAACGTCTGAAAGACCTGGAAACTCAGTCTCAGGACGGTACTTTCGACAAGCTGACCAAGAAAGAAGCGCTGATGCGCACTCGTGAGCTGGAGAAACTGGAAAACAGCCTGGGCGGTATCAAAGACATGGGCGGTCTGCCGGACGCTCTGTTTGTAATCGATGCTGACCACGAACACATTGCTATCAAAGAAGCAAACAACCTGGGTATTCCGGTATTTGCTATCGTTGATACCAACTCTGATCCGGACGGTGTTGACTTCGTTATCCCGGGTAACGACGACGCAATCCGTGCTGTGACCCTGTACCTGGGCGCTGTTGCTGCAACCGTACGTGAAGGCCGTTCTCAGGATCTGGCTTCCCAGGCGGAAGAAAGCTTCGTAGAAGCTGAGTAA",
+          "nt_length": 726,
+          "db_links": {
+            "NCBI-GeneID": [
+              "947874"
+            ],
+            "NCBI-ProteinID": [
+              "NP_414711"
+            ],
+            "Pasteur": [
+              "rpsB"
+            ],
+            "RegulonDB": [
+              "RDBECOLIGNC00891"
+            ],
+            "ECOCYC": [
+              "EG10901"
+            ],
+            "ASAP": [
+              "ABE-0000575"
+            ],
+            "UniProt": [
+              "P0A7V0"
+            ]
+          },
+          "raw_kegg_url": "https://www.kegg.jp/entry/eco:b0169"
+        },
+        "string": {
+          "query_identifier": "rpsB",
+          "species_taxon": 511145,
+          "interactions": [
+            {
+              "partner_string_id": "511145.b3313",
+              "partner_preferred_name": "rplP",
+              "combined_score": 999,
+              "neighborhood_score": 67,
+              "fusion_score": 0,
+              "cooccurrence_score": 593,
+              "coexpression_score": 975,
+              "experimental_score": 945,
+              "database_score": 0,
+              "textmining_score": 858
+            },
+            {
+              "partner_string_id": "511145.b3303",
+              "partner_preferred_name": "rpsE",
+              "combined_score": 999,
+              "neighborhood_score": 62,
+              "fusion_score": 0,
+              "cooccurrence_score": 265,
+              "coexpression_score": 992,
+              "experimental_score": 972,
+              "database_score": 933,
+              "textmining_score": 907
+            },
+            {
+              "partner_string_id": "511145.b3320",
+              "partner_preferred_name": "rplC",
+              "combined_score": 999,
+              "neighborhood_score": 64,
+              "fusion_score": 0,
+              "cooccurrence_score": 329,
+              "coexpression_score": 978,
+              "experimental_score": 945,
+              "database_score": 0,
+              "textmining_score": 859
+            },
+            {
+              "partner_string_id": "511145.b3342",
+              "partner_preferred_name": "rpsL",
+              "combined_score": 999,
+              "neighborhood_score": 61,
+              "fusion_score": 0,
+              "cooccurrence_score": 541,
+              "coexpression_score": 977,
+              "experimental_score": 945,
+              "database_score": 933,
+              "textmining_score": 594
+            },
+            {
+              "partner_string_id": "511145.b3307",
+              "partner_preferred_name": "rpsN",
+              "combined_score": 999,
+              "neighborhood_score": 62,
+              "fusion_score": 0,
+              "cooccurrence_score": 349,
+              "coexpression_score": 979,
+              "experimental_score": 945,
+              "database_score": 933,
+              "textmining_score": 644
+            },
+            {
+              "partner_string_id": "511145.b2185",
+              "partner_preferred_name": "rplY",
+              "combined_score": 999,
+              "neighborhood_score": 62,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 960,
+              "experimental_score": 945,
+              "database_score": 0,
+              "textmining_score": 660
+            },
+            {
+              "partner_string_id": "511145.b3316",
+              "partner_preferred_name": "rpsS",
+              "combined_score": 999,
+              "neighborhood_score": 66,
+              "fusion_score": 0,
+              "cooccurrence_score": 289,
+              "coexpression_score": 966,
+              "experimental_score": 945,
+              "database_score": 933,
+              "textmining_score": 858
+            },
+            {
+              "partner_string_id": "511145.b3296",
+              "partner_preferred_name": "rpsD",
+              "combined_score": 999,
+              "neighborhood_score": 158,
+              "fusion_score": 0,
+              "cooccurrence_score": 436,
+              "coexpression_score": 984,
+              "experimental_score": 945,
+              "database_score": 933,
+              "textmining_score": 778
+            },
+            {
+              "partner_string_id": "511145.b3294",
+              "partner_preferred_name": "rplQ",
+              "combined_score": 999,
+              "neighborhood_score": 95,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 976,
+              "experimental_score": 945,
+              "database_score": 0,
+              "textmining_score": 543
+            },
+            {
+              "partner_string_id": "511145.b3314",
+              "partner_preferred_name": "rpsC",
+              "combined_score": 999,
+              "neighborhood_score": 65,
+              "fusion_score": 0,
+              "cooccurrence_score": 628,
+              "coexpression_score": 978,
+              "experimental_score": 986,
+              "database_score": 933,
+              "textmining_score": 927
+            },
+            {
+              "partner_string_id": "511145.b3317",
+              "partner_preferred_name": "rplB",
+              "combined_score": 999,
+              "neighborhood_score": 63,
+              "fusion_score": 0,
+              "cooccurrence_score": 296,
+              "coexpression_score": 979,
+              "experimental_score": 945,
+              "database_score": 0,
+              "textmining_score": 859
+            },
+            {
+              "partner_string_id": "511145.b3318",
+              "partner_preferred_name": "rplW",
+              "combined_score": 999,
+              "neighborhood_score": 64,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 995,
+              "experimental_score": 945,
+              "database_score": 88,
+              "textmining_score": 591
+            },
+            {
+              "partner_string_id": "511145.b3315",
+              "partner_preferred_name": "rplV",
+              "combined_score": 999,
+              "neighborhood_score": 65,
+              "fusion_score": 0,
+              "cooccurrence_score": 223,
+              "coexpression_score": 979,
+              "experimental_score": 945,
+              "database_score": 0,
+              "textmining_score": 612
+            },
+            {
+              "partner_string_id": "511145.b0911",
+              "partner_preferred_name": "rpsA",
+              "combined_score": 999,
+              "neighborhood_score": 155,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 958,
+              "experimental_score": 966,
+              "database_score": 720,
+              "textmining_score": 702
+            },
+            {
+              "partner_string_id": "511145.b3986",
+              "partner_preferred_name": "rplL",
+              "combined_score": 999,
+              "neighborhood_score": 63,
+              "fusion_score": 0,
+              "cooccurrence_score": 493,
+              "coexpression_score": 961,
+              "experimental_score": 974,
+              "database_score": 0,
+              "textmining_score": 854
+            },
+            {
+              "partner_string_id": "511145.b2606",
+              "partner_preferred_name": "rplS",
+              "combined_score": 999,
+              "neighborhood_score": 108,
+              "fusion_score": 0,
+              "cooccurrence_score": 213,
+              "coexpression_score": 948,
+              "experimental_score": 945,
+              "database_score": 0,
+              "textmining_score": 859
+            },
+            {
+              "partner_string_id": "511145.b3185",
+              "partner_preferred_name": "rpmA",
+              "combined_score": 999,
+              "neighborhood_score": 83,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 967,
+              "experimental_score": 945,
+              "database_score": 0,
+              "textmining_score": 856
+            },
+            {
+              "partner_string_id": "511145.b3306",
+              "partner_preferred_name": "rpsH",
+              "combined_score": 999,
+              "neighborhood_score": 88,
+              "fusion_score": 0,
+              "cooccurrence_score": 391,
+              "coexpression_score": 988,
+              "experimental_score": 971,
+              "database_score": 933,
+              "textmining_score": 717
+            },
+            {
+              "partner_string_id": "511145.b3985",
+              "partner_preferred_name": "rplJ",
+              "combined_score": 999,
+              "neighborhood_score": 53,
+              "fusion_score": 0,
+              "cooccurrence_score": 263,
+              "coexpression_score": 979,
+              "experimental_score": 999,
+              "database_score": 88,
+              "textmining_score": 657
+            },
+            {
+              "partner_string_id": "511145.b3983",
+              "partner_preferred_name": "rplK",
+              "combined_score": 999,
+              "neighborhood_score": 0,
+              "fusion_score": 0,
+              "cooccurrence_score": 331,
+              "coexpression_score": 979,
+              "experimental_score": 999,
+              "database_score": 0,
+              "textmining_score": 857
+            }
+          ],
+          "raw_string_url": "https://string-db.org/cgi/network?identifiers=rpsB&species=511145"
+        },
+        "esm2": {
+          "sequence_id": "rpsB",
+          "sequence_length_aa": 241,
+          "model_id": "facebook/esm2_t33_650M_UR50D",
+          "mean_embedding": {
+            "__ndarray_shape__": [
+              1280
+            ],
+            "__dtype__": "float32"
+          },
+          "per_residue_log_likelihood": {
+            "__ndarray_shape__": [
+              241
+            ],
+            "__dtype__": "float32"
+          },
+          "mean_log_likelihood": -0.16178812086582184,
+          "mean_variant_effect": 0.022465653717517853
+        },
+        "evo2": {
+          "sequence_sha256": "3d27c8a63518a518b32578df74c82a01c83870abac556e4f1da5c42b9c8e9b63",
+          "sequence_length": 726,
+          "sequence_preview": "ATGGCAACTGTTTCCATGCGCGACATGCTCAAGGCTGGTGTTCACTTCGGTCACCAGACCCGTTACTGGAACCCGAAAAT...",
+          "mean_log_likelihood": -0.2214004546403885,
+          "per_position_log_likelihoods": null,
+          "model_name": "evo2_7b_base",
+          "device": "cuda"
+        },
+        "fba": null,
+        "errors": {
+          "fba": "KeyError: \"gene 'b0169' not in model 'iML1515'\""
+        }
+      },
+      "tool_call_order": [
+        "uniprot",
+        "kegg",
+        "string",
+        "esm2",
+        "evo2",
+        "fba"
+      ],
+      "n_tool_calls": 6,
+      "errors": {
+        "fba": "KeyError: \"gene 'b0169' not in model 'iML1515'\""
+      },
+      "elapsed_s": 25.33
+    },
+    {
+      "case_id": "murA_ecoli_k12",
+      "gene_symbol": "murA",
+      "ground_truth": "essential",
+      "ground_truth_source": "Baba 2006 Keio (essential). Also fosfomycin drug target.",
+      "design_axis": "2_metabolic_essential_fba_positive",
+      "verdict": {
+        "case_id": "murA_ecoli_k12",
+        "classification": "essential",
+        "confidence": 0.99,
+        "reasoning": "MurA catalyzes the sole, irreplaceable first committed step of peptidoglycan biosynthesis (EC 2.5.1.7), with no known isozyme or bypass route in E. coli. FBA on iML1515 confirms a growth rate of 0.000 h\u207b\u00b9 upon knockout (vs. 0.877 h\u207b\u00b9 wildtype). UniProt, KEGG, STRING, and ESM-2 all corroborate deep functional constraint and central network position, yielding unanimous agreement across all evidence channels.",
+        "raw_response": "All channels are in strong agreement. Here is the integrated analysis:\n\n---\n\n## Evidence Summary\n\n### 1. UniProt \u2014 Annotated Essential Cell-Wall Enzyme\nMurA catalyzes the **first committed step of peptidoglycan (murein) biosynthesis**: the transfer of an enolpyruvyl group to UDP-N-acetylglucosamine (UDP-GlcNAc), yielding UDP-N-acetylmuramic acid precursor (EC 2.5.1.7). This step is obligatory for the synthesis of the cell wall in E. coli. MurA is notably the **sole target of the antibiotic fosfomycin**, underscoring its therapeutic importance and its indispensability. GO terms confirm roles in cell division, cell wall organization, and peptidoglycan biosynthetic process.\n\n### 2. KEGG \u2014 Core Peptidoglycan Pathway, No Bypass\nMurA is the entry-point enzyme in the **Peptidoglycan biosynthesis pathway (eco00550)** and amino sugar/nucleotide sugar metabolism (eco00520). There is **no known isozyme or alternative route** to UDP-N-acetylmuramic acid in E. coli, making MurA uniquely non-redundant.\n\n### 3. FBA \u2014 Unambiguously Essential\nFBA on the iML1515 genome-scale metabolic model delivers a **decisive result**: wildtype growth = 0.877 h\u207b\u00b9, knockout growth = **0.000 h\u207b\u00b9** (growth ratio = 0.00). This confirms that removing MurA abolishes all growth in the model, consistent with an essential function.\n\n### 4. STRING \u2014 Central Hub in Peptidoglycan Biosynthesis Cluster\nMurA shows ultra-high confidence interactions (combined scores 980\u2013996) with all downstream Mur enzymes (**murB, murC, murD, murE, murF, murG**), its direct substrate supplier **glmU**, and the divisome component **ftsW**. Every partner in this cluster is itself involved in cell wall/peptidoglycan biosynthesis, reinforcing the essentiality of this entire pathway and MurA's role as its gatekeeper.\n\n### 5. ESM-2 \u2014 Moderate-to-Strong Purifying Selection\nMean log-likelihood of \u22120.225 and mean variant effect of 0.099 indicate the protein is under **moderate-to-strong purifying selection**, consistent with high functional constraint across evolution. This supports the conclusion that MurA's sequence is critical and cannot be easily tolerated with substitutions.\n\n### No Conflicting Evidence\nAll five queried channels agree: MurA is a non-redundant, metabolically essential enzyme whose knockout is lethal under standard glucose minimal medium conditions. FBA is the decisive empirical channel here, fully corroborated by mechanistic annotation (UniProt/KEGG), network centrality (STRING), and conservation (ESM-2).\n\n---\n\n```json\n{\n  \"classification\": \"essential\",\n  \"confidence\": 0.99,\n  \"reasoning\": \"MurA catalyzes the sole, irreplaceable first committed step of peptidoglycan biosynthesis (EC 2.5.1.7), with no known isozyme or bypass route in E. coli. FBA on iML1515 confirms a growth rate of 0.000 h\u207b\u00b9 upon knockout (vs. 0.877 h\u207b\u00b9 wildtype). UniProt, KEGG, STRING, and ESM-2 all corroborate deep functional constraint and central network position, yielding unanimous agreement across all evidence channels.\"\n}\n```"
+      },
+      "bundle": {
+        "case": {
+          "case_id": "murA_ecoli_k12",
+          "gene_symbol": "murA",
+          "locus_tag": "b3189",
+          "organism_taxon": 511145,
+          "uniprot_taxon": 83333,
+          "organism_strain": "Escherichia coli K-12 MG1655",
+          "kegg_gene_id": "eco:b3189",
+          "string_species": 511145,
+          "metabolic_model": "iML1515",
+          "protein_sequence": "MDKFRVQGPTKLQGEVTISGAKNAALPILFAALLAEEPVEIQNVPKLKDVDTSMKLLSQLGAKVERNGSVHIDARDVNVFCAPYDLVKTMRASIWALGPLVARFGQGQVSLPGGCTIGARPVDLHISGLEQLGATIKLEEGYVKASVDGRLKGAHIVMDKVSVGATVTIMCAATLAEGTTIIENAAREPEIVDTANFLITLGAKISGQGTDRIVIEGVERLGGGVYRVLPDRIETGTFLVAAAISRGKIICRNAQPDTLDAVLAKLRDAGADIEVGEDWISLDMHGKRPKAVNVRTAPHPAFPTDMQAQFTLLNLVAEGTGFITETVFENRFMHVPELSRMGAHAEIESNTVICHGVEKLSGAQVMATDLRASASLVLAGCIAEGTTVVDRIYHIDRGYERIEDKLRALGANIERVKGE",
+          "dna_sequence": "ATGGATAAATTTCGTGTTCAGGGGCCAACGAAGCTCCAGGGCGAAGTCACAATTTCCGGCGCTAAAAATGCTGCTCTGCCTATCCTTTTTGCCGCACTACTGGCGGAAGAACCGGTAGAGATCCAGAACGTCCCGAAACTGAAAGACGTCGATACATCAATGAAGCTGCTAAGCCAGCTGGGTGCGAAAGTAGAACGTAATGGTTCTGTGCATATTGATGCCCGCGACGTTAATGTATTCTGCGCACCTTACGATCTGGTTAAAACCATGCGTGCTTCTATCTGGGCGCTGGGGCCGCTGGTAGCGCGCTTTGGTCAGGGGCAAGTTTCACTACCTGGCGGTTGTACGATCGGTGCGCGTCCGGTTGATCTACACATTTCTGGCCTCGAACAATTAGGCGCGACCATCAAACTGGAAGAAGGTTACGTTAAAGCTTCCGTCGATGGTCGTTTGAAAGGTGCACATATCGTGATGGATAAAGTCAGCGTTGGCGCAACGGTGACCATCATGTGTGCTGCAACCCTGGCGGAAGGCACCACGATTATTGAAAACGCAGCGCGTGAACCGGAAATCGTCGATACCGCGAACTTCCTGATTACGCTGGGTGCGAAAATTAGCGGTCAGGGCACCGATCGTATCGTCATCGAAGGTGTGGAACGTTTAGGCGGCGGTGTCTATCGCGTTCTGCCGGATCGTATCGAAACCGGTACTTTCCTGGTGGCGGCGGCGATTTCTCGCGGCAAAATTATCTGCCGTAACGCGCAGCCAGATACTCTCGACGCCGTGCTGGCGAAACTGCGTGACGCTGGAGCGGACATCGAAGTCGGCGAAGACTGGATTAGCCTGGATATGCATGGCAAACGTCCGAAGGCTGTTAACGTACGTACCGCGCCGCATCCGGCATTCCCGACCGATATGCAGGCCCAGTTCACGCTGTTGAACCTGGTGGCAGAAGGGACCGGGTTTATCACCGAAACGGTCTTTGAAAACCGCTTTATGCATGTGCCAGAGCTGAGCCGTATGGGCGCGCACGCCGAAATCGAAAGCAATACCGTTATTTGTCACGGTGTTGAAAAACTTTCTGGCGCACAGGTTATGGCAACCGATCTGCGTGCATCAGCAAGCCTGGTGCTGGCTGGCTGTATTGCGGAAGGGACGACGGTGGTTGATCGTATTTATCACATCGATCGTGGCTACGAACGCATTGAAGACAAACTGCGCGCTTTAGGTGCAAATATTGAGCGTGTGAAAGGCGAATAA",
+          "design_axis": "2_metabolic_essential_fba_positive",
+          "ground_truth_essentiality": "essential",
+          "ground_truth_source": "Baba 2006 Keio (essential). Also fosfomycin drug target.",
+          "design_rationale": "UDP-N-acetylglucosamine 1-carboxyvinyltransferase, first committed step of peptidoglycan biosynthesis. Modeled in iML1515; FBA should flag essential. Tests whether the agent integrates concordant signals across FBA + KEGG + UniProt without overthinking."
+        },
+        "uniprot": {
+          "accession": "P0A749",
+          "locus_tag": "b3189",
+          "protein_name": "UDP-N-acetylglucosamine 1-carboxyvinyltransferase",
+          "gene_name": "murA",
+          "organism_name": "Escherichia coli (strain K12)",
+          "organism_taxon": 83333,
+          "sequence": "MDKFRVQGPTKLQGEVTISGAKNAALPILFAALLAEEPVEIQNVPKLKDVDTSMKLLSQLGAKVERNGSVHIDARDVNVFCAPYDLVKTMRASIWALGPLVARFGQGQVSLPGGCTIGARPVDLHISGLEQLGATIKLEEGYVKASVDGRLKGAHIVMDKVSVGATVTIMCAATLAEGTTIIENAAREPEIVDTANFLITLGAKISGQGTDRIVIEGVERLGGGVYRVLPDRIETGTFLVAAAISRGKIICRNAQPDTLDAVLAKLRDAGADIEVGEDWISLDMHGKRPKAVNVRTAPHPAFPTDMQAQFTLLNLVAEGTGFITETVFENRFMHVPELSRMGAHAEIESNTVICHGVEKLSGAQVMATDLRASASLVLAGCIAEGTTVVDRIYHIDRGYERIEDKLRALGANIERVKGE",
+          "sequence_length_aa": 419,
+          "function_description": "Cell wall formation (PubMed:1512209). Adds enolpyruvyl to UDP-N-acetylglucosamine (PubMed:1512209, PubMed:20392080). Target for the antibiotic fosfomycin",
+          "ec_numbers": [
+            "2.5.1.7"
+          ],
+          "pfam_domains": [
+            "PF00275"
+          ],
+          "interpro_ids": [
+            "IPR001986",
+            "IPR036968",
+            "IPR013792",
+            "IPR005750"
+          ],
+          "go_terms": [
+            {
+              "go_id": "GO:0005829",
+              "name": "cytosol",
+              "aspect": "C"
+            },
+            {
+              "go_id": "GO:0008760",
+              "name": "UDP-N-acetylglucosamine 1-carboxyvinyltransferase activity",
+              "aspect": "F"
+            },
+            {
+              "go_id": "GO:0051301",
+              "name": "cell division",
+              "aspect": "P"
+            },
+            {
+              "go_id": "GO:0071555",
+              "name": "cell wall organization",
+              "aspect": "P"
+            },
+            {
+              "go_id": "GO:0009252",
+              "name": "peptidoglycan biosynthetic process",
+              "aspect": "P"
+            },
+            {
+              "go_id": "GO:0008360",
+              "name": "regulation of cell shape",
+              "aspect": "P"
+            },
+            {
+              "go_id": "GO:0019277",
+              "name": "UDP-N-acetylgalactosamine biosynthetic process",
+              "aspect": "P"
+            }
+          ],
+          "subcellular_locations": [
+            "Cytoplasm"
+          ],
+          "kegg_xrefs": [
+            "ecj:JW3156",
+            "eco:b3189"
+          ],
+          "eggnog_xrefs": [
+            "COG0766"
+          ],
+          "pdb_xrefs": [
+            "1A2N",
+            "1UAE",
+            "2Z2C",
+            "3ISS",
+            "3KQJ",
+            "3KR6",
+            "3SWD",
+            "5VM7"
+          ],
+          "raw_uniprot_url": "https://www.uniprot.org/uniprotkb/P0A749"
+        },
+        "kegg": {
+          "kegg_gene_id": "eco:b3189",
+          "organism_code": "eco",
+          "locus_tag": "b3189",
+          "gene_name": "murA",
+          "definition": "UDP-N-acetylglucosamine 1-carboxyvinyltransferase",
+          "orthologies": [
+            {
+              "ko_id": "K00790",
+              "description": "UDP-N-acetylglucosamine 1-carboxyvinyltransferase [EC:2.5.1.7]"
+            }
+          ],
+          "pathways": [
+            {
+              "pathway_id": "eco00520",
+              "name": "Amino sugar and nucleotide sugar metabolism"
+            },
+            {
+              "pathway_id": "eco00550",
+              "name": "Peptidoglycan biosynthesis"
+            },
+            {
+              "pathway_id": "eco01100",
+              "name": "Metabolic pathways"
+            },
+            {
+              "pathway_id": "eco01250",
+              "name": "Biosynthesis of nucleotide sugars"
+            }
+          ],
+          "motif_pfam": [
+            "EPSP_synthase"
+          ],
+          "aa_sequence": "MDKFRVQGPTKLQGEVTISGAKNAALPILFAALLAEEPVEIQNVPKLKDVDTSMKLLSQLGAKVERNGSVHIDARDVNVFCAPYDLVKTMRASIWALGPLVARFGQGQVSLPGGCTIGARPVDLHISGLEQLGATIKLEEGYVKASVDGRLKGAHIVMDKVSVGATVTIMCAATLAEGTTIIENAAREPEIVDTANFLITLGAKISGQGTDRIVIEGVERLGGGVYRVLPDRIETGTFLVAAAISRGKIICRNAQPDTLDAVLAKLRDAGADIEVGEDWISLDMHGKRPKAVNVRTAPHPAFPTDMQAQFTLLNLVAEGTGFITETVFENRFMHVPELSRMGAHAEIESNTVICHGVEKLSGAQVMATDLRASASLVLAGCIAEGTTVVDRIYHIDRGYERIEDKLRALGANIERVKGE",
+          "aa_length": 419,
+          "nt_sequence": "ATGGATAAATTTCGTGTTCAGGGGCCAACGAAGCTCCAGGGCGAAGTCACAATTTCCGGCGCTAAAAATGCTGCTCTGCCTATCCTTTTTGCCGCACTACTGGCGGAAGAACCGGTAGAGATCCAGAACGTCCCGAAACTGAAAGACGTCGATACATCAATGAAGCTGCTAAGCCAGCTGGGTGCGAAAGTAGAACGTAATGGTTCTGTGCATATTGATGCCCGCGACGTTAATGTATTCTGCGCACCTTACGATCTGGTTAAAACCATGCGTGCTTCTATCTGGGCGCTGGGGCCGCTGGTAGCGCGCTTTGGTCAGGGGCAAGTTTCACTACCTGGCGGTTGTACGATCGGTGCGCGTCCGGTTGATCTACACATTTCTGGCCTCGAACAATTAGGCGCGACCATCAAACTGGAAGAAGGTTACGTTAAAGCTTCCGTCGATGGTCGTTTGAAAGGTGCACATATCGTGATGGATAAAGTCAGCGTTGGCGCAACGGTGACCATCATGTGTGCTGCAACCCTGGCGGAAGGCACCACGATTATTGAAAACGCAGCGCGTGAACCGGAAATCGTCGATACCGCGAACTTCCTGATTACGCTGGGTGCGAAAATTAGCGGTCAGGGCACCGATCGTATCGTCATCGAAGGTGTGGAACGTTTAGGCGGCGGTGTCTATCGCGTTCTGCCGGATCGTATCGAAACCGGTACTTTCCTGGTGGCGGCGGCGATTTCTCGCGGCAAAATTATCTGCCGTAACGCGCAGCCAGATACTCTCGACGCCGTGCTGGCGAAACTGCGTGACGCTGGAGCGGACATCGAAGTCGGCGAAGACTGGATTAGCCTGGATATGCATGGCAAACGTCCGAAGGCTGTTAACGTACGTACCGCGCCGCATCCGGCATTCCCGACCGATATGCAGGCCCAGTTCACGCTGTTGAACCTGGTGGCAGAAGGGACCGGGTTTATCACCGAAACGGTCTTTGAAAACCGCTTTATGCATGTGCCAGAGCTGAGCCGTATGGGCGCGCACGCCGAAATCGAAAGCAATACCGTTATTTGTCACGGTGTTGAAAAACTTTCTGGCGCACAGGTTATGGCAACCGATCTGCGTGCATCAGCAAGCCTGGTGCTGGCTGGCTGTATTGCGGAAGGGACGACGGTGGTTGATCGTATTTATCACATCGATCGTGGCTACGAACGCATTGAAGACAAACTGCGCGCTTTAGGTGCAAATATTGAGCGTGTGAAAGGCGAATAA",
+          "nt_length": 1260,
+          "db_links": {
+            "NCBI-GeneID": [
+              "947703"
+            ],
+            "NCBI-ProteinID": [
+              "NP_417656"
+            ],
+            "Pasteur": [
+              "murA"
+            ],
+            "RegulonDB": [
+              "RDBECOLIGNC01326"
+            ],
+            "ECOCYC": [
+              "EG11358"
+            ],
+            "ASAP": [
+              "ABE-0010479"
+            ],
+            "UniProt": [
+              "P0A749"
+            ]
+          },
+          "raw_kegg_url": "https://www.kegg.jp/entry/eco:b3189"
+        },
+        "string": {
+          "query_identifier": "murA",
+          "species_taxon": 511145,
+          "interactions": [
+            {
+              "partner_string_id": "511145.b3972",
+              "partner_preferred_name": "murB",
+              "combined_score": 996,
+              "neighborhood_score": 158,
+              "fusion_score": 0,
+              "cooccurrence_score": 278,
+              "coexpression_score": 55,
+              "experimental_score": 0,
+              "database_score": 900,
+              "textmining_score": 953
+            },
+            {
+              "partner_string_id": "511145.b3730",
+              "partner_preferred_name": "glmU",
+              "combined_score": 989,
+              "neighborhood_score": 107,
+              "fusion_score": 0,
+              "cooccurrence_score": 211,
+              "coexpression_score": 124,
+              "experimental_score": 0,
+              "database_score": 900,
+              "textmining_score": 852
+            },
+            {
+              "partner_string_id": "511145.b0086",
+              "partner_preferred_name": "murF",
+              "combined_score": 982,
+              "neighborhood_score": 158,
+              "fusion_score": 0,
+              "cooccurrence_score": 754,
+              "coexpression_score": 53,
+              "experimental_score": 0,
+              "database_score": 0,
+              "textmining_score": 922
+            },
+            {
+              "partner_string_id": "511145.b0091",
+              "partner_preferred_name": "murC",
+              "combined_score": 982,
+              "neighborhood_score": 98,
+              "fusion_score": 0,
+              "cooccurrence_score": 762,
+              "coexpression_score": 94,
+              "experimental_score": 0,
+              "database_score": 0,
+              "textmining_score": 920
+            },
+            {
+              "partner_string_id": "511145.b0085",
+              "partner_preferred_name": "murE",
+              "combined_score": 982,
+              "neighborhood_score": 158,
+              "fusion_score": 0,
+              "cooccurrence_score": 757,
+              "coexpression_score": 0,
+              "experimental_score": 0,
+              "database_score": 0,
+              "textmining_score": 920
+            },
+            {
+              "partner_string_id": "511145.b0088",
+              "partner_preferred_name": "murD",
+              "combined_score": 981,
+              "neighborhood_score": 158,
+              "fusion_score": 0,
+              "cooccurrence_score": 734,
+              "coexpression_score": 0,
+              "experimental_score": 0,
+              "database_score": 0,
+              "textmining_score": 922
+            },
+            {
+              "partner_string_id": "511145.b0090",
+              "partner_preferred_name": "murG",
+              "combined_score": 981,
+              "neighborhood_score": 158,
+              "fusion_score": 0,
+              "cooccurrence_score": 743,
+              "coexpression_score": 0,
+              "experimental_score": 0,
+              "database_score": 0,
+              "textmining_score": 922
+            },
+            {
+              "partner_string_id": "511145.b0089",
+              "partner_preferred_name": "ftsW",
+              "combined_score": 953,
+              "neighborhood_score": 98,
+              "fusion_score": 0,
+              "cooccurrence_score": 710,
+              "coexpression_score": 218,
+              "experimental_score": 0,
+              "database_score": 0,
+              "textmining_score": 798
+            },
+            {
+              "partner_string_id": "511145.b0181",
+              "partner_preferred_name": "lpxA",
+              "combined_score": 946,
+              "neighborhood_score": 157,
+              "fusion_score": 0,
+              "cooccurrence_score": 168,
+              "coexpression_score": 196,
+              "experimental_score": 0,
+              "database_score": 800,
+              "textmining_score": 596
+            },
+            {
+              "partner_string_id": "511145.b3786",
+              "partner_preferred_name": "wecB",
+              "combined_score": 935,
+              "neighborhood_score": 158,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 145,
+              "experimental_score": 0,
+              "database_score": 900,
+              "textmining_score": 208
+            },
+            {
+              "partner_string_id": "511145.b0634",
+              "partner_preferred_name": "mrdB",
+              "combined_score": 918,
+              "neighborhood_score": 98,
+              "fusion_score": 0,
+              "cooccurrence_score": 726,
+              "coexpression_score": 218,
+              "experimental_score": 0,
+              "database_score": 0,
+              "textmining_score": 629
+            },
+            {
+              "partner_string_id": "511145.b3666",
+              "partner_preferred_name": "uhpT",
+              "combined_score": 906,
+              "neighborhood_score": 0,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 0,
+              "experimental_score": 0,
+              "database_score": 0,
+              "textmining_score": 906
+            },
+            {
+              "partner_string_id": "511145.b2240",
+              "partner_preferred_name": "glpT",
+              "combined_score": 906,
+              "neighborhood_score": 0,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 0,
+              "experimental_score": 0,
+              "database_score": 0,
+              "textmining_score": 906
+            },
+            {
+              "partner_string_id": "511145.b0092",
+              "partner_preferred_name": "ddlB",
+              "combined_score": 904,
+              "neighborhood_score": 98,
+              "fusion_score": 0,
+              "cooccurrence_score": 473,
+              "coexpression_score": 55,
+              "experimental_score": 0,
+              "database_score": 0,
+              "textmining_score": 813
+            },
+            {
+              "partner_string_id": "511145.b0084",
+              "partner_preferred_name": "ftsI",
+              "combined_score": 901,
+              "neighborhood_score": 89,
+              "fusion_score": 0,
+              "cooccurrence_score": 618,
+              "coexpression_score": 0,
+              "experimental_score": 111,
+              "database_score": 0,
+              "textmining_score": 720
+            },
+            {
+              "partner_string_id": "511145.b0087",
+              "partner_preferred_name": "mraY",
+              "combined_score": 896,
+              "neighborhood_score": 98,
+              "fusion_score": 0,
+              "cooccurrence_score": 746,
+              "coexpression_score": 0,
+              "experimental_score": 0,
+              "database_score": 0,
+              "textmining_score": 585
+            },
+            {
+              "partner_string_id": "511145.b3251",
+              "partner_preferred_name": "mreB",
+              "combined_score": 887,
+              "neighborhood_score": 98,
+              "fusion_score": 0,
+              "cooccurrence_score": 532,
+              "coexpression_score": 289,
+              "experimental_score": 0,
+              "database_score": 0,
+              "textmining_score": 669
+            },
+            {
+              "partner_string_id": "511145.b3699",
+              "partner_preferred_name": "gyrB",
+              "combined_score": 883,
+              "neighborhood_score": 67,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 152,
+              "experimental_score": 0,
+              "database_score": 0,
+              "textmining_score": 864
+            },
+            {
+              "partner_string_id": "511145.b0095",
+              "partner_preferred_name": "ftsZ",
+              "combined_score": 878,
+              "neighborhood_score": 158,
+              "fusion_score": 0,
+              "cooccurrence_score": 335,
+              "coexpression_score": 0,
+              "experimental_score": 0,
+              "database_score": 0,
+              "textmining_score": 800
+            },
+            {
+              "partner_string_id": "511145.b3176",
+              "partner_preferred_name": "glmM",
+              "combined_score": 878,
+              "neighborhood_score": 0,
+              "fusion_score": 0,
+              "cooccurrence_score": 547,
+              "coexpression_score": 122,
+              "experimental_score": 0,
+              "database_score": 0,
+              "textmining_score": 719
+            }
+          ],
+          "raw_string_url": "https://string-db.org/cgi/network?identifiers=murA&species=511145"
+        },
+        "esm2": {
+          "sequence_id": "murA",
+          "sequence_length_aa": 419,
+          "model_id": "facebook/esm2_t33_650M_UR50D",
+          "mean_embedding": {
+            "__ndarray_shape__": [
+              1280
+            ],
+            "__dtype__": "float32"
+          },
+          "per_residue_log_likelihood": {
+            "__ndarray_shape__": [
+              419
+            ],
+            "__dtype__": "float32"
+          },
+          "mean_log_likelihood": -0.22505639493465424,
+          "mean_variant_effect": 0.0984991043806076
+        },
+        "evo2": null,
+        "fba": {
+          "gene_id": "b3189",
+          "model_id": "iML1515",
+          "wildtype_growth_rate": 0.87699721425716,
+          "knockout_growth_rate": 8.502152186720987e-16,
+          "growth_ratio": 9.69461709627269e-16,
+          "is_essential": true,
+          "threshold_ratio": 0.01,
+          "objective_id": "BIOMASS_Ec_iML1515_core_75p37M_reverse_35685",
+          "status": "optimal"
+        },
+        "errors": {}
+      },
+      "tool_call_order": [
+        "uniprot",
+        "kegg",
+        "fba",
+        "string",
+        "esm2"
+      ],
+      "n_tool_calls": 5,
+      "errors": {},
+      "elapsed_s": 24.83
+    },
+    {
+      "case_id": "pgi_ecoli_k12",
+      "gene_symbol": "pgi",
+      "ground_truth": "non_essential",
+      "ground_truth_source": "Baba 2006 Keio (non-essential, slow growth). McCloskey et al. 2018 Nat Comm (evolved viable KO with regulatory rewiring).",
+      "design_axis": "3_conservation_essentiality_conflation",
+      "verdict": {
+        "case_id": "pgi_ecoli_k12",
+        "classification": "non_essential",
+        "confidence": 0.97,
+        "reasoning": "FBA with the iML1515 model on glucose minimal medium shows a pgi knockout retains 99.2% of wildtype growth (0.8697 vs 0.8770 h\u207b\u00b9), unambiguously non-essential. This is mechanistically explained by the pentose phosphate pathway (via zwf, which is a top STRING partner) providing a complete metabolic bypass for glucose-6-phosphate when pgi is absent. Moderate ESM-2 and Evo2 conservation scores are consistent with an important but non-essential housekeeping enzyme, and this result is concordant with decades of experimental single-gene deletion studies in E. coli.",
+        "raw_response": "Here is my integrated analysis:\n\n---\n\n## Evidence Summary for *pgi* (b4025) \u2014 Glucose-6-phosphate isomerase\n\n### 1. UniProt & KEGG (Functional Annotation)\n`pgi` encodes glucose-6-phosphate isomerase (EC 5.3.1.9), a cytoplasmic enzyme that reversibly interconverts glucose-6-phosphate (G6P) and fructose-6-phosphate (F6P) \u2014 the second step of glycolysis. It appears in multiple KEGG pathways (Glycolysis, Pentose phosphate pathway, Starch/sucrose metabolism), suggesting it sits at a critical branch point. This might superficially imply essentiality, but the dual membership in both glycolysis **and** the pentose phosphate pathway (PPP) is precisely what enables bypass: when *pgi* is deleted, G6P is rerouted entirely through the PPP via Zwf (G6P dehydrogenase), ultimately generating F6P and glyceraldehyde-3-phosphate to feed lower glycolysis.\n\n### 2. FBA (Flux Balance Analysis)\n**The most decisive channel.** In the iML1515 model on glucose minimal medium, the *pgi* knockout achieves a growth rate of **0.8697 h\u207b\u00b9** vs. wildtype **0.8770 h\u207b\u00b9** \u2014 a growth ratio of **99.2%** (well above the 1% threshold). FBA clearly classifies *pgi* as **non-essential**. This is entirely consistent with the well-established experimental finding in *E. coli* that \u0394*pgi* strains grow nearly as well as wild-type on glucose because the PPP provides a complete metabolic bypass. The tiny growth reduction (~0.8%) reflects minor thermodynamic/stoichiometric costs of rerouting flux.\n\n### 3. STRING (Protein Interaction Network)\n*pgi* has extremely high-confidence interactions with all major glycolytic enzymes (tpiA, pfkA, eno, pgm, gapA, pgk) and, critically, with **zwf** (combined score: 996), the PPP entry point. This network context reinforces that *pgi* operates in a metabolic neighborhood with a well-characterized alternative route, rather than being an irreplaceable bottleneck.\n\n### 4. ESM-2 & Evo2 (Conservation Signals)\nThe ESM-2 mean log-likelihood (\u22120.11) and mean variant effect (0.033) indicate **moderate** purifying selection \u2014 the protein is conserved but not as constrained as truly essential enzymes. The Evo2 DNA-level score (\u22120.29) is similarly moderate. This is consistent with a highly conserved housekeeping enzyme that is nevertheless non-essential under standard lab conditions: conservation reflects its universal role in carbohydrate metabolism across organisms, not strict essentiality in glucose-minimal *E. coli*.\n\n### 5. Conflict Check\nAll channels agree. FBA = non-essential (growth ratio ~99.2%). Conservation signals are moderate (not extreme), consistent with non-essentiality. STRING topology confirms a metabolically redundant neighborhood via the PPP bypass. No conflicts detected.\n\n---\n\n```json\n{\n  \"classification\": \"non_essential\",\n  \"confidence\": 0.97,\n  \"reasoning\": \"FBA with the iML1515 model on glucose minimal medium shows a pgi knockout retains 99.2% of wildtype growth (0.8697 vs 0.8770 h\u207b\u00b9), unambiguously non-essential. This is mechanistically explained by the pentose phosphate pathway (via zwf, which is a top STRING partner) providing a complete metabolic bypass for glucose-6-phosphate when pgi is absent. Moderate ESM-2 and Evo2 conservation scores are consistent with an important but non-essential housekeeping enzyme, and this result is concordant with decades of experimental single-gene deletion studies in E. coli.\"\n}\n```"
+      },
+      "bundle": {
+        "case": {
+          "case_id": "pgi_ecoli_k12",
+          "gene_symbol": "pgi",
+          "locus_tag": "b4025",
+          "organism_taxon": 511145,
+          "uniprot_taxon": 83333,
+          "organism_strain": "Escherichia coli K-12 MG1655",
+          "kegg_gene_id": "eco:b4025",
+          "string_species": 511145,
+          "metabolic_model": "iML1515",
+          "protein_sequence": "MKNINPTQTAAWQALQKHFDEMKDVTIADLFAKDGDRFSKFSATFDDQMLVDYSKNRITEETLAKLQDLAKECDLAGAIKSMFSGEKINRTENRAVLHVALRNRSNTPILVDGKDVMPEVNAVLEKMKTFSEAIISGEWKGYTGKAITDVVNIGIGGSDLGPYMVTEALRPYKNHLNMHFVSNVDGTHIAEVLKKVNPETTLFLVASKTFTTQETMTNAHSARDWFLKAAGDEKHVAKHFAALSTNAKAVGEFGIDTANMFEFWDWVGGRYSLWSAIGLSIVLSIGFDNFVELLSGAHAMDKHFSTTPAEKNLPVLLALIGIWYNNFFGAETEAILPYDQYMHRFAAYFQQGNMESNGKYVDRNGNVVDYQTGPIIWGEPGTNGQHAFYQLIHQGTKMVPCDFIAPAITHNPLSDHHQKLLSNFFAQTEALAFGKSREVVEQEYRDQGKDPATLDYVVPFKVFEGNRPTNSILLREITPFSLGALIALYEHKIFTQGVILNIFTFDQWGVELGKQLANRILPELKDDKEISSHDSSTNGLINRYKAWRG",
+          "dna_sequence": "ATGAAAAACATCAATCCAACGCAGACCGCTGCCTGGCAGGCACTACAGAAACACTTCGATGAAATGAAAGACGTTACGATCGCCGATCTTTTTGCTAAAGACGGCGATCGTTTTTCTAAGTTCTCCGCAACCTTCGACGATCAGATGCTGGTGGATTACTCCAAAAACCGCATCACTGAAGAGACGCTGGCGAAATTACAGGATCTGGCGAAAGAGTGCGATCTGGCGGGCGCGATTAAGTCGATGTTCTCTGGCGAGAAGATCAACCGCACTGAAAACCGCGCCGTGCTGCACGTAGCGCTGCGTAACCGTAGCAATACCCCGATTTTGGTTGATGGCAAAGACGTAATGCCGGAAGTCAACGCGGTGCTGGAGAAGATGAAAACCTTCTCAGAAGCGATTATTTCCGGTGAGTGGAAAGGTTATACCGGCAAAGCAATCACTGACGTAGTGAACATCGGGATCGGCGGTTCTGACCTCGGCCCATACATGGTGACCGAAGCTCTGCGTCCGTACAAAAACCACCTGAACATGCACTTTGTTTCTAACGTCGATGGGACTCACATCGCGGAAGTGCTGAAAAAAGTAAACCCGGAAACCACGCTGTTCTTGGTAGCATCTAAAACCTTCACCACTCAGGAAACTATGACCAACGCCCATAGCGCGCGTGACTGGTTCCTGAAAGCGGCAGGTGATGAAAAACACGTTGCAAAACACTTTGCGGCGCTTTCCACCAATGCCAAAGCCGTTGGCGAGTTTGGTATTGATACTGCCAACATGTTCGAGTTCTGGGACTGGGTTGGCGGCCGTTACTCTTTGTGGTCAGCGATTGGCCTGTCGATTGTTCTCTCCATCGGCTTTGATAACTTCGTTGAACTGCTTTCCGGCGCACACGCGATGGACAAGCATTTCTCCACCACGCCTGCCGAGAAAAACCTGCCTGTACTGCTGGCGCTGATTGGCATCTGGTACAACAATTTCTTTGGTGCGGAAACTGAAGCGATTCTGCCGTATGACCAGTATATGCACCGTTTCGCGGCGTACTTCCAGCAGGGCAATATGGAGTCCAACGGTAAGTATGTTGACCGTAACGGTAACGTTGTGGATTACCAGACTGGCCCGATTATCTGGGGTGAACCAGGCACTAACGGTCAGCACGCGTTCTACCAGCTGATCCACCAGGGAACCAAAATGGTACCGTGCGATTTCATCGCTCCGGCTATCACCCATAACCCGCTCTCTGATCATCACCAGAAACTGCTGTCTAACTTCTTCGCCCAGACCGAAGCGCTGGCGTTTGGTAAATCCCGCGAAGTGGTTGAGCAGGAATATCGTGATCAGGGTAAAGATCCGGCAACGCTTGACTACGTGGTGCCGTTCAAAGTATTCGAAGGTAACCGCCCGACCAACTCCATCCTGCTGCGTGAAATCACTCCGTTCAGCCTGGGTGCGTTGATTGCGCTGTATGAGCACAAAATCTTTACTCAGGGCGTGATCCTGAACATCTTCACCTTCGACCAGTGGGGCGTGGAACTGGGTAAACAGCTGGCGAACCGTATTCTGCCAGAGCTGAAAGATGATAAAGAAATCAGCAGCCACGATAGCTCGACCAATGGTCTGATTAACCGCTATAAAGCGTGGCGCGGTTAA",
+          "design_axis": "3_conservation_essentiality_conflation",
+          "ground_truth_essentiality": "non_essential",
+          "ground_truth_source": "Baba 2006 Keio (non-essential, slow growth). McCloskey et al. 2018 Nat Comm (evolved viable KO with regulatory rewiring).",
+          "design_rationale": "Glucose-6-phosphate isomerase. Highly conserved across bacteria; central glycolytic enzyme with rich STRING network. BUT empirically non-essential in K-12 because the pentose phosphate pathway bypass is available. iML1515 correctly models this and calls pgi non-essential. This is the syn3A option_a analog: looks essential by conservation/centrality signals, isn't actually essential. Tests whether the agent correctly weighs empirical FBA + Keio evidence above network centrality."
+        },
+        "uniprot": {
+          "accession": "P0A6T1",
+          "locus_tag": "b4025",
+          "protein_name": "Glucose-6-phosphate isomerase",
+          "gene_name": "pgi",
+          "organism_name": "Escherichia coli (strain K12)",
+          "organism_taxon": 83333,
+          "sequence": "MKNINPTQTAAWQALQKHFDEMKDVTIADLFAKDGDRFSKFSATFDDQMLVDYSKNRITEETLAKLQDLAKECDLAGAIKSMFSGEKINRTENRAVLHVALRNRSNTPILVDGKDVMPEVNAVLEKMKTFSEAIISGEWKGYTGKAITDVVNIGIGGSDLGPYMVTEALRPYKNHLNMHFVSNVDGTHIAEVLKKVNPETTLFLVASKTFTTQETMTNAHSARDWFLKAAGDEKHVAKHFAALSTNAKAVGEFGIDTANMFEFWDWVGGRYSLWSAIGLSIVLSIGFDNFVELLSGAHAMDKHFSTTPAEKNLPVLLALIGIWYNNFFGAETEAILPYDQYMHRFAAYFQQGNMESNGKYVDRNGNVVDYQTGPIIWGEPGTNGQHAFYQLIHQGTKMVPCDFIAPAITHNPLSDHHQKLLSNFFAQTEALAFGKSREVVEQEYRDQGKDPATLDYVVPFKVFEGNRPTNSILLREITPFSLGALIALYEHKIFTQGVILNIFTFDQWGVELGKQLANRILPELKDDKEISSHDSSTNGLINRYKAWRG",
+          "sequence_length_aa": 549,
+          "function_description": "Catalyzes the reversible isomerization of glucose-6-phosphate to fructose-6-phosphate",
+          "ec_numbers": [
+            "5.3.1.9"
+          ],
+          "pfam_domains": [
+            "PF00342"
+          ],
+          "interpro_ids": [
+            "IPR001672",
+            "IPR023096",
+            "IPR018189",
+            "IPR046348",
+            "IPR035476",
+            "IPR035482"
+          ],
+          "go_terms": [
+            {
+              "go_id": "GO:0005829",
+              "name": "cytosol",
+              "aspect": "C"
+            },
+            {
+              "go_id": "GO:0097367",
+              "name": "carbohydrate derivative binding",
+              "aspect": "F"
+            },
+            {
+              "go_id": "GO:0004347",
+              "name": "glucose-6-phosphate isomerase activity",
+              "aspect": "F"
+            },
+            {
+              "go_id": "GO:0042802",
+              "name": "identical protein binding",
+              "aspect": "F"
+            },
+            {
+              "go_id": "GO:0048029",
+              "name": "monosaccharide binding",
+              "aspect": "F"
+            },
+            {
+              "go_id": "GO:0042803",
+              "name": "protein homodimerization activity",
+              "aspect": "F"
+            },
+            {
+              "go_id": "GO:0034599",
+              "name": "cellular response to oxidative stress",
+              "aspect": "P"
+            },
+            {
+              "go_id": "GO:0006094",
+              "name": "gluconeogenesis",
+              "aspect": "P"
+            },
+            {
+              "go_id": "GO:0051156",
+              "name": "glucose 6-phosphate metabolic process",
+              "aspect": "P"
+            },
+            {
+              "go_id": "GO:0006096",
+              "name": "glycolytic process",
+              "aspect": "P"
+            }
+          ],
+          "subcellular_locations": [
+            "Cytoplasm"
+          ],
+          "kegg_xrefs": [
+            "ecj:JW3985",
+            "eco:b4025",
+            "ecoc:C3026_21740"
+          ],
+          "eggnog_xrefs": [
+            "COG0166"
+          ],
+          "pdb_xrefs": [
+            "3NBU"
+          ],
+          "raw_uniprot_url": "https://www.uniprot.org/uniprotkb/P0A6T1"
+        },
+        "kegg": {
+          "kegg_gene_id": "eco:b4025",
+          "organism_code": "eco",
+          "locus_tag": "b4025",
+          "gene_name": "pgi",
+          "definition": "glucose-6-phosphate isomerase",
+          "orthologies": [
+            {
+              "ko_id": "K01810",
+              "description": "glucose-6-phosphate isomerase [EC:5.3.1.9]"
+            }
+          ],
+          "pathways": [
+            {
+              "pathway_id": "eco00010",
+              "name": "Glycolysis / Gluconeogenesis"
+            },
+            {
+              "pathway_id": "eco00030",
+              "name": "Pentose phosphate pathway"
+            },
+            {
+              "pathway_id": "eco00500",
+              "name": "Starch and sucrose metabolism"
+            },
+            {
+              "pathway_id": "eco00520",
+              "name": "Amino sugar and nucleotide sugar metabolism"
+            },
+            {
+              "pathway_id": "eco01100",
+              "name": "Metabolic pathways"
+            },
+            {
+              "pathway_id": "eco01110",
+              "name": "Biosynthesis of secondary metabolites"
+            },
+            {
+              "pathway_id": "eco01120",
+              "name": "Microbial metabolism in diverse environments"
+            },
+            {
+              "pathway_id": "eco01200",
+              "name": "Carbon metabolism"
+            },
+            {
+              "pathway_id": "eco01250",
+              "name": "Biosynthesis of nucleotide sugars"
+            }
+          ],
+          "motif_pfam": [
+            "PGI"
+          ],
+          "aa_sequence": "MKNINPTQTAAWQALQKHFDEMKDVTIADLFAKDGDRFSKFSATFDDQMLVDYSKNRITEETLAKLQDLAKECDLAGAIKSMFSGEKINRTENRAVLHVALRNRSNTPILVDGKDVMPEVNAVLEKMKTFSEAIISGEWKGYTGKAITDVVNIGIGGSDLGPYMVTEALRPYKNHLNMHFVSNVDGTHIAEVLKKVNPETTLFLVASKTFTTQETMTNAHSARDWFLKAAGDEKHVAKHFAALSTNAKAVGEFGIDTANMFEFWDWVGGRYSLWSAIGLSIVLSIGFDNFVELLSGAHAMDKHFSTTPAEKNLPVLLALIGIWYNNFFGAETEAILPYDQYMHRFAAYFQQGNMESNGKYVDRNGNVVDYQTGPIIWGEPGTNGQHAFYQLIHQGTKMVPCDFIAPAITHNPLSDHHQKLLSNFFAQTEALAFGKSREVVEQEYRDQGKDPATLDYVVPFKVFEGNRPTNSILLREITPFSLGALIALYEHKIFTQGVILNIFTFDQWGVELGKQLANRILPELKDDKEISSHDSSTNGLINRYKAWRG",
+          "aa_length": 549,
+          "nt_sequence": "ATGAAAAACATCAATCCAACGCAGACCGCTGCCTGGCAGGCACTACAGAAACACTTCGATGAAATGAAAGACGTTACGATCGCCGATCTTTTTGCTAAAGACGGCGATCGTTTTTCTAAGTTCTCCGCAACCTTCGACGATCAGATGCTGGTGGATTACTCCAAAAACCGCATCACTGAAGAGACGCTGGCGAAATTACAGGATCTGGCGAAAGAGTGCGATCTGGCGGGCGCGATTAAGTCGATGTTCTCTGGCGAGAAGATCAACCGCACTGAAAACCGCGCCGTGCTGCACGTAGCGCTGCGTAACCGTAGCAATACCCCGATTTTGGTTGATGGCAAAGACGTAATGCCGGAAGTCAACGCGGTGCTGGAGAAGATGAAAACCTTCTCAGAAGCGATTATTTCCGGTGAGTGGAAAGGTTATACCGGCAAAGCAATCACTGACGTAGTGAACATCGGGATCGGCGGTTCTGACCTCGGCCCATACATGGTGACCGAAGCTCTGCGTCCGTACAAAAACCACCTGAACATGCACTTTGTTTCTAACGTCGATGGGACTCACATCGCGGAAGTGCTGAAAAAAGTAAACCCGGAAACCACGCTGTTCTTGGTAGCATCTAAAACCTTCACCACTCAGGAAACTATGACCAACGCCCATAGCGCGCGTGACTGGTTCCTGAAAGCGGCAGGTGATGAAAAACACGTTGCAAAACACTTTGCGGCGCTTTCCACCAATGCCAAAGCCGTTGGCGAGTTTGGTATTGATACTGCCAACATGTTCGAGTTCTGGGACTGGGTTGGCGGCCGTTACTCTTTGTGGTCAGCGATTGGCCTGTCGATTGTTCTCTCCATCGGCTTTGATAACTTCGTTGAACTGCTTTCCGGCGCACACGCGATGGACAAGCATTTCTCCACCACGCCTGCCGAGAAAAACCTGCCTGTACTGCTGGCGCTGATTGGCATCTGGTACAACAATTTCTTTGGTGCGGAAACTGAAGCGATTCTGCCGTATGACCAGTATATGCACCGTTTCGCGGCGTACTTCCAGCAGGGCAATATGGAGTCCAACGGTAAGTATGTTGACCGTAACGGTAACGTTGTGGATTACCAGACTGGCCCGATTATCTGGGGTGAACCAGGCACTAACGGTCAGCACGCGTTCTACCAGCTGATCCACCAGGGAACCAAAATGGTACCGTGCGATTTCATCGCTCCGGCTATCACCCATAACCCGCTCTCTGATCATCACCAGAAACTGCTGTCTAACTTCTTCGCCCAGACCGAAGCGCTGGCGTTTGGTAAATCCCGCGAAGTGGTTGAGCAGGAATATCGTGATCAGGGTAAAGATCCGGCAACGCTTGACTACGTGGTGCCGTTCAAAGTATTCGAAGGTAACCGCCCGACCAACTCCATCCTGCTGCGTGAAATCACTCCGTTCAGCCTGGGTGCGTTGATTGCGCTGTATGAGCACAAAATCTTTACTCAGGGCGTGATCCTGAACATCTTCACCTTCGACCAGTGGGGCGTGGAACTGGGTAAACAGCTGGCGAACCGTATTCTGCCAGAGCTGAAAGATGATAAAGAAATCAGCAGCCACGATAGCTCGACCAATGGTCTGATTAACCGCTATAAAGCGTGGCGCGGTTAA",
+          "nt_length": 1650,
+          "db_links": {
+            "NCBI-GeneID": [
+              "948535"
+            ],
+            "NCBI-ProteinID": [
+              "NP_418449"
+            ],
+            "Pasteur": [
+              "pgi"
+            ],
+            "RegulonDB": [
+              "RDBECOLIGNC00693"
+            ],
+            "ECOCYC": [
+              "EG10702"
+            ],
+            "ASAP": [
+              "ABE-0013163"
+            ],
+            "UniProt": [
+              "P0A6T1"
+            ]
+          },
+          "raw_kegg_url": "https://www.kegg.jp/entry/eco:b4025"
+        },
+        "string": {
+          "query_identifier": "pgi",
+          "species_taxon": 511145,
+          "interactions": [
+            {
+              "partner_string_id": "511145.b3919",
+              "partner_preferred_name": "tpiA",
+              "combined_score": 999,
+              "neighborhood_score": 157,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 947,
+              "experimental_score": 147,
+              "database_score": 800,
+              "textmining_score": 920
+            },
+            {
+              "partner_string_id": "511145.b3916",
+              "partner_preferred_name": "pfkA",
+              "combined_score": 998,
+              "neighborhood_score": 158,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 829,
+              "experimental_score": 93,
+              "database_score": 900,
+              "textmining_score": 918
+            },
+            {
+              "partner_string_id": "511145.b2779",
+              "partner_preferred_name": "eno",
+              "combined_score": 997,
+              "neighborhood_score": 158,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 849,
+              "experimental_score": 92,
+              "database_score": 800,
+              "textmining_score": 919
+            },
+            {
+              "partner_string_id": "511145.b0688",
+              "partner_preferred_name": "pgm",
+              "combined_score": 997,
+              "neighborhood_score": 158,
+              "fusion_score": 0,
+              "cooccurrence_score": 194,
+              "coexpression_score": 784,
+              "experimental_score": 91,
+              "database_score": 900,
+              "textmining_score": 857
+            },
+            {
+              "partner_string_id": "511145.b1852",
+              "partner_preferred_name": "zwf",
+              "combined_score": 996,
+              "neighborhood_score": 158,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 553,
+              "experimental_score": 0,
+              "database_score": 900,
+              "textmining_score": 924
+            },
+            {
+              "partner_string_id": "511145.b1779",
+              "partner_preferred_name": "gapA",
+              "combined_score": 994,
+              "neighborhood_score": 98,
+              "fusion_score": 0,
+              "cooccurrence_score": 215,
+              "coexpression_score": 591,
+              "experimental_score": 0,
+              "database_score": 800,
+              "textmining_score": 913
+            },
+            {
+              "partner_string_id": "511145.b2935",
+              "partner_preferred_name": "tktA",
+              "combined_score": 992,
+              "neighborhood_score": 98,
+              "fusion_score": 24,
+              "cooccurrence_score": 0,
+              "coexpression_score": 543,
+              "experimental_score": 76,
+              "database_score": 900,
+              "textmining_score": 831
+            },
+            {
+              "partner_string_id": "511145.b1854",
+              "partner_preferred_name": "pykA",
+              "combined_score": 991,
+              "neighborhood_score": 98,
+              "fusion_score": 0,
+              "cooccurrence_score": 173,
+              "coexpression_score": 735,
+              "experimental_score": 0,
+              "database_score": 800,
+              "textmining_score": 814
+            },
+            {
+              "partner_string_id": "511145.b1676",
+              "partner_preferred_name": "pykF",
+              "combined_score": 990,
+              "neighborhood_score": 98,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 747,
+              "experimental_score": 0,
+              "database_score": 800,
+              "textmining_score": 807
+            },
+            {
+              "partner_string_id": "511145.b2926",
+              "partner_preferred_name": "pgk",
+              "combined_score": 989,
+              "neighborhood_score": 158,
+              "fusion_score": 0,
+              "cooccurrence_score": 192,
+              "coexpression_score": 892,
+              "experimental_score": 90,
+              "database_score": 0,
+              "textmining_score": 860
+            },
+            {
+              "partner_string_id": "511145.b2465",
+              "partner_preferred_name": "tktB",
+              "combined_score": 989,
+              "neighborhood_score": 98,
+              "fusion_score": 20,
+              "cooccurrence_score": 0,
+              "coexpression_score": 556,
+              "experimental_score": 76,
+              "database_score": 900,
+              "textmining_score": 763
+            },
+            {
+              "partner_string_id": "511145.b0008",
+              "partner_preferred_name": "talB",
+              "combined_score": 989,
+              "neighborhood_score": 98,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 395,
+              "experimental_score": 0,
+              "database_score": 900,
+              "textmining_score": 827
+            },
+            {
+              "partner_string_id": "511145.b2388",
+              "partner_preferred_name": "glk",
+              "combined_score": 986,
+              "neighborhood_score": 158,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 0,
+              "experimental_score": 0,
+              "database_score": 900,
+              "textmining_score": 856
+            },
+            {
+              "partner_string_id": "511145.b2464",
+              "partner_preferred_name": "talA",
+              "combined_score": 985,
+              "neighborhood_score": 98,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 399,
+              "experimental_score": 0,
+              "database_score": 900,
+              "textmining_score": 763
+            },
+            {
+              "partner_string_id": "511145.b4232",
+              "partner_preferred_name": "fbp",
+              "combined_score": 985,
+              "neighborhood_score": 0,
+              "fusion_score": 0,
+              "cooccurrence_score": 172,
+              "coexpression_score": 83,
+              "experimental_score": 0,
+              "database_score": 900,
+              "textmining_score": 836
+            },
+            {
+              "partner_string_id": "511145.b2925",
+              "partner_preferred_name": "fbaA",
+              "combined_score": 984,
+              "neighborhood_score": 76,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 575,
+              "experimental_score": 0,
+              "database_score": 800,
+              "textmining_score": 828
+            },
+            {
+              "partner_string_id": "511145.b1101",
+              "partner_preferred_name": "ptsG",
+              "combined_score": 984,
+              "neighborhood_score": 60,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 43,
+              "experimental_score": 0,
+              "database_score": 900,
+              "textmining_score": 845
+            },
+            {
+              "partner_string_id": "511145.b0755",
+              "partner_preferred_name": "gpmA",
+              "combined_score": 981,
+              "neighborhood_score": 0,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 529,
+              "experimental_score": 0,
+              "database_score": 800,
+              "textmining_score": 818
+            },
+            {
+              "partner_string_id": "511145.b1723",
+              "partner_preferred_name": "pfkB",
+              "combined_score": 976,
+              "neighborhood_score": 97,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 0,
+              "experimental_score": 0,
+              "database_score": 900,
+              "textmining_score": 762
+            },
+            {
+              "partner_string_id": "511145.b1613",
+              "partner_preferred_name": "manA",
+              "combined_score": 973,
+              "neighborhood_score": 158,
+              "fusion_score": 0,
+              "cooccurrence_score": 180,
+              "coexpression_score": 98,
+              "experimental_score": 0,
+              "database_score": 900,
+              "textmining_score": 645
+            }
+          ],
+          "raw_string_url": "https://string-db.org/cgi/network?identifiers=pgi&species=511145"
+        },
+        "esm2": {
+          "sequence_id": "pgi",
+          "sequence_length_aa": 549,
+          "model_id": "facebook/esm2_t33_650M_UR50D",
+          "mean_embedding": {
+            "__ndarray_shape__": [
+              1280
+            ],
+            "__dtype__": "float32"
+          },
+          "per_residue_log_likelihood": {
+            "__ndarray_shape__": [
+              549
+            ],
+            "__dtype__": "float32"
+          },
+          "mean_log_likelihood": -0.11250463128089905,
+          "mean_variant_effect": 0.03269539400935173
+        },
+        "evo2": {
+          "sequence_sha256": "afb97904e0a8a41e4167295680b56041444b50b855c137c25af2f50be5e81bb2",
+          "sequence_length": 1650,
+          "sequence_preview": "ATGAAAAACATCAATCCAACGCAGACCGCTGCCTGGCAGGCACTACAGAAACACTTCGATGAAATGAAAGACGTTACGAT...",
+          "mean_log_likelihood": -0.29439812898635864,
+          "per_position_log_likelihoods": null,
+          "model_name": "evo2_7b_base",
+          "device": "cuda"
+        },
+        "fba": {
+          "gene_id": "b4025",
+          "model_id": "iML1515",
+          "wildtype_growth_rate": 0.87699721425716,
+          "knockout_growth_rate": 0.8696956584514284,
+          "growth_ratio": 0.9916743683023939,
+          "is_essential": false,
+          "threshold_ratio": 0.01,
+          "objective_id": "BIOMASS_Ec_iML1515_core_75p37M_reverse_35685",
+          "status": "optimal"
+        },
+        "errors": {}
+      },
+      "tool_call_order": [
+        "uniprot",
+        "kegg",
+        "fba",
+        "string",
+        "esm2",
+        "evo2"
+      ],
+      "n_tool_calls": 6,
+      "errors": {},
+      "elapsed_s": 26.09
+    },
+    {
+      "case_id": "rpoS_ecoli_k12",
+      "gene_symbol": "rpoS",
+      "ground_truth": "conditional",
+      "ground_truth_source": "Baba 2006 Keio (non-essential in log phase). Battesti et al. 2011 ARM (essential for stationary-phase survival and general stress response).",
+      "design_axis": "4_conditional_essentiality",
+      "verdict": {
+        "case_id": "rpoS_ecoli_k12",
+        "classification": "conditional",
+        "confidence": 0.93,
+        "reasoning": "RpoS (\u03c338) is the master regulator of stationary-phase and general stress responses, explicitly annotated by KEGG as a 'nonessential primary-like sigma factor.' It is absent from the iML1515 metabolic model (non-metabolic gene), and its UniProt annotation confirms its role is restricted to stress/stationary-phase transcriptional reprogramming rather than vegetative growth. Under standard log-phase glucose growth conditions, rpoS knockouts are viable (and widely used in the lab); however, the gene becomes essential under starvation, stationary phase, oxidative stress, osmotic stress, and acid challenge, making its classification conditional on growth condition.",
+        "raw_response": "All six channels have returned. Here is my integrated analysis:\n\n---\n\n## Evidence Summary\n\n### 1. UniProt\nRpoS is the **master transcriptional regulator of stationary phase and the general stress response** \u2014 it is \u03c3\u00b3\u2078, a sigma factor that promotes RNA polymerase attachment to stress-response promoters. Its role is explicitly stress/starvation-phase-centric. No essential housekeeping metabolic function is annotated.\n\n### 2. KEGG\nThe KEGG orthology descriptor is blunt and decisive: **\"RNA polymerase nonessential primary-like sigma factor\"** (K03087). The only pathway listed is biofilm formation. This directly flags the gene as **non-essential under standard growth conditions**.\n\n### 3. STRING\nRpoS has extremely high-confidence interactions with core RNA polymerase subunits (rpoB: 998, rpoC: 990, rpoA: 986, rpoZ: 961) \u2014 consistent with its role docking onto the RNAP core. It also interacts with rssB (its proteolytic regulator), hfq (an sRNA chaperone controlling its translation), and rsd (an anti-sigma factor). This network confirms a **regulatory sigma factor role** rather than a housekeeping metabolic enzyme.\n\n### 4. FBA\nThe FBA query fails with **\"gene 'b2741' not in model iML1515\"** \u2014 as expected. RpoS is a transcriptional regulator, not a metabolic enzyme, so it is outside the metabolic reconstruction. Critically, this absence does **not** imply essentiality; it simply means FBA cannot capture it. The functional annotation must carry the weight here.\n\n### 5. ESM-2\nMean log-likelihood: **\u22120.293** and mean variant effect: **0.0414**. The variant effect score is mildly low-but-positive, suggesting moderate-to-weak purifying selection at the protein level \u2014 consistent with a conserved regulatory protein that is not, however, absolutely indispensable for growth.\n\n### 6. Evo2\nMean causal log-likelihood: **\u22120.4696**. This is in a moderate range \u2014 the sequence is under some selective constraint at the DNA level, consistent with conservation across \u03b3-proteobacteria, but not in the extreme range expected for truly indispensable genes (e.g., core ribosomal proteins or DNA replication machinery).\n\n---\n\n## Conflict Assessment\nThere is **no meaningful conflict** across channels. KEGG explicitly labels this gene non-essential. UniProt defines it as a stationary-phase/stress regulator (conditionally required). FBA absence confirms non-metabolic, non-essential-under-standard-growth role. STRING confirms its regulatory (not metabolic) network. ESM-2 and Evo2 show moderate-but-not-extreme conservation. The key nuance is: rpoS **is** required under stationary phase, starvation, oxidative stress, osmotic stress, and acid stress \u2014 this makes it **conditionally essential** under those specific conditions, but **non-essential for log-phase growth on glucose minimal medium** (the standard classification condition here).\n\n---\n\n```json\n{\n  \"classification\": \"conditional\",\n  \"confidence\": 0.93,\n  \"reasoning\": \"RpoS (\u03c338) is the master regulator of stationary-phase and general stress responses, explicitly annotated by KEGG as a 'nonessential primary-like sigma factor.' It is absent from the iML1515 metabolic model (non-metabolic gene), and its UniProt annotation confirms its role is restricted to stress/stationary-phase transcriptional reprogramming rather than vegetative growth. Under standard log-phase glucose growth conditions, rpoS knockouts are viable (and widely used in the lab); however, the gene becomes essential under starvation, stationary phase, oxidative stress, osmotic stress, and acid challenge, making its classification conditional on growth condition.\"\n}\n```"
+      },
+      "bundle": {
+        "case": {
+          "case_id": "rpoS_ecoli_k12",
+          "gene_symbol": "rpoS",
+          "locus_tag": "b2741",
+          "organism_taxon": 511145,
+          "uniprot_taxon": 83333,
+          "organism_strain": "Escherichia coli K-12 MG1655",
+          "kegg_gene_id": "eco:b2741",
+          "string_species": 511145,
+          "metabolic_model": "iML1515",
+          "protein_sequence": "MSQNTLKVHDLNEDAEFDENGVEVFDEKALVEQEPSDNDLAEEELLSQGATQRVLDATQLYLGEIGYSPLLTAEEEVYFARRALRGDVASRRRMIESNLRLVVKIARRYGNRGLALLDLIEEGNLGLIRAVEKFDPERGFRFSTYATWWIRQTIERAIMNQTRTIRLPIHIVKELNVYLRTARELSHKLDHEPSAEEIAEQLDKPVDDVSRMLRLNERITSVDTPLGGDSEKALLDILADEKENGPEDTTQDDDMKQSIVKWLFELNAKQREVLARRFGLLGYEAATLEDVGREIGLTRERVRQIQVEGLRRLREILQTQGLNIEALFRE",
+          "dna_sequence": "ATGAGTCAGAATACGCTGAAAGTTCATGATTTAAATGAAGATGCGGAATTTGATGAGAACGGAGTTGAGGTTTTTGACGAAAAGGCCTTAGTAGAACAGGAACCCAGTGATAACGATTTGGCCGAAGAGGAACTGTTATCGCAGGGAGCCACACAGCGTGTGTTGGACGCGACTCAGCTTTACCTTGGTGAGATTGGTTATTCACCACTGTTAACGGCCGAAGAAGAAGTTTATTTTGCGCGTCGCGCACTGCGTGGAGATGTCGCCTCTCGCCGCCGGATGATCGAGAGTAACTTGCGTCTGGTGGTAAAAATTGCCCGCCGTTATGGCAATCGTGGTCTGGCGTTGCTGGACCTTATCGAAGAGGGCAACCTGGGGCTGATCCGCGCGGTAGAGAAGTTTGACCCGGAACGTGGTTTCCGCTTCTCAACATACGCAACCTGGTGGATTCGCCAGACGATTGAACGGGCGATTATGAACCAAACCCGTACTATTCGTTTGCCGATTCACATCGTAAAGGAGCTGAACGTTTACCTGCGAACCGCACGTGAGTTGTCCCATAAGCTGGACCATGAACCAAGTGCGGAAGAGATCGCAGAGCAACTGGATAAGCCAGTTGATGACGTCAGCCGTATGCTTCGTCTTAACGAGCGCATTACCTCGGTAGACACCCCGCTGGGTGGTGATTCCGAAAAAGCGTTGCTGGACATCCTGGCCGATGAAAAAGAGAACGGTCCGGAAGATACCACGCAAGATGACGATATGAAGCAGAGCATCGTCAAATGGCTGTTCGAGCTGAACGCCAAACAGCGTGAAGTGCTGGCACGTCGATTCGGTTTGCTGGGGTACGAAGCGGCAACACTGGAAGATGTAGGTCGTGAAATTGGCCTCACCCGTGAACGTGTTCGCCAGATTCAGGTTGAAGGCCTGCGCCGTTTGCGCGAAATCCTGCAAACGCAGGGGCTGAATATCGAAGCGCTGTTCCGCGAGTAA",
+          "design_axis": "4_conditional_essentiality",
+          "ground_truth_essentiality": "conditional",
+          "ground_truth_source": "Baba 2006 Keio (non-essential in log phase). Battesti et al. 2011 ARM (essential for stationary-phase survival and general stress response).",
+          "design_rationale": "Sigma factor sigma-S (sigma-38), master regulator of stationary phase and general stress response. Non-essential during exponential growth on rich media; essential under stress, stationary phase, oxidative stress, low pH. Not in metabolic models. Tests whether the agent identifies conditional essentiality from UniProt function annotation and outputs 'conditional' rather than forcing binary essential / non-essential."
+        },
+        "uniprot": {
+          "accession": "P13445",
+          "locus_tag": "b2741",
+          "protein_name": "RNA polymerase sigma factor RpoS",
+          "gene_name": "rpoS",
+          "organism_name": "Escherichia coli (strain K12)",
+          "organism_taxon": 83333,
+          "sequence": "MSQNTLKVHDLNEDAEFDENGVEVFDEKALVEQEPSDNDLAEEELLSQGATQRVLDATQLYLGEIGYSPLLTAEEEVYFARRALRGDVASRRRMIESNLRLVVKIARRYGNRGLALLDLIEEGNLGLIRAVEKFDPERGFRFSTYATWWIRQTIERAIMNQTRTIRLPIHIVKELNVYLRTARELSHKLDHEPSAEEIAEQLDKPVDDVSRMLRLNERITSVDTPLGGDSEKALLDILADEKENGPEDTTQDDDMKQSIVKWLFELNAKQREVLARRFGLLGYEAATLEDVGREIGLTRERVRQIQVEGLRRLREILQTQGLNIEALFRE",
+          "sequence_length_aa": 330,
+          "function_description": "Sigma factors are initiation factors that promote the attachment of RNA polymerase to specific initiation sites and are then released. This sigma factor is the master transcriptional regulator of the stationary phase and the general stress response. Controls, positively or negatively, the expression of several hundred genes, which are mainly involved in metabolism, transport, regulation and stress management",
+          "ec_numbers": [],
+          "pfam_domains": [
+            "PF00140",
+            "PF04542",
+            "PF04539",
+            "PF04545"
+          ],
+          "interpro_ids": [
+            "IPR014284",
+            "IPR000943",
+            "IPR009042",
+            "IPR007627",
+            "IPR007624",
+            "IPR007630",
+            "IPR013325",
+            "IPR013324",
+            "IPR012761",
+            "IPR050239",
+            "IPR036388"
+          ],
+          "go_terms": [
+            {
+              "go_id": "GO:0005737",
+              "name": "cytoplasm",
+              "aspect": "C"
+            },
+            {
+              "go_id": "GO:1903865",
+              "name": "sigma factor antagonist complex",
+              "aspect": "C"
+            },
+            {
+              "go_id": "GO:0001000",
+              "name": "bacterial-type RNA polymerase core enzyme binding",
+              "aspect": "F"
+            },
+            {
+              "go_id": "GO:0003899",
+              "name": "DNA-directed RNA polymerase activity",
+              "aspect": "F"
+            },
+            {
+              "go_id": "GO:0016987",
+              "name": "sigma factor activity",
+              "aspect": "F"
+            },
+            {
+              "go_id": "GO:0000976",
+              "name": "transcription cis-regulatory region binding",
+              "aspect": "F"
+            },
+            {
+              "go_id": "GO:0006352",
+              "name": "DNA-templated transcription initiation",
+              "aspect": "P"
+            },
+            {
+              "go_id": "GO:0045892",
+              "name": "negative regulation of DNA-templated transcription",
+              "aspect": "P"
+            },
+            {
+              "go_id": "GO:0006355",
+              "name": "regulation of DNA-templated transcription",
+              "aspect": "P"
+            },
+            {
+              "go_id": "GO:0006950",
+              "name": "response to stress",
+              "aspect": "P"
+            }
+          ],
+          "subcellular_locations": [
+            "Cytoplasm"
+          ],
+          "kegg_xrefs": [
+            "ecj:JW5437",
+            "eco:b2741",
+            "ecoc:C3026_15075"
+          ],
+          "eggnog_xrefs": [
+            "COG0568"
+          ],
+          "pdb_xrefs": [
+            "5IPL",
+            "5IPM",
+            "5IPN",
+            "6FI7",
+            "6IDO",
+            "6KJ6",
+            "6UTV",
+            "6UTW",
+            "6UTX",
+            "6UTY",
+            "6UTZ",
+            "6UU0",
+            "6UU1",
+            "6UU2",
+            "6UU3",
+            "6UU4",
+            "6UU5",
+            "6UU6",
+            "6UU7",
+            "6UU8",
+            "6UU9",
+            "6UUA",
+            "6UUB",
+            "6UUC"
+          ],
+          "raw_uniprot_url": "https://www.uniprot.org/uniprotkb/P13445"
+        },
+        "kegg": {
+          "kegg_gene_id": "eco:b2741",
+          "organism_code": "eco",
+          "locus_tag": "b2741",
+          "gene_name": "rpoS",
+          "definition": "RNA polymerase sigma factor RpoS",
+          "orthologies": [
+            {
+              "ko_id": "K03087",
+              "description": "RNA polymerase nonessential primary-like sigma factor"
+            }
+          ],
+          "pathways": [
+            {
+              "pathway_id": "eco02026",
+              "name": "Biofilm formation - Escherichia coli"
+            }
+          ],
+          "motif_pfam": [
+            "Sigma70_r2",
+            "Sigma70_r3",
+            "Sigma70_r4",
+            "Sigma70_r1_2"
+          ],
+          "aa_sequence": "MSQNTLKVHDLNEDAEFDENGVEVFDEKALVEQEPSDNDLAEEELLSQGATQRVLDATQLYLGEIGYSPLLTAEEEVYFARRALRGDVASRRRMIESNLRLVVKIARRYGNRGLALLDLIEEGNLGLIRAVEKFDPERGFRFSTYATWWIRQTIERAIMNQTRTIRLPIHIVKELNVYLRTARELSHKLDHEPSAEEIAEQLDKPVDDVSRMLRLNERITSVDTPLGGDSEKALLDILADEKENGPEDTTQDDDMKQSIVKWLFELNAKQREVLARRFGLLGYEAATLEDVGREIGLTRERVRQIQVEGLRRLREILQTQGLNIEALFRE",
+          "aa_length": 330,
+          "nt_sequence": "ATGAGTCAGAATACGCTGAAAGTTCATGATTTAAATGAAGATGCGGAATTTGATGAGAACGGAGTTGAGGTTTTTGACGAAAAGGCCTTAGTAGAACAGGAACCCAGTGATAACGATTTGGCCGAAGAGGAACTGTTATCGCAGGGAGCCACACAGCGTGTGTTGGACGCGACTCAGCTTTACCTTGGTGAGATTGGTTATTCACCACTGTTAACGGCCGAAGAAGAAGTTTATTTTGCGCGTCGCGCACTGCGTGGAGATGTCGCCTCTCGCCGCCGGATGATCGAGAGTAACTTGCGTCTGGTGGTAAAAATTGCCCGCCGTTATGGCAATCGTGGTCTGGCGTTGCTGGACCTTATCGAAGAGGGCAACCTGGGGCTGATCCGCGCGGTAGAGAAGTTTGACCCGGAACGTGGTTTCCGCTTCTCAACATACGCAACCTGGTGGATTCGCCAGACGATTGAACGGGCGATTATGAACCAAACCCGTACTATTCGTTTGCCGATTCACATCGTAAAGGAGCTGAACGTTTACCTGCGAACCGCACGTGAGTTGTCCCATAAGCTGGACCATGAACCAAGTGCGGAAGAGATCGCAGAGCAACTGGATAAGCCAGTTGATGACGTCAGCCGTATGCTTCGTCTTAACGAGCGCATTACCTCGGTAGACACCCCGCTGGGTGGTGATTCCGAAAAAGCGTTGCTGGACATCCTGGCCGATGAAAAAGAGAACGGTCCGGAAGATACCACGCAAGATGACGATATGAAGCAGAGCATCGTCAAATGGCTGTTCGAGCTGAACGCCAAACAGCGTGAAGTGCTGGCACGTCGATTCGGTTTGCTGGGGTACGAAGCGGCAACACTGGAAGATGTAGGTCGTGAAATTGGCCTCACCCGTGAACGTGTTCGCCAGATTCAGGTTGAAGGCCTGCGCCGTTTGCGCGAAATCCTGCAAACGCAGGGGCTGAATATCGAAGCGCTGTTCCGCGAGTAA",
+          "nt_length": 993,
+          "db_links": {
+            "NCBI-GeneID": [
+              "947210"
+            ],
+            "NCBI-ProteinID": [
+              "NP_417221"
+            ],
+            "Pasteur": [
+              "rpoS"
+            ],
+            "RegulonDB": [
+              "RDBECOLIGNC00502"
+            ],
+            "ECOCYC": [
+              "EG10510"
+            ],
+            "ASAP": [
+              "ABE-0009001"
+            ],
+            "UniProt": [
+              "P13445"
+            ]
+          },
+          "raw_kegg_url": "https://www.kegg.jp/entry/eco:b2741"
+        },
+        "string": {
+          "query_identifier": "rpoS",
+          "species_taxon": 511145,
+          "interactions": [
+            {
+              "partner_string_id": "511145.b3987",
+              "partner_preferred_name": "rpoB",
+              "combined_score": 998,
+              "neighborhood_score": 66,
+              "fusion_score": 0,
+              "cooccurrence_score": 187,
+              "coexpression_score": 147,
+              "experimental_score": 993,
+              "database_score": 0,
+              "textmining_score": 792
+            },
+            {
+              "partner_string_id": "511145.b1235",
+              "partner_preferred_name": "rssB",
+              "combined_score": 996,
+              "neighborhood_score": 0,
+              "fusion_score": 0,
+              "cooccurrence_score": 172,
+              "coexpression_score": 66,
+              "experimental_score": 500,
+              "database_score": 540,
+              "textmining_score": 984
+            },
+            {
+              "partner_string_id": "511145.b3988",
+              "partner_preferred_name": "rpoC",
+              "combined_score": 990,
+              "neighborhood_score": 72,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 86,
+              "experimental_score": 962,
+              "database_score": 0,
+              "textmining_score": 734
+            },
+            {
+              "partner_string_id": "511145.b3295",
+              "partner_preferred_name": "rpoA",
+              "combined_score": 986,
+              "neighborhood_score": 49,
+              "fusion_score": 0,
+              "cooccurrence_score": 365,
+              "coexpression_score": 66,
+              "experimental_score": 898,
+              "database_score": 0,
+              "textmining_score": 792
+            },
+            {
+              "partner_string_id": "511145.b4172",
+              "partner_preferred_name": "hfq",
+              "combined_score": 964,
+              "neighborhood_score": 0,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 113,
+              "experimental_score": 0,
+              "database_score": 0,
+              "textmining_score": 961
+            },
+            {
+              "partner_string_id": "511145.b3649",
+              "partner_preferred_name": "rpoZ",
+              "combined_score": 961,
+              "neighborhood_score": 57,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 0,
+              "experimental_score": 912,
+              "database_score": 0,
+              "textmining_score": 570
+            },
+            {
+              "partner_string_id": "511145.b2573",
+              "partner_preferred_name": "rpoE",
+              "combined_score": 959,
+              "neighborhood_score": 0,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 64,
+              "experimental_score": 0,
+              "database_score": 540,
+              "textmining_score": 912
+            },
+            {
+              "partner_string_id": "511145.b3995",
+              "partner_preferred_name": "rsd",
+              "combined_score": 955,
+              "neighborhood_score": 0,
+              "fusion_score": 0,
+              "cooccurrence_score": 283,
+              "coexpression_score": 125,
+              "experimental_score": 500,
+              "database_score": 540,
+              "textmining_score": 738
+            },
+            {
+              "partner_string_id": "511145.b3357",
+              "partner_preferred_name": "crp",
+              "combined_score": 940,
+              "neighborhood_score": 0,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 88,
+              "experimental_score": 0,
+              "database_score": 0,
+              "textmining_score": 937
+            },
+            {
+              "partner_string_id": "511145.b1040",
+              "partner_preferred_name": "csgD",
+              "combined_score": 936,
+              "neighborhood_score": 0,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 43,
+              "experimental_score": 0,
+              "database_score": 0,
+              "textmining_score": 936
+            },
+            {
+              "partner_string_id": "511145.b3202",
+              "partner_preferred_name": "rpoN",
+              "combined_score": 932,
+              "neighborhood_score": 0,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 120,
+              "experimental_score": 0,
+              "database_score": 0,
+              "textmining_score": 926
+            },
+            {
+              "partner_string_id": "511145.b1921",
+              "partner_preferred_name": "fliZ",
+              "combined_score": 930,
+              "neighborhood_score": 0,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 0,
+              "experimental_score": 0,
+              "database_score": 900,
+              "textmining_score": 329
+            },
+            {
+              "partner_string_id": "511145.b2742",
+              "partner_preferred_name": "nlpD",
+              "combined_score": 923,
+              "neighborhood_score": 613,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 502,
+              "experimental_score": 0,
+              "database_score": 0,
+              "textmining_score": 635
+            },
+            {
+              "partner_string_id": "511145.b1732",
+              "partner_preferred_name": "katE",
+              "combined_score": 905,
+              "neighborhood_score": 0,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 100,
+              "experimental_score": 0,
+              "database_score": 0,
+              "textmining_score": 898
+            },
+            {
+              "partner_string_id": "511145.b2784",
+              "partner_preferred_name": "relA",
+              "combined_score": 903,
+              "neighborhood_score": 0,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 0,
+              "experimental_score": 0,
+              "database_score": 0,
+              "textmining_score": 903
+            },
+            {
+              "partner_string_id": "511145.b2699",
+              "partner_preferred_name": "recA",
+              "combined_score": 900,
+              "neighborhood_score": 45,
+              "fusion_score": 0,
+              "cooccurrence_score": 467,
+              "coexpression_score": 116,
+              "experimental_score": 0,
+              "database_score": 0,
+              "textmining_score": 804
+            },
+            {
+              "partner_string_id": "511145.b0344",
+              "partner_preferred_name": "lacZ",
+              "combined_score": 898,
+              "neighborhood_score": 0,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 0,
+              "experimental_score": 0,
+              "database_score": 0,
+              "textmining_score": 898
+            },
+            {
+              "partner_string_id": "511145.b3961",
+              "partner_preferred_name": "oxyR",
+              "combined_score": 894,
+              "neighborhood_score": 0,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 50,
+              "experimental_score": 0,
+              "database_score": 0,
+              "textmining_score": 893
+            },
+            {
+              "partner_string_id": "511145.b2572",
+              "partner_preferred_name": "rseA",
+              "combined_score": 892,
+              "neighborhood_score": 0,
+              "fusion_score": 0,
+              "cooccurrence_score": 155,
+              "coexpression_score": 101,
+              "experimental_score": 0,
+              "database_score": 540,
+              "textmining_score": 728
+            },
+            {
+              "partner_string_id": "511145.b2696",
+              "partner_preferred_name": "csrA",
+              "combined_score": 865,
+              "neighborhood_score": 0,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 52,
+              "experimental_score": 0,
+              "database_score": 0,
+              "textmining_score": 863
+            }
+          ],
+          "raw_string_url": "https://string-db.org/cgi/network?identifiers=rpoS&species=511145"
+        },
+        "esm2": {
+          "sequence_id": "rpoS",
+          "sequence_length_aa": 330,
+          "model_id": "facebook/esm2_t33_650M_UR50D",
+          "mean_embedding": {
+            "__ndarray_shape__": [
+              1280
+            ],
+            "__dtype__": "float32"
+          },
+          "per_residue_log_likelihood": {
+            "__ndarray_shape__": [
+              330
+            ],
+            "__dtype__": "float32"
+          },
+          "mean_log_likelihood": -0.29298290610313416,
+          "mean_variant_effect": 0.0413748063147068
+        },
+        "evo2": {
+          "sequence_sha256": "3a501171a7638eacd2e67198cd3febc44321fbd87aa750b038e0ccf95166d0e0",
+          "sequence_length": 993,
+          "sequence_preview": "ATGAGTCAGAATACGCTGAAAGTTCATGATTTAAATGAAGATGCGGAATTTGATGAGAACGGAGTTGAGGTTTTTGACGA...",
+          "mean_log_likelihood": -0.4696115255355835,
+          "per_position_log_likelihoods": null,
+          "model_name": "evo2_7b_base",
+          "device": "cuda"
+        },
+        "fba": null,
+        "errors": {
+          "fba": "KeyError: \"gene 'b2741' not in model 'iML1515'\""
+        }
+      },
+      "tool_call_order": [
+        "uniprot",
+        "kegg",
+        "string",
+        "fba",
+        "esm2",
+        "evo2"
+      ],
+      "n_tool_calls": 6,
+      "errors": {
+        "fba": "KeyError: \"gene 'b2741' not in model 'iML1515'\""
+      },
+      "elapsed_s": 25.23
+    },
+    {
+      "case_id": "ftsZ_ecoli_k12",
+      "gene_symbol": "ftsZ",
+      "ground_truth": "essential",
+      "ground_truth_source": "Baba 2006 Keio (essential). Also essential in syn3A (JCVISYN3A_0019).",
+      "design_axis": "5_cross_organism_minimal_cell_bridge",
+      "verdict": {
+        "case_id": "ftsZ_ecoli_k12",
+        "classification": "essential",
+        "confidence": 0.99,
+        "reasoning": "UniProt explicitly annotates FtsZ as an essential cell division protein and the master organizer of the bacterial Z ring, without which cytokinesis cannot occur. STRING confirms it as the central hub of the entire divisome network (20 partners, all scored 996\u2013999), and there is no known bypass for Z-ring function in E. coli. ESM-2 and Evo2 both reflect deep purifying selection at protein and nucleotide levels; FBA absence is expected for a non-metabolic gene and does not contradict essentiality.",
+        "raw_response": "All six channels have returned. Here is the integrated analysis:\n\n---\n\n## Evidence Summary\n\n### 1. UniProt \u2014 **Decisive: Essential cell division protein**\nUniProt explicitly labels FtsZ an **\"essential cell division protein\"** responsible for forming the contractile **Z ring** at the future division site. The Z ring is the primary scaffold for recruiting the entire divisome (FtsA, ZipA, FtsQ, FtsI, FtsW, etc.) and for driving cytokinesis. Without it, cells elongate into filaments and eventually die \u2014 a phenotype documented in countless genetic studies. Its GTPase activity (GO:0003924) and GTP binding (GO:0005525) are critical for polymerization dynamics.\n\n### 2. KEGG \u2014 **Corroborating: Universal cell division ortholog**\nKO K03531 (\"cell division protein FtsZ\") is one of the most universally conserved bacterial genes, present in virtually all bacteria and archaeal lineages. Its Pfam domains include the tubulin/FtsZ fold \u2014 a deeply ancient cytoskeletal GTPase fold, consistent with fundamental, irreplaceable cellular function.\n\n### 3. STRING \u2014 **Strong: Hub of the entire divisome network**\nEvery partner in the top 10 is a known divisome component, all with **combined scores \u2265 996/999** \u2014 near-perfect confidence. Key direct physical interactions include:\n- **ZipA** (999) and **FtsA** (999): the two anchor proteins that tether the Z ring to the membrane \u2014 both require FtsZ to assemble.\n- **ZapA, ZapC** (998, 996): Z-ring stabilizers that depend entirely on FtsZ.\n- **MreB** (998): rod-shape actin homolog that coordinates with the division apparatus.\n- **FtsE, FtsQ, FtsI, FtsW** (997\u2013998): downstream divisome proteins recruited sequentially *by* FtsZ.\nThis network centrality confirms FtsZ is the **initiating node** of cell division \u2014 knocking it out collapses the entire pathway.\n\n### 4. ESM-2 \u2014 **Consistent: Strong purifying selection at protein level**\nMean variant effect of **0.0568** is low, indicating the protein sequence is under strong purifying selection. Mean log-likelihood of **\u22120.2525** is relatively shallow (near zero), reflecting a well-conserved, confidently modeled sequence. Every residue matters \u2014 particularly those involved in GTP hydrolysis and protofilament contacts.\n\n### 5. Evo2 \u2014 **Consistent: Constrained at nucleotide level**\nMean causal log-likelihood of **\u22120.3658** (less negative than a random sequence would yield) indicates that the ftsZ DNA sequence is under evolutionary constraint at the genomic level \u2014 consistent with a gene under strong selection throughout bacterial evolution.\n\n### 6. FBA \u2014 **Informative absence: Not in the metabolic model**\nAs expected, ftsZ (b0095) is **absent from iML1515** \u2014 it is a cell-division gene, not a metabolic enzyme. This is itself informative: its essentiality cannot be captured by flux balance analysis, and must be assessed from the biological channels above.\n\n---\n\n## Reasoning & Verdict\n\nAll five informative channels converge without conflict. UniProt explicitly declares ftsZ essential and describes its irreplaceable role in cytokinesis. KEGG confirms it as a universally conserved, single-ortholog cell-division gene. STRING places it as the unambiguous hub of the entire divisome interaction network with 20 high-confidence partners. ESM-2 and Evo2 both confirm deep constraint at the protein and nucleotide levels. The FBA absence is expected and non-contradictory. **There is no viable bypass for Z-ring formation in E. coli under standard growth conditions.** Loss of ftsZ leads to filamentation and cell death \u2014 a textbook essential phenotype.\n\n```json\n{\n  \"classification\": \"essential\",\n  \"confidence\": 0.99,\n  \"reasoning\": \"UniProt explicitly annotates FtsZ as an essential cell division protein and the master organizer of the bacterial Z ring, without which cytokinesis cannot occur. STRING confirms it as the central hub of the entire divisome network (20 partners, all scored 996\u2013999), and there is no known bypass for Z-ring function in E. coli. ESM-2 and Evo2 both reflect deep purifying selection at protein and nucleotide levels; FBA absence is expected for a non-metabolic gene and does not contradict essentiality.\"\n}\n```"
+      },
+      "bundle": {
+        "case": {
+          "case_id": "ftsZ_ecoli_k12",
+          "gene_symbol": "ftsZ",
+          "locus_tag": "b0095",
+          "organism_taxon": 511145,
+          "uniprot_taxon": 83333,
+          "organism_strain": "Escherichia coli K-12 MG1655",
+          "kegg_gene_id": "eco:b0095",
+          "string_species": 511145,
+          "metabolic_model": "iML1515",
+          "protein_sequence": "MFEPMELTNDAVIKVIGVGGGGGNAVEHMVRERIEGVEFFAVNTDAQALRKTAVGQTIQIGSGITKGLGAGANPEVGRNAADEDRDALRAALEGADMVFIAAGMGGGTGTGAAPVVAEVAKDLGILTVAVVTKPFNFEGKKRMAFAEQGITELSKHVDSLITIPNDKLLKVLGRGISLLDAFGAANDVLKGAVQGIAELITRPGLMNVDFADVRTVMSEMGYAMMGSGVASGEDRAEEAAEMAISSPLLEDIDLSGARGVLVNITAGFDLRLDEFETVGNTIRAFASDNATVVIGTSLDPDMNDELRVTVVATGIGMDKRPEITLVTNKQVQQPVMDRYQQHGMAPLTQEQKPVAKVVNDNAPQTAKEPDYLDIPAFLRKQAD",
+          "dna_sequence": "ATGTTTGAACCAATGGAACTTACCAATGACGCGGTGATTAAAGTCATCGGCGTCGGCGGCGGCGGCGGTAATGCTGTTGAACACATGGTGCGCGAGCGCATTGAAGGTGTTGAATTCTTCGCGGTAAATACCGATGCACAAGCGCTGCGTAAAACAGCGGTTGGACAGACGATTCAAATCGGTAGCGGTATCACCAAAGGACTGGGCGCTGGCGCTAATCCAGAAGTTGGCCGCAATGCGGCTGATGAGGATCGCGATGCATTGCGTGCGGCGCTGGAAGGTGCAGACATGGTCTTTATTGCTGCGGGTATGGGTGGTGGTACCGGTACAGGTGCAGCACCAGTCGTCGCTGAAGTGGCAAAAGATTTGGGTATCCTGACCGTTGCTGTCGTCACTAAGCCTTTCAACTTTGAAGGCAAGAAGCGTATGGCATTCGCGGAGCAGGGGATCACTGAACTGTCCAAGCATGTGGACTCTCTGATCACTATCCCGAACGACAAACTGCTGAAAGTTCTGGGCCGCGGTATCTCCCTGCTGGATGCGTTTGGCGCAGCGAACGATGTACTGAAAGGCGCTGTGCAAGGTATCGCTGAACTGATTACTCGTCCGGGTTTGATGAACGTGGACTTTGCAGACGTACGCACCGTAATGTCTGAGATGGGCTACGCAATGATGGGTTCTGGCGTGGCGAGCGGTGAAGACCGTGCGGAAGAAGCTGCTGAAATGGCTATCTCTTCTCCGCTGCTGGAAGATATCGACCTGTCTGGCGCGCGCGGCGTGCTGGTTAACATCACGGCGGGCTTCGACCTGCGTCTGGATGAGTTCGAAACGGTAGGTAACACCATCCGTGCATTTGCTTCCGACAACGCGACTGTGGTTATCGGTACTTCTCTTGACCCGGATATGAATGACGAGCTGCGCGTAACCGTTGTTGCGACAGGTATCGGCATGGACAAACGTCCTGAAATCACTCTGGTGACCAATAAGCAGGTTCAGCAGCCAGTGATGGATCGCTACCAGCAGCATGGGATGGCTCCGCTGACCCAGGAGCAGAAGCCGGTTGCTAAAGTCGTGAATGACAATGCGCCGCAAACTGCGAAAGAGCCGGATTATCTGGATATCCCAGCATTCCTGCGTAAGCAAGCTGATTAA",
+          "design_axis": "5_cross_organism_minimal_cell_bridge",
+          "ground_truth_essentiality": "essential",
+          "ground_truth_source": "Baba 2006 Keio (essential). Also essential in syn3A (JCVISYN3A_0019).",
+          "design_rationale": "Cell division GTPase, forms the Z-ring at the division septum. Universally essential in bacteria with cell walls. Has a syn3A ortholog (JCVISYN3A_0019), making it a bridge case between standard K-12 essentiality and minimal-cell essentiality. Not in metabolic models. Tests whether the agent identifies non-metabolic essentiality and could in principle generalize across organisms via KEGG orthology."
+        },
+        "uniprot": {
+          "accession": "P0A9A6",
+          "locus_tag": "b0095",
+          "protein_name": "Cell division protein FtsZ",
+          "gene_name": "ftsZ",
+          "organism_name": "Escherichia coli (strain K12)",
+          "organism_taxon": 83333,
+          "sequence": "MFEPMELTNDAVIKVIGVGGGGGNAVEHMVRERIEGVEFFAVNTDAQALRKTAVGQTIQIGSGITKGLGAGANPEVGRNAADEDRDALRAALEGADMVFIAAGMGGGTGTGAAPVVAEVAKDLGILTVAVVTKPFNFEGKKRMAFAEQGITELSKHVDSLITIPNDKLLKVLGRGISLLDAFGAANDVLKGAVQGIAELITRPGLMNVDFADVRTVMSEMGYAMMGSGVASGEDRAEEAAEMAISSPLLEDIDLSGARGVLVNITAGFDLRLDEFETVGNTIRAFASDNATVVIGTSLDPDMNDELRVTVVATGIGMDKRPEITLVTNKQVQQPVMDRYQQHGMAPLTQEQKPVAKVVNDNAPQTAKEPDYLDIPAFLRKQAD",
+          "sequence_length_aa": 383,
+          "function_description": "Essential cell division protein that forms a contractile ring structure (Z ring) at the future cell division site. The regulation of the ring assembly controls the timing and the location of cell division. One of the functions of the FtsZ ring is to recruit other cell division proteins to the septum to produce a new cell wall between the dividing cells. Binds GTP and shows GTPase activity. Polymerization and bundle formation is enhanced by CbeA",
+          "ec_numbers": [],
+          "pfam_domains": [
+            "PF12327",
+            "PF00091"
+          ],
+          "interpro_ids": [
+            "IPR000158",
+            "IPR020805",
+            "IPR045061",
+            "IPR024757",
+            "IPR008280",
+            "IPR037103",
+            "IPR018316",
+            "IPR036525",
+            "IPR003008"
+          ],
+          "go_terms": [
+            {
+              "go_id": "GO:0032153",
+              "name": "cell division site",
+              "aspect": "C"
+            },
+            {
+              "go_id": "GO:0005737",
+              "name": "cytoplasm",
+              "aspect": "C"
+            },
+            {
+              "go_id": "GO:0005886",
+              "name": "plasma membrane",
+              "aspect": "C"
+            },
+            {
+              "go_id": "GO:0005525",
+              "name": "GTP binding",
+              "aspect": "F"
+            },
+            {
+              "go_id": "GO:0003924",
+              "name": "GTPase activity",
+              "aspect": "F"
+            },
+            {
+              "go_id": "GO:0042802",
+              "name": "identical protein binding",
+              "aspect": "F"
+            },
+            {
+              "go_id": "GO:0051301",
+              "name": "cell division",
+              "aspect": "P"
+            },
+            {
+              "go_id": "GO:0000917",
+              "name": "division septum assembly",
+              "aspect": "P"
+            },
+            {
+              "go_id": "GO:0043093",
+              "name": "FtsZ-dependent cytokinesis",
+              "aspect": "P"
+            },
+            {
+              "go_id": "GO:0051258",
+              "name": "protein polymerization",
+              "aspect": "P"
+            }
+          ],
+          "subcellular_locations": [
+            "Cytoplasm"
+          ],
+          "kegg_xrefs": [
+            "ecj:JW0093",
+            "eco:b0095",
+            "ecoc:C3026_00380"
+          ],
+          "eggnog_xrefs": [
+            "COG0206"
+          ],
+          "pdb_xrefs": [
+            "1F47",
+            "5HAW",
+            "5HBU",
+            "5HSZ",
+            "5K58",
+            "5KOA",
+            "6LL6",
+            "6UMK",
+            "6UNX",
+            "8GZX",
+            "8GZY"
+          ],
+          "raw_uniprot_url": "https://www.uniprot.org/uniprotkb/P0A9A6"
+        },
+        "kegg": {
+          "kegg_gene_id": "eco:b0095",
+          "organism_code": "eco",
+          "locus_tag": "b0095",
+          "gene_name": "ftsZ",
+          "definition": "cell division protein FtsZ",
+          "orthologies": [
+            {
+              "ko_id": "K03531",
+              "description": "cell division protein FtsZ"
+            }
+          ],
+          "pathways": [],
+          "motif_pfam": [
+            "Tubulin",
+            "FtsZ_C",
+            "NAD_binding_10",
+            "HATPase_c"
+          ],
+          "aa_sequence": "MFEPMELTNDAVIKVIGVGGGGGNAVEHMVRERIEGVEFFAVNTDAQALRKTAVGQTIQIGSGITKGLGAGANPEVGRNAADEDRDALRAALEGADMVFIAAGMGGGTGTGAAPVVAEVAKDLGILTVAVVTKPFNFEGKKRMAFAEQGITELSKHVDSLITIPNDKLLKVLGRGISLLDAFGAANDVLKGAVQGIAELITRPGLMNVDFADVRTVMSEMGYAMMGSGVASGEDRAEEAAEMAISSPLLEDIDLSGARGVLVNITAGFDLRLDEFETVGNTIRAFASDNATVVIGTSLDPDMNDELRVTVVATGIGMDKRPEITLVTNKQVQQPVMDRYQQHGMAPLTQEQKPVAKVVNDNAPQTAKEPDYLDIPAFLRKQAD",
+          "aa_length": 383,
+          "nt_sequence": "ATGTTTGAACCAATGGAACTTACCAATGACGCGGTGATTAAAGTCATCGGCGTCGGCGGCGGCGGCGGTAATGCTGTTGAACACATGGTGCGCGAGCGCATTGAAGGTGTTGAATTCTTCGCGGTAAATACCGATGCACAAGCGCTGCGTAAAACAGCGGTTGGACAGACGATTCAAATCGGTAGCGGTATCACCAAAGGACTGGGCGCTGGCGCTAATCCAGAAGTTGGCCGCAATGCGGCTGATGAGGATCGCGATGCATTGCGTGCGGCGCTGGAAGGTGCAGACATGGTCTTTATTGCTGCGGGTATGGGTGGTGGTACCGGTACAGGTGCAGCACCAGTCGTCGCTGAAGTGGCAAAAGATTTGGGTATCCTGACCGTTGCTGTCGTCACTAAGCCTTTCAACTTTGAAGGCAAGAAGCGTATGGCATTCGCGGAGCAGGGGATCACTGAACTGTCCAAGCATGTGGACTCTCTGATCACTATCCCGAACGACAAACTGCTGAAAGTTCTGGGCCGCGGTATCTCCCTGCTGGATGCGTTTGGCGCAGCGAACGATGTACTGAAAGGCGCTGTGCAAGGTATCGCTGAACTGATTACTCGTCCGGGTTTGATGAACGTGGACTTTGCAGACGTACGCACCGTAATGTCTGAGATGGGCTACGCAATGATGGGTTCTGGCGTGGCGAGCGGTGAAGACCGTGCGGAAGAAGCTGCTGAAATGGCTATCTCTTCTCCGCTGCTGGAAGATATCGACCTGTCTGGCGCGCGCGGCGTGCTGGTTAACATCACGGCGGGCTTCGACCTGCGTCTGGATGAGTTCGAAACGGTAGGTAACACCATCCGTGCATTTGCTTCCGACAACGCGACTGTGGTTATCGGTACTTCTCTTGACCCGGATATGAATGACGAGCTGCGCGTAACCGTTGTTGCGACAGGTATCGGCATGGACAAACGTCCTGAAATCACTCTGGTGACCAATAAGCAGGTTCAGCAGCCAGTGATGGATCGCTACCAGCAGCATGGGATGGCTCCGCTGACCCAGGAGCAGAAGCCGGTTGCTAAAGTCGTGAATGACAATGCGCCGCAAACTGCGAAAGAGCCGGATTATCTGGATATCCCAGCATTCCTGCGTAAGCAAGCTGATTAA",
+          "nt_length": 1152,
+          "db_links": {
+            "NCBI-GeneID": [
+              "944786"
+            ],
+            "NCBI-ProteinID": [
+              "NP_414637"
+            ],
+            "Pasteur": [
+              "ftsZ"
+            ],
+            "RegulonDB": [
+              "RDBECOLIGNC00341"
+            ],
+            "ECOCYC": [
+              "EG10347"
+            ],
+            "ASAP": [
+              "ABE-0000333"
+            ],
+            "UniProt": [
+              "P0A9A6"
+            ]
+          },
+          "raw_kegg_url": "https://www.kegg.jp/entry/eco:b0095"
+        },
+        "string": {
+          "query_identifier": "ftsZ",
+          "species_taxon": 511145,
+          "interactions": [
+            {
+              "partner_string_id": "511145.b2412",
+              "partner_preferred_name": "zipA",
+              "combined_score": 999,
+              "neighborhood_score": 108,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 56,
+              "experimental_score": 999,
+              "database_score": 540,
+              "textmining_score": 999
+            },
+            {
+              "partner_string_id": "511145.b0094",
+              "partner_preferred_name": "ftsA",
+              "combined_score": 999,
+              "neighborhood_score": 639,
+              "fusion_score": 875,
+              "cooccurrence_score": 662,
+              "coexpression_score": 941,
+              "experimental_score": 999,
+              "database_score": 540,
+              "textmining_score": 999
+            },
+            {
+              "partner_string_id": "511145.b3251",
+              "partner_preferred_name": "mreB",
+              "combined_score": 998,
+              "neighborhood_score": 63,
+              "fusion_score": 0,
+              "cooccurrence_score": 161,
+              "coexpression_score": 128,
+              "experimental_score": 848,
+              "database_score": 0,
+              "textmining_score": 990
+            },
+            {
+              "partner_string_id": "511145.b2910",
+              "partner_preferred_name": "zapA",
+              "combined_score": 998,
+              "neighborhood_score": 0,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 0,
+              "experimental_score": 546,
+              "database_score": 0,
+              "textmining_score": 997
+            },
+            {
+              "partner_string_id": "511145.b3463",
+              "partner_preferred_name": "ftsE",
+              "combined_score": 998,
+              "neighborhood_score": 0,
+              "fusion_score": 0,
+              "cooccurrence_score": 280,
+              "coexpression_score": 57,
+              "experimental_score": 500,
+              "database_score": 540,
+              "textmining_score": 990
+            },
+            {
+              "partner_string_id": "511145.b1176",
+              "partner_preferred_name": "minC",
+              "combined_score": 998,
+              "neighborhood_score": 0,
+              "fusion_score": 0,
+              "cooccurrence_score": 159,
+              "coexpression_score": 369,
+              "experimental_score": 849,
+              "database_score": 0,
+              "textmining_score": 981
+            },
+            {
+              "partner_string_id": "511145.b0093",
+              "partner_preferred_name": "ftsQ",
+              "combined_score": 997,
+              "neighborhood_score": 639,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 506,
+              "experimental_score": 126,
+              "database_score": 540,
+              "textmining_score": 969
+            },
+            {
+              "partner_string_id": "511145.b0084",
+              "partner_preferred_name": "ftsI",
+              "combined_score": 997,
+              "neighborhood_score": 534,
+              "fusion_score": 0,
+              "cooccurrence_score": 328,
+              "coexpression_score": 51,
+              "experimental_score": 0,
+              "database_score": 540,
+              "textmining_score": 987
+            },
+            {
+              "partner_string_id": "511145.b0089",
+              "partner_preferred_name": "ftsW",
+              "combined_score": 997,
+              "neighborhood_score": 534,
+              "fusion_score": 0,
+              "cooccurrence_score": 384,
+              "coexpression_score": 170,
+              "experimental_score": 225,
+              "database_score": 540,
+              "textmining_score": 977
+            },
+            {
+              "partner_string_id": "511145.b0946",
+              "partner_preferred_name": "zapC",
+              "combined_score": 996,
+              "neighborhood_score": 0,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 0,
+              "experimental_score": 944,
+              "database_score": 0,
+              "textmining_score": 933
+            },
+            {
+              "partner_string_id": "511145.b3928",
+              "partner_preferred_name": "zapB",
+              "combined_score": 996,
+              "neighborhood_score": 0,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 0,
+              "experimental_score": 399,
+              "database_score": 0,
+              "textmining_score": 993
+            },
+            {
+              "partner_string_id": "511145.b3641",
+              "partner_preferred_name": "slmA",
+              "combined_score": 995,
+              "neighborhood_score": 0,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 0,
+              "experimental_score": 849,
+              "database_score": 0,
+              "textmining_score": 969
+            },
+            {
+              "partner_string_id": "511145.b0890",
+              "partner_preferred_name": "ftsK",
+              "combined_score": 993,
+              "neighborhood_score": 0,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 55,
+              "experimental_score": 614,
+              "database_score": 540,
+              "textmining_score": 966
+            },
+            {
+              "partner_string_id": "511145.b0083",
+              "partner_preferred_name": "ftsL",
+              "combined_score": 988,
+              "neighborhood_score": 514,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 72,
+              "experimental_score": 0,
+              "database_score": 540,
+              "textmining_score": 951
+            },
+            {
+              "partner_string_id": "511145.b0102",
+              "partner_preferred_name": "zapD",
+              "combined_score": 986,
+              "neighborhood_score": 0,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 0,
+              "experimental_score": 884,
+              "database_score": 0,
+              "textmining_score": 885
+            },
+            {
+              "partner_string_id": "511145.b0096",
+              "partner_preferred_name": "lpxC",
+              "combined_score": 986,
+              "neighborhood_score": 581,
+              "fusion_score": 887,
+              "cooccurrence_score": 0,
+              "coexpression_score": 296,
+              "experimental_score": 0,
+              "database_score": 0,
+              "textmining_score": 645
+            },
+            {
+              "partner_string_id": "511145.b0958",
+              "partner_preferred_name": "sulA",
+              "combined_score": 986,
+              "neighborhood_score": 0,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 0,
+              "experimental_score": 931,
+              "database_score": 0,
+              "textmining_score": 805
+            },
+            {
+              "partner_string_id": "511145.b3933",
+              "partner_preferred_name": "ftsN",
+              "combined_score": 984,
+              "neighborhood_score": 98,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 0,
+              "experimental_score": 0,
+              "database_score": 540,
+              "textmining_score": 966
+            },
+            {
+              "partner_string_id": "511145.b0090",
+              "partner_preferred_name": "murG",
+              "combined_score": 984,
+              "neighborhood_score": 534,
+              "fusion_score": 164,
+              "cooccurrence_score": 415,
+              "coexpression_score": 147,
+              "experimental_score": 541,
+              "database_score": 0,
+              "textmining_score": 859
+            },
+            {
+              "partner_string_id": "511145.b0438",
+              "partner_preferred_name": "clpX",
+              "combined_score": 979,
+              "neighborhood_score": 0,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 100,
+              "experimental_score": 543,
+              "database_score": 0,
+              "textmining_score": 954
+            }
+          ],
+          "raw_string_url": "https://string-db.org/cgi/network?identifiers=ftsZ&species=511145"
+        },
+        "esm2": {
+          "sequence_id": "ftsZ",
+          "sequence_length_aa": 383,
+          "model_id": "facebook/esm2_t33_650M_UR50D",
+          "mean_embedding": {
+            "__ndarray_shape__": [
+              1280
+            ],
+            "__dtype__": "float32"
+          },
+          "per_residue_log_likelihood": {
+            "__ndarray_shape__": [
+              383
+            ],
+            "__dtype__": "float32"
+          },
+          "mean_log_likelihood": -0.2524542808532715,
+          "mean_variant_effect": 0.05678229033946991
+        },
+        "evo2": {
+          "sequence_sha256": "3f4617ad2df82a7abf18f829761107eda976b3bdca085d324b5095086dfdb9e2",
+          "sequence_length": 1152,
+          "sequence_preview": "ATGTTTGAACCAATGGAACTTACCAATGACGCGGTGATTAAAGTCATCGGCGTCGGCGGCGGCGGCGGTAATGCTGTTGA...",
+          "mean_log_likelihood": -0.36583247780799866,
+          "per_position_log_likelihoods": null,
+          "model_name": "evo2_7b_base",
+          "device": "cuda"
+        },
+        "fba": null,
+        "errors": {
+          "fba": "KeyError: \"gene 'b0095' not in model 'iML1515'\""
+        }
+      },
+      "tool_call_order": [
+        "uniprot",
+        "kegg",
+        "string",
+        "esm2",
+        "evo2",
+        "fba"
+      ],
+      "n_tool_calls": 6,
+      "errors": {
+        "fba": "KeyError: \"gene 'b0095' not in model 'iML1515'\""
+      },
+      "elapsed_s": 31.29
+    }
+  ]
+}
