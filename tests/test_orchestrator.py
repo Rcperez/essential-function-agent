@@ -196,7 +196,7 @@ def test_gather_calls_tools_with_expected_args(sample_case):
     )
     k.fetch_gene.assert_called_once_with("eco", "b0169")
     s.fetch_interaction_partners.assert_called_once_with("rpsB", 511145)
-    e.embed.assert_called_once_with("MATVSMR")
+    e.embed.assert_called_once_with("MATVSMR", "rpsB")
     v.score_sequence.assert_called_once_with("ATGGCAACTGT")
 
 

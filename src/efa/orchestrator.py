@@ -313,7 +313,11 @@ def _render_esm2(esm2, errors):
         return status
     lines = []
     lines.append(f"Model: {getattr(esm2, 'model_name', '?')}")
-    sl = getattr(esm2, "sequence_length", None)
+    sl = (
+        getattr(esm2, "sequence_length_aa", None)
+        if getattr(esm2, "sequence_length_aa", None) is not None
+        else getattr(esm2, "sequence_length", None)
+    )
     if sl is not None:
         lines.append(f"Sequence length: {sl} aa")
     ll = getattr(esm2, "mean_log_likelihood", None)
@@ -471,7 +475,7 @@ def gather_all_evidence(
     if "esm2" in tools and case.protein_sequence:
         try:
             m = getattr(tools["esm2"], methods["esm2"])
-            bundle.esm2 = m(case.protein_sequence)
+            bundle.esm2 = m(case.protein_sequence, case.gene_symbol)
         except Exception as e:
             bundle.errors["esm2"] = f"{type(e).__name__}: {e}"
 
