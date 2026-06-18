@@ -130,13 +130,64 @@ def test_parse_extracts_subcellular_location(
 def test_search_returns_none_on_empty_results(
     offline_retriever: UniProtRetriever,
 ) -> None:
-    """Pre-seed cache with empty results to exercise the None branch."""
-    cache_key = "search__locus_NONEXISTENT__taxon_99999"
-    cache_path = offline_retriever._cache_path(cache_key)
-    assert cache_path is not None
-    cache_path.write_text(json.dumps({"results": []}))
+    """Pre-seed every query the search will issue with empty results.
+
+    search_by_locus_tag (with a taxon supplied) issues queries confined to
+    that taxon, trying gene:{symbol} (if given), gene:{locus_tag}, then the
+    bare locus term. Each is cached under "search__{query}" with spaces
+    replaced by underscores. We seed all of them empty so the call stays
+    offline and exercises the None-return branch without any network access.
+    """
+    locus = "NONEXISTENT"
+    taxon = 99999
+    queries = [
+        f"(gene:{locus}) AND (organism_id:{taxon})",
+        f"({locus}) AND (organism_id:{taxon})",
+    ]
+    for q in queries:
+        cache_key = "search__" + q.replace(" ", "_")
+        cache_path = offline_retriever._cache_path(cache_key)
+        assert cache_path is not None
+        cache_path.write_text(json.dumps({"results": []}))
     result = offline_retriever.search_by_locus_tag(
-        "NONEXISTENT", organism_taxon=99999
+        locus, organism_taxon=taxon
+    )
+    assert result is None
+
+
+def test_search_confined_to_taxon_never_strips_filter(
+    offline_retriever: UniProtRetriever,
+) -> None:
+    """With a taxon supplied, the search must never issue an unfiltered query.
+
+    Regression guard for the Q9JMB1 bug: a nonexistent locus in a real taxon
+    previously fell through to a no-organism-filter full-text search that
+    returned a spurious cross-organism hit. Here we seed ONLY the
+    organism-filtered queries as empty and leave any unfiltered query
+    unseeded; if the code were to issue one it would hit the network (and in
+    offline CI, error), so a clean None proves the filter is never dropped.
+    """
+    locus = "GHOSTGENE"
+    taxon = 83333
+    for q in [
+        f"(gene:{locus}) AND (organism_id:{taxon})",
+        f"({locus}) AND (organism_id:{taxon})",
+    ]:
+        cache_key = "search__" + q.replace(" ", "_")
+        cache_path = offline_retriever._cache_path(cache_key)
+        cache_path.write_text(json.dumps({"results": []}))
+    # gene_symbol path also confined to taxon
+    for q in [
+        f"(gene:ghostSym) AND (organism_id:{taxon})",
+        f"(gene:{locus}) AND (organism_id:{taxon})",
+        f"({locus}) AND (organism_id:{taxon})",
+    ]:
+        cache_key = "search__" + q.replace(" ", "_")
+        offline_retriever._cache_path(cache_key).write_text(
+            json.dumps({"results": []})
+        )
+    result = offline_retriever.search_by_locus_tag(
+        locus, organism_taxon=taxon, gene_symbol="ghostSym"
     )
     assert result is None
 
