@@ -452,7 +452,7 @@ def gather_all_evidence(
     if "kegg" in tools:
         try:
             m = getattr(tools["kegg"], methods["kegg"])
-            bundle.kegg = m(case.kegg_gene_id)
+            bundle.kegg = m(*case.kegg_gene_id.split(":", 1))
         except Exception as e:
             bundle.errors["kegg"] = f"{type(e).__name__}: {e}"
 

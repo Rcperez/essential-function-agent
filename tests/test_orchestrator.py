@@ -191,7 +191,7 @@ def test_gather_calls_tools_with_expected_args(sample_case):
         "uniprot": u, "kegg": k, "string": s, "esm2": e, "evo2": v,
     })
     u.get_annotation.assert_called_once_with("b0169", 511145)
-    k.fetch_gene.assert_called_once_with("eco:b0169")
+    k.fetch_gene.assert_called_once_with("eco", "b0169")
     s.fetch_interaction_partners.assert_called_once_with("rpsB", 511145)
     e.embed.assert_called_once_with("MATVSMR")
     v.score_sequence.assert_called_once_with("ATGGCAACTGT")
@@ -238,7 +238,7 @@ def test_gather_tool_methods_override(sample_case):
         tools={"kegg": custom},
         tool_methods={"kegg": "fetch_gene_entry"},
     )
-    custom.fetch_gene_entry.assert_called_once_with("eco:b0169")
+    custom.fetch_gene_entry.assert_called_once_with("eco", "b0169")
     assert bundle.kegg == "kegg_result"
 
 

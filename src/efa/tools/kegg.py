@@ -64,6 +64,8 @@ class KEGGGeneAnnotation:
     motif_pfam: list[str]
     aa_sequence: str
     aa_length: int
+    nt_sequence: str
+    nt_length: int
     db_links: dict[str, list[str]]
     raw_kegg_url: str
 
@@ -246,6 +248,18 @@ class KEGGRetriever:
                 ln.replace(" ", "") for ln in aaseq_lines[1:]
             )
 
+        ntseq_lines = sections.get("NTSEQ", [])
+        nt_length = 0
+        nt_sequence = ""
+        if ntseq_lines:
+            try:
+                nt_length = int(ntseq_lines[0])
+            except (ValueError, IndexError):
+                nt_length = 0
+            nt_sequence = "".join(
+                ln.replace(" ", "") for ln in ntseq_lines[1:]
+            ).upper()
+
         db_links: dict[str, list[str]] = {}
         for line in sections.get("DBLINKS", []):
             if ":" in line:
@@ -264,6 +278,8 @@ class KEGGRetriever:
             motif_pfam=motif_pfam,
             aa_sequence=aa_sequence,
             aa_length=aa_length,
+            nt_sequence=nt_sequence,
+            nt_length=nt_length,
             db_links=db_links,
             raw_kegg_url=f"https://www.kegg.jp/entry/{organism_code}:{locus_tag}",
         )

@@ -156,6 +156,16 @@ def test_parse_aaseq(offline_retriever: KEGGRetriever) -> None:
     assert " " not in a.aa_sequence
 
 
+def test_parse_ntseq(offline_retriever: KEGGRetriever) -> None:
+    a = offline_retriever._parse_entry(SAMPLE_KEGG_ENTRY, "eco", "b0169")
+    # Header length reflects the real gene (726 bp); fixture truncates
+    # the sequence body to 60 bp for compactness. Parser uppercases.
+    assert a.nt_length == 726
+    assert a.nt_sequence.startswith("ATGGCAACTGTTTCC")
+    assert " " not in a.nt_sequence
+    assert a.nt_sequence == a.nt_sequence.upper()
+
+
 def test_parse_dblinks(offline_retriever: KEGGRetriever) -> None:
     a = offline_retriever._parse_entry(SAMPLE_KEGG_ENTRY, "eco", "b0169")
     assert "UniProt" in a.db_links
