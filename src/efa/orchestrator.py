@@ -87,6 +87,10 @@ class Case:
     ground_truth_essentiality: str
     ground_truth_source: str
     design_rationale: str
+    fba_gene_id: str = ""  # optional: model-specific gene id for FBA
+                           # (e.g. syn3A SBML uses MMSYN1_xxxx while
+                           # locus_tag is JCVISYN3A_xxxx). Empty -> FBA
+                           # falls back to locus_tag.
 
 
 @dataclass
@@ -486,10 +490,11 @@ def gather_all_evidence(
         except Exception as e:
             bundle.errors["evo2"] = f"{type(e).__name__}: {e}"
 
-    if "fba" in tools and "fba_model" in tools and case.locus_tag:
+    fba_id = case.fba_gene_id or case.locus_tag
+    if "fba" in tools and "fba_model" in tools and fba_id:
         try:
             m = getattr(tools["fba"], methods["fba"])
-            bundle.fba = m(tools["fba_model"], case.locus_tag)
+            bundle.fba = m(tools["fba_model"], fba_id)
         except Exception as e:
             bundle.errors["fba"] = f"{type(e).__name__}: {e}"
 
