@@ -15,6 +15,7 @@ extraction).
 
 from __future__ import annotations
 
+import dataclasses
 import json
 import os
 import re
@@ -608,9 +609,19 @@ class EssentialityOrchestrator:
 
 
 def load_cases(path) -> List[Case]:
-    """Load cases from a JSON file matching the data/cases.json schema."""
+    """Load cases from a JSON file matching the data/cases.json schema.
+
+    Case dicts may carry extra metadata keys (e.g. provenance xrefs)
+    that are not Case fields; these are ignored so case files can record
+    supplementary information without breaking construction.
+    """
     data = json.loads(Path(path).read_text())
-    return [Case(**c) for c in data.get("cases", [])]
+    field_names = {f.name for f in dataclasses.fields(Case)}
+    cases = []
+    for c in data.get("cases", []):
+        known = {k: v for k, v in c.items() if k in field_names}
+        cases.append(Case(**known))
+    return cases
 
 
 __all__ = [
