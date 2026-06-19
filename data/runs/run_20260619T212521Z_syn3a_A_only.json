@@ -1,0 +1,2132 @@
+{
+  "run_stamp": "20260619T212521Z",
+  "organism": "syn3A",
+  "metabolic_model": "MMSYN",
+  "model": "claude-sonnet-4-6",
+  "architectures_run": [
+    "A_eager"
+  ],
+  "architecture_B_status": {
+    "status": "refused",
+    "finding": "The B-architecture tool-use loop could not be run on the syn3A cases: the Anthropic API returned stop_reason='refusal' (zero content blocks, one output token) on the first call for every case. The A-architecture (single-shot classification of pre-gathered evidence) ran without refusal on the identical cases, data, and organism. Adding an explicit, truthful research-context preamble (published Breuer 2019 classifications, public model organism, reproduction-not-generation) did not clear the refusal. Interpretation: the safety classifier appears sensitive to the AGENTIC FRAMING of an essential-gene investigation over a synthetic-cell model organism (JCVI-syn3A, derived from M. mycoides) \u2014 autonomous tool-driven investigation reads as higher dual-use risk than the same task framed as evidence interpretation, independent of the (published, public) underlying science. Recorded as a finding rather than worked around; no prompt-evasion was attempted beyond a single honest grounding attempt. Reported to Anthropic as a candidate false positive on legitimate published-reproduction research.",
+    "diagnostic": {
+      "stop_reason": "refusal",
+      "content_blocks": 0,
+      "output_tokens": 1,
+      "input_tokens_approx": 2166,
+      "cleared_by_research_context": false
+    }
+  },
+  "n_cases": 5,
+  "records": [
+    {
+      "case_id": "pyrG_syn3a",
+      "gene_symbol": "pyrG",
+      "ground_truth": "essential",
+      "design_axis": "metabolic_essential_nucleotide",
+      "verdict": {
+        "case_id": "pyrG_syn3a",
+        "classification": "uncertain",
+        "confidence": 0.0,
+        "reasoning": "Could not parse structured verdict from response",
+        "raw_response": "## Reasoning Through the Evidence\n\n**UniProt/KEGG Annotation:**\npyrG encodes CTP synthase (EC 6.3.4.2), which catalyzes the sole biosynthetic route from UTP to CTP \u2014 an essential nucleotide required for RNA synthesis, DNA replication (via CTP \u2192 dCTP), and phospholipid biosynthesis (CDP-DAG pathway). In Mycoplasma mycoides JCVI-syn3A, which is a minimal synthetic organism with extremely limited biosynthetic redundancy, there is no alternative route to produce CTP. The organism cannot salvage CTP from the environment (Mycoplasmas generally lack the transporters to import NTPs directly), making de novo synthesis via pyrG critical.\n\n**FBA:**\nThe FBA result is decisive: knockout growth rate is 0.0013 h\u207b\u00b9 vs. wildtype 0.3424 h\u207b\u00b9, a ratio of ~0.39% \u2014 well below the 1% essentiality threshold. The solver also reports \"infeasible,\" further reinforcing that no feasible metabolic flux distribution can support growth without CTP synthase. This is the strongest empirical channel available.\n\n**STRING"
+      },
+      "bundle": {
+        "case": {
+          "case_id": "pyrG_syn3a",
+          "gene_symbol": "pyrG",
+          "locus_tag": "JCVISYN3A_0129",
+          "organism_taxon": 2144189,
+          "uniprot_taxon": 272632,
+          "organism_strain": "Mycoplasma mycoides JCVI-syn3A",
+          "kegg_gene_id": "mmy:MSC_0902",
+          "string_species": 272632,
+          "metabolic_model": "iJCVISyn3A",
+          "protein_sequence": "MAKFIFVTGGVVSGLGKGITASSIGALLKASGLKVFMQKFDPYLNVDPGTMSPYQHGEVFVTKDGGETDLDLGHYERFIDEELTKLSSTTSGKIYLSVIQGERKGVNSGKTIQVVPHITDAIKQKVYQAAEQSQADVIISEIGGTVGDIESQPFIEAIRQIRLEQGKENVMFVHVVLLLWLAASKEYKTKPIQNSVKAMASLGIQPDVIVCRSDSSSPKDIKEKISLFCNVPITNIIDAIDQDSIYRVPLALAKQNIQDIIIEQLQLKAKNIDLSLWKQFNKKIDSSTEEIEISFVGKYIELQDAYLSVLESLKIAGWEFNKKIKIRWVQADKLDESNYKEILKNSQGILVPGGFGKRGIEGMMLASRYARENDIPYLGICLGMQIATISIARDLLNWTDADSTEFNKNTTHPIFDYIKGIDRDNIGGTLRLGTMVTKLEKDSLVSKLYNSDVALERHRHRYEFNNEYKKDLESVGLRFSGIYEEKNLVEVVEMPSLKFFVASQFHPEFTSRPNKPTPLFRGFIKAIVENNK",
+          "dna_sequence": "ATGGCAAAGTTTATATTTGTAACTGGTGGAGTAGTTTCGGGTTTAGGAAAAGGAATTACAGCTAGTTCAATTGGTGCATTATTAAAAGCTAGTGGATTAAAAGTATTTATGCAAAAATTTGATCCATATTTAAATGTTGATCCAGGAACAATGTCTCCATATCAACACGGTGAAGTTTTTGTTACAAAAGATGGGGGAGAAACTGATTTAGATCTAGGTCATTATGAACGTTTTATTGATGAAGAATTAACTAAATTATCTTCAACAACTTCTGGAAAAATCTATTTATCTGTAATTCAAGGTGAAAGAAAAGGAGTTAATAGTGGTAAAACTATTCAAGTAGTTCCTCATATAACTGATGCTATTAAACAAAAAGTTTATCAAGCAGCAGAACAAAGTCAAGCTGATGTGATAATTTCTGAAATTGGTGGAACTGTTGGAGATATTGAATCTCAACCTTTTATTGAAGCAATTAGACAAATTAGACTAGAACAAGGTAAAGAAAATGTAATGTTTGTTCATGTTGTTTTATTATTATGATTAGCTGCTTCAAAAGAATATAAAACTAAACCTATTCAAAACTCAGTAAAAGCAATGGCTAGTTTAGGAATTCAACCTGATGTTATAGTATGTAGAAGTGATTCTTCTTCACCAAAAGATATTAAAGAAAAAATTTCTCTATTCTGTAATGTTCCTATTACAAATATTATTGATGCAATTGATCAAGATTCAATTTATAGAGTGCCATTAGCTTTAGCAAAACAAAATATTCAAGATATTATAATTGAACAGTTACAATTAAAAGCTAAAAATATAGATCTATCTTTATGAAAACAATTTAATAAAAAAATCGATTCATCAACTGAAGAAATTGAAATCAGTTTTGTTGGTAAATATATAGAATTACAAGATGCATATTTATCAGTTTTAGAATCATTAAAAATAGCTGGTTGAGAATTTAATAAAAAAATTAAAATCAGATGAGTTCAAGCAGATAAATTAGATGAATCAAACTACAAAGAAATTTTAAAAAATAGCCAAGGTATCTTAGTTCCAGGTGGATTTGGTAAAAGAGGAATTGAAGGAATGATGTTAGCTAGTAGGTATGCTAGAGAAAATGATATTCCTTATTTAGGAATTTGTTTAGGAATGCAAATAGCAACAATTTCAATTGCAAGAGATTTATTAAATTGAACTGATGCTGATTCAACTGAATTTAATAAAAATACTACTCATCCAATTTTTGATTATATTAAAGGTATTGATAGAGATAATATTGGTGGAACTTTAAGATTAGGTACAATGGTTACTAAATTAGAAAAAGATTCATTAGTTTCTAAGTTATATAATTCAGATGTTGCTTTAGAAAGACATAGACATAGATATGAATTTAATAATGAATATAAAAAAGATTTAGAAAGTGTTGGATTAAGATTTTCTGGAATTTATGAAGAAAAGAACTTAGTTGAAGTTGTTGAAATGCCAAGTTTAAAATTCTTTGTTGCTAGTCAATTTCATCCTGAATTTACTTCTCGTCCTAATAAGCCAACTCCTTTATTTAGAGGATTTATTAAAGCAATTGTTGAAAATAATAAATAA",
+          "design_axis": "metabolic_essential_nucleotide",
+          "ground_truth_essentiality": "essential",
+          "ground_truth_source": "Breuer 2019 eLife. CTP synthase; sole UTP->CTP route in the minimal cell. In iJCVIsyn3A; FBA single-gene knockout expected essential.",
+          "design_rationale": "CTP synthase; sole UTP->CTP route in the minimal cell. In iJCVIsyn3A; FBA single-gene knockout expected essential.",
+          "fba_gene_id": "MMSYN1_0129"
+        },
+        "uniprot": {
+          "accession": "Q6MUA3",
+          "locus_tag": "MSC_0134",
+          "protein_name": "CTP synthase",
+          "gene_name": "pyrG",
+          "organism_name": "Mycoplasma mycoides subsp. mycoides SC (strain CCUG 32753 / NCTC 10114 / PG1)",
+          "organism_taxon": 272632,
+          "sequence": "MAKFIFVTGGVVSGLGKGITASSIGALLKASGLKVFMQKFDPYLNVDPGTMSPYQHGEVFVTKDGGETDLDLGHYERFIDEELTKLSSTTSGKIYLSVIQGERKGVNSGKTIQVVPHITDAIKQKVYQAAKQSQADVIISEIGGTVGDIESQPFIEAIRQIRLEQGKENVMFVHVVLLLWLAASKEYKTKPIQNSVKAMASLGIQPDVIVCRSDSSSPKDIKEKISLFCNVPITNIIDAIDQDSIYRVPLALAKQNLQDIIIEQLQLKAKNIDLSLWKQFNKKIDSSTEEIEISFVGKYIELQDAYLSVLESLKIAGWEFNKKIKIRWVQADKLDESNYKEVLKNSQGILVPGGFGKRGIEGMMLASRYARENDIPYLGICLGMQIATISIARDLLNWSDADSTEFNKNTTHPIFDYIKGIDRDNIGGTLRLGTMVTKLEKNSLVSKLYNSDIALERHRHRYEFNNEYKKDLESVGLRFSGIYEEKNIVEVVEMPSLKFFVASQFHPEFTSRPNKPTPLFKGFIKAIVENNK",
+          "sequence_length_aa": 532,
+          "function_description": "Catalyzes the ATP-dependent amination of UTP to CTP with either L-glutamine or ammonia as the source of nitrogen. Regulates intracellular CTP levels through interactions with the four ribonucleotide triphosphates",
+          "ec_numbers": [
+            "6.3.4.2"
+          ],
+          "pfam_domains": [
+            "PF06418",
+            "PF00117"
+          ],
+          "interpro_ids": [
+            "IPR029062",
+            "IPR004468",
+            "IPR017456",
+            "IPR017926",
+            "IPR033828",
+            "IPR027417"
+          ],
+          "go_terms": [
+            {
+              "go_id": "GO:0097268",
+              "name": "cytoophidium",
+              "aspect": "C"
+            },
+            {
+              "go_id": "GO:0005829",
+              "name": "cytosol",
+              "aspect": "C"
+            },
+            {
+              "go_id": "GO:0005524",
+              "name": "ATP binding",
+              "aspect": "F"
+            },
+            {
+              "go_id": "GO:0003883",
+              "name": "CTP synthase activity",
+              "aspect": "F"
+            },
+            {
+              "go_id": "GO:0004359",
+              "name": "glutaminase activity",
+              "aspect": "F"
+            },
+            {
+              "go_id": "GO:0042802",
+              "name": "identical protein binding",
+              "aspect": "F"
+            },
+            {
+              "go_id": "GO:0046872",
+              "name": "metal ion binding",
+              "aspect": "F"
+            },
+            {
+              "go_id": "GO:0044210",
+              "name": "'de novo' CTP biosynthetic process",
+              "aspect": "P"
+            },
+            {
+              "go_id": "GO:0019856",
+              "name": "pyrimidine nucleobase biosynthetic process",
+              "aspect": "P"
+            }
+          ],
+          "subcellular_locations": [],
+          "kegg_xrefs": [
+            "mmy:MSC_0134"
+          ],
+          "eggnog_xrefs": [
+            "COG0504"
+          ],
+          "pdb_xrefs": [],
+          "raw_uniprot_url": "https://www.uniprot.org/uniprotkb/Q6MUA3"
+        },
+        "kegg": {
+          "kegg_gene_id": "mmy:MSC_0902",
+          "organism_code": "mmy",
+          "locus_tag": "MSC_0902",
+          "gene_name": "pyrG",
+          "definition": "",
+          "orthologies": [],
+          "pathways": [],
+          "motif_pfam": [
+            "GATase",
+            "Peptidase_C26"
+          ],
+          "aa_sequence": "MKKSRNDVKGQWRTSIALDESNYKEVLKNSQGILVPGGFGKRGIEGMMLASRYARENDIPYLGICLGMQIATISIARDLLNWSDADSTEFNKNTTHPIFDYIKGIDRDNIGGTLRLGTMVTKLEKNSLVSKLYNSDIVLERHRHRYEFNNEYKKDLESVGLRFSGIYEEKNLVEVVEMPSLKFFVASQFHPEFTSRPNKPTPLFKGFIKAIVENNK",
+          "aa_length": 216,
+          "nt_sequence": "GTGAAGAAGTCAAGAAATGATGTAAAAGGACAATGAAGAACATCAATAGCATTAGATGAATCAAACTATAAAGAAGTTTTAAAAAATAGTCAAGGTATTTTAGTTCCAGGTGGATTTGGTAAAAGAGGAATTGAAGGAATGATGTTAGCTAGTAGATATGCTAGAGAAAATGATATTCCTTATTTAGGAATTTGTTTAGGAATGCAAATAGCAACAATTTCAATTGCAAGAGATTTATTAAATTGAAGTGATGCTGATTCAACTGAATTTAATAAAAATACTACTCATCCAATTTTTGATTATATTAAAGGTATTGATAGAGATAATATTGGTGGAACTTTAAGATTAGGTACAATGGTTACTAAATTAGAAAAAAATTCATTAGTTTCTAAGTTATATAATTCTGATATTGTTTTAGAAAGACATAGACATAGATATGAATTTAATAATGAATATAAAAAAGATTTAGAAAGTGTTGGATTAAGATTTTCTGGAATTTATGAAGAAAAAAATCTAGTTGAAGTTGTTGAAATGCCAAGTTTAAAATTCTTTGTTGCTAGTCAATTTCATCCTGAATTTACTTCTCGTCCTAATAAGCCAACTCCTTTATTTAAAGGATTTATTAAAGCAATTGTTGAAAATAATAAATAG",
+          "nt_length": 651,
+          "db_links": {
+            "NCBI-ProteinID": [
+              "CAE77513"
+            ],
+            "UniProt": [
+              "Q6MS77"
+            ]
+          },
+          "raw_kegg_url": "https://www.kegg.jp/entry/mmy:MSC_0902"
+        },
+        "string": {
+          "query_identifier": "pyrG",
+          "species_taxon": 272632,
+          "interactions": [
+            {
+              "partner_string_id": "272632.MSC_0732",
+              "partner_preferred_name": "rplE",
+              "combined_score": 852,
+              "neighborhood_score": 46,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 223,
+              "experimental_score": 786,
+              "database_score": 0,
+              "textmining_score": 182
+            },
+            {
+              "partner_string_id": "272632.MSC_0730",
+              "partner_preferred_name": "rplF",
+              "combined_score": 852,
+              "neighborhood_score": 46,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 219,
+              "experimental_score": 786,
+              "database_score": 0,
+              "textmining_score": 182
+            },
+            {
+              "partner_string_id": "272632.MSC_0743",
+              "partner_preferred_name": "rplW",
+              "combined_score": 849,
+              "neighborhood_score": 0,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 217,
+              "experimental_score": 786,
+              "database_score": 0,
+              "textmining_score": 173
+            },
+            {
+              "partner_string_id": "272632.MSC_0713",
+              "partner_preferred_name": "rplM",
+              "combined_score": 836,
+              "neighborhood_score": 54,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 268,
+              "experimental_score": 745,
+              "database_score": 0,
+              "textmining_score": 182
+            },
+            {
+              "partner_string_id": "272632.MSC_0131",
+              "partner_preferred_name": "gltX",
+              "combined_score": 828,
+              "neighborhood_score": 112,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 175,
+              "experimental_score": 751,
+              "database_score": 0,
+              "textmining_score": 173
+            },
+            {
+              "partner_string_id": "272632.MSC_0729",
+              "partner_preferred_name": "rplR",
+              "combined_score": 827,
+              "neighborhood_score": 46,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 181,
+              "experimental_score": 762,
+              "database_score": 0,
+              "textmining_score": 182
+            },
+            {
+              "partner_string_id": "272632.MSC_0735",
+              "partner_preferred_name": "rplN",
+              "combined_score": 824,
+              "neighborhood_score": 46,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 165,
+              "experimental_score": 762,
+              "database_score": 0,
+              "textmining_score": 182
+            },
+            {
+              "partner_string_id": "272632.MSC_0740",
+              "partner_preferred_name": "rplV",
+              "combined_score": 811,
+              "neighborhood_score": 0,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 179,
+              "experimental_score": 742,
+              "database_score": 0,
+              "textmining_score": 182
+            },
+            {
+              "partner_string_id": "272632.MSC_0742",
+              "partner_preferred_name": "rplB",
+              "combined_score": 811,
+              "neighborhood_score": 0,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 183,
+              "experimental_score": 741,
+              "database_score": 0,
+              "textmining_score": 182
+            },
+            {
+              "partner_string_id": "272632.MSC_0350",
+              "partner_preferred_name": "MSC_0350",
+              "combined_score": 809,
+              "neighborhood_score": 0,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 168,
+              "experimental_score": 780,
+              "database_score": 0,
+              "textmining_score": 0
+            },
+            {
+              "partner_string_id": "272632.MSC_0737",
+              "partner_preferred_name": "rpmC",
+              "combined_score": 806,
+              "neighborhood_score": 46,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 130,
+              "experimental_score": 786,
+              "database_score": 0,
+              "textmining_score": 0
+            },
+            {
+              "partner_string_id": "272632.MSC_0745",
+              "partner_preferred_name": "rplC",
+              "combined_score": 801,
+              "neighborhood_score": 0,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 224,
+              "experimental_score": 713,
+              "database_score": 0,
+              "textmining_score": 182
+            },
+            {
+              "partner_string_id": "272632.MSC_0744",
+              "partner_preferred_name": "rplD",
+              "combined_score": 800,
+              "neighborhood_score": 0,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 220,
+              "experimental_score": 713,
+              "database_score": 0,
+              "textmining_score": 182
+            },
+            {
+              "partner_string_id": "272632.MSC_0734",
+              "partner_preferred_name": "rplX",
+              "combined_score": 794,
+              "neighborhood_score": 46,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 188,
+              "experimental_score": 756,
+              "database_score": 0,
+              "textmining_score": 0
+            },
+            {
+              "partner_string_id": "272632.MSC_0046",
+              "partner_preferred_name": "tmk",
+              "combined_score": 790,
+              "neighborhood_score": 53,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 60,
+              "experimental_score": 0,
+              "database_score": 0,
+              "textmining_score": 783
+            },
+            {
+              "partner_string_id": "272632.MSC_0738",
+              "partner_preferred_name": "rplP",
+              "combined_score": 773,
+              "neighborhood_score": 46,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 119,
+              "experimental_score": 709,
+              "database_score": 0,
+              "textmining_score": 182
+            },
+            {
+              "partner_string_id": "272632.MSC_1006",
+              "partner_preferred_name": "rplJ",
+              "combined_score": 760,
+              "neighborhood_score": 0,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 369,
+              "experimental_score": 584,
+              "database_score": 0,
+              "textmining_score": 161
+            },
+            {
+              "partner_string_id": "272632.MSC_0994",
+              "partner_preferred_name": "rplK",
+              "combined_score": 729,
+              "neighborhood_score": 98,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 236,
+              "experimental_score": 576,
+              "database_score": 0,
+              "textmining_score": 182
+            },
+            {
+              "partner_string_id": "272632.MSC_0492",
+              "partner_preferred_name": "metK",
+              "combined_score": 686,
+              "neighborhood_score": 117,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 129,
+              "experimental_score": 576,
+              "database_score": 0,
+              "textmining_score": 151
+            },
+            {
+              "partner_string_id": "272632.MSC_0601",
+              "partner_preferred_name": "pyrH",
+              "combined_score": 656,
+              "neighborhood_score": 118,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 265,
+              "experimental_score": 0,
+              "database_score": 0,
+              "textmining_score": 512
+            }
+          ],
+          "raw_string_url": "https://string-db.org/cgi/network?identifiers=pyrG&species=272632"
+        },
+        "esm2": {
+          "sequence_id": "pyrG",
+          "sequence_length_aa": 532,
+          "model_id": "facebook/esm2_t33_650M_UR50D",
+          "mean_embedding": {
+            "__ndarray_shape__": [
+              1280
+            ],
+            "__dtype__": "float32"
+          },
+          "per_residue_log_likelihood": {
+            "__ndarray_shape__": [
+              532
+            ],
+            "__dtype__": "float32"
+          },
+          "mean_log_likelihood": -0.24900129437446594,
+          "mean_variant_effect": 0.07414352893829346
+        },
+        "evo2": null,
+        "fba": {
+          "gene_id": "MMSYN1_0129",
+          "model_id": "MMSYN",
+          "wildtype_growth_rate": 0.34239311982314585,
+          "knockout_growth_rate": 0.0013440550524949498,
+          "growth_ratio": 0.003925473307375995,
+          "is_essential": true,
+          "threshold_ratio": 0.01,
+          "objective_id": "EX_biomass_c",
+          "status": "infeasible"
+        },
+        "errors": {
+          "evo2": "ImportError: The 'evo2' package is required to run Evo2 inference but is not installed. Install per https://github.com/arcinstitute/evo2"
+        }
+      },
+      "channels_populated": [
+        "uniprot",
+        "kegg",
+        "string",
+        "esm2",
+        "fba"
+      ],
+      "errors": {
+        "evo2": "ImportError: The 'evo2' package is required to run Evo2 inference but is not installed. Install per https://github.com/arcinstitute/evo2"
+      },
+      "elapsed_s": 12.74
+    },
+    {
+      "case_id": "adk_syn3a",
+      "gene_symbol": "adk",
+      "ground_truth": "essential",
+      "design_axis": "metabolic_essential_nucleotide",
+      "verdict": {
+        "case_id": "adk_syn3a",
+        "classification": "essential",
+        "confidence": 0.95,
+        "reasoning": "FBA knockout growth drops to 0.39% of wildtype (below the 1% threshold), with solver infeasibility confirming metabolic lethality. In JCVI-syn3A's minimal genome, adenylate kinase is the sole enzyme maintaining ATP/AMP interconversion for energy homeostasis and AMP salvage, with no bypass pathway available. UniProt/KEGG annotations and STRING interactions all support critical functional role in nucleotide metabolism in this organism.",
+        "raw_response": "## Analysis of adk (Adenylate Kinase) in JCVI-syn3A\n\n### UniProt/KEGG Functional Annotation\nAdenylate kinase (EC 2.7.4.3) catalyzes the reversible reaction: ATP + AMP \u2194 2 ADP. This reaction is central to cellular energy homeostasis and adenine nucleotide metabolism. In JCVI-syn3A \u2014 a minimal synthetic genome organism \u2014 the nucleotide salvage pathways are especially critical because this organism lacks de novo nucleotide biosynthesis capacity and depends heavily on salvage. The GO annotation specifically includes \"AMP salvage\" (GO:0044209), reinforcing functional importance in this context. KEGG confirms participation in purine metabolism and nucleotide metabolism pathways.\n\n### STRING Interactions\nAdk shows very high-confidence interactions with gmk (guanylate kinase, experimental score 769), purB (adenylosuccinate lyase, database score 900), and map (methionine aminopeptidase). The gmk interaction is particularly meaningful \u2014 both kinases work in the nucleotide phosphorylation cascade, and their co-regulation/interaction supports a role in maintaining nucleotide pools. Many other partners are ribosomal proteins, likely reflecting co-expression rather than direct functional coupling.\n\n### ESM-2 Conservation Signal\nMean log-likelihood of -0.1982 and mean variant effect of 0.0449 suggest moderate purifying selection. This is consistent with a functionally important protein, though not extreme constraint. The sequence is 213 aa, and these values are within the range expected for essential enzymes.\n\n### Evo2\nQuery failed \u2014 no data available from this channel.\n\n### FBA \u2014 Decisive Evidence\nThe FBA result is unambiguous: knockout growth rate drops to 0.0013 h\u207b\u00b9 (0.39% of wildtype 0.3424 h\u207b\u00b9), well below the 1% essentiality threshold. The solver status \"infeasible\" further confirms that removing adk severely disrupts the metabolic model's ability to achieve growth. In JCVI-syn3A, which is a minimal genome organism (473 genes), the adenylate kinase function is irreplaceable \u2014 the interconversion of AMP and ATP is required to maintain nucleotide energy charge, and no bypass pathway exists in this stripped-down metabolic network.\n\n### Conflict Assessment\nAll channels are consistent. FBA provides direct metabolic evidence of essentiality. UniProt/KEGG annotations support functional criticality, especially in a minimal genome context. Conservation signals (ESM-2) are consistent. No channel contradicts the essentiality classification.\n\n### Conclusion\nIn JCVI-syn3A, adk is essential under standard growth conditions. The FBA demonstrates that knockout is lethal in the metabolic model, and the biological rationale is strong: this minimal organism depends critically on AMP salvage and nucleotide pool maintenance, and adenylate kinase is the sole enzyme catalyzing the ATP \u2194 AMP interconversion.\n\n```json\n{\n  \"classification\": \"essential\",\n  \"confidence\": 0.95,\n  \"reasoning\": \"FBA knockout growth drops to 0.39% of wildtype (below the 1% threshold), with solver infeasibility confirming metabolic lethality. In JCVI-syn3A's minimal genome, adenylate kinase is the sole enzyme maintaining ATP/AMP interconversion for energy homeostasis and AMP salvage, with no bypass pathway available. UniProt/KEGG annotations and STRING interactions all support critical functional role in nucleotide metabolism in this organism.\"\n}\n```"
+      },
+      "bundle": {
+        "case": {
+          "case_id": "adk_syn3a",
+          "gene_symbol": "adk",
+          "locus_tag": "JCVISYN3A_0651",
+          "organism_taxon": 2144189,
+          "uniprot_taxon": 272632,
+          "organism_strain": "Mycoplasma mycoides JCVI-syn3A",
+          "kegg_gene_id": "mmy:MSC_0725",
+          "string_species": 272632,
+          "metabolic_model": "iJCVISyn3A",
+          "protein_sequence": "MNIMLLGAPGCGKGTQAEQLVNKLNFIQVSTGDLMRKEISLNTSLGLKCQEYMNAGKYVPDQIVNQIVSQFLKNTNDKLIFDGYPRTLEQAKSLEQMLDLYNKKIDYVFYIDINDQILIKRITNRLVCPLCKASFNLETRKPKQEGLCDFDNTKLVKRSDDSLDKVQIRLQTYKEQTLPLIDYFKTNSKFIEIKADDLSAEQVFNQIKGELKI",
+          "dna_sequence": "ATGAATATTATGCTATTAGGAGCACCTGGTTGTGGAAAAGGAACACAAGCAGAACAACTTGTAAATAAATTAAATTTTATTCAAGTATCAACTGGTGATTTAATGAGAAAAGAAATTTCATTAAACACTAGCTTAGGTTTAAAGTGTCAAGAATATATGAATGCTGGTAAATATGTTCCAGATCAAATTGTTAATCAAATTGTTAGTCAGTTTTTAAAAAATACTAATGATAAATTAATATTTGATGGATATCCAAGAACTTTAGAACAAGCTAAATCATTAGAACAAATGTTAGATTTATATAATAAAAAAATTGATTATGTTTTTTATATTGATATAAATGATCAAATTTTAATTAAAAGAATTACAAACAGATTAGTTTGTCCATTATGTAAAGCTAGTTTTAATTTAGAAACTAGAAAACCAAAACAAGAAGGTCTTTGTGATTTTGATAATACTAAATTAGTTAAAAGAAGTGATGATAGTTTAGATAAAGTTCAAATAAGACTACAAACTTATAAAGAACAAACTTTACCTTTAATTGATTATTTTAAAACTAATTCTAAATTTATTGAAATTAAAGCAGATGATTTATCAGCTGAACAAGTTTTTAATCAAATCAAAGGAGAATTAAAAATTTAA",
+          "design_axis": "metabolic_essential_nucleotide",
+          "ground_truth_essentiality": "essential",
+          "ground_truth_source": "Breuer 2019 eLife. Adenylate kinase; AMP/ADP interconversion central to nucleotide energy economy. In iJCVIsyn3A; FBA-positive expected.",
+          "design_rationale": "Adenylate kinase; AMP/ADP interconversion central to nucleotide energy economy. In iJCVIsyn3A; FBA-positive expected.",
+          "fba_gene_id": "MMSYN1_0651"
+        },
+        "uniprot": {
+          "accession": "Q6MSP5",
+          "locus_tag": "MSC_0725",
+          "protein_name": "Adenylate kinase",
+          "gene_name": "adk",
+          "organism_name": "Mycoplasma mycoides subsp. mycoides SC (strain CCUG 32753 / NCTC 10114 / PG1)",
+          "organism_taxon": 272632,
+          "sequence": "MNIMLLGAPGCGKGTQAEQLVNKLNFIQVSTGDLMRKEISLNTRLGLKCQEYMNAGKYVPDQIVNQIVSQFLKNTNDKLIFDGYPRTLEQAKSLEQMLDLYNKKIDYVFYIDVNDQILIKRITNRLVCPLCKASFNLETRKPKQEGLCDFDNTKLVKRSDDSLDKVQIRLQTYKEQTLPLIDYFKTNSKFIEIKADDLSAEQVFNQIKGELKI",
+          "sequence_length_aa": 213,
+          "function_description": "Catalyzes the reversible transfer of the terminal phosphate group between ATP and AMP. Plays an important role in cellular energy homeostasis and in adenine nucleotide metabolism",
+          "ec_numbers": [
+            "2.7.4.3"
+          ],
+          "pfam_domains": [
+            "PF00406",
+            "PF05191"
+          ],
+          "interpro_ids": [
+            "IPR006259",
+            "IPR000850",
+            "IPR033690",
+            "IPR007862",
+            "IPR027417"
+          ],
+          "go_terms": [
+            {
+              "go_id": "GO:0005737",
+              "name": "cytoplasm",
+              "aspect": "C"
+            },
+            {
+              "go_id": "GO:0004017",
+              "name": "AMP kinase activity",
+              "aspect": "F"
+            },
+            {
+              "go_id": "GO:0005524",
+              "name": "ATP binding",
+              "aspect": "F"
+            },
+            {
+              "go_id": "GO:0008270",
+              "name": "zinc ion binding",
+              "aspect": "F"
+            },
+            {
+              "go_id": "GO:0044209",
+              "name": "AMP salvage",
+              "aspect": "P"
+            }
+          ],
+          "subcellular_locations": [
+            "Cytoplasm"
+          ],
+          "kegg_xrefs": [
+            "mmy:MSC_0725"
+          ],
+          "eggnog_xrefs": [
+            "COG0563"
+          ],
+          "pdb_xrefs": [],
+          "raw_uniprot_url": "https://www.uniprot.org/uniprotkb/Q6MSP5"
+        },
+        "kegg": {
+          "kegg_gene_id": "mmy:MSC_0725",
+          "organism_code": "mmy",
+          "locus_tag": "MSC_0725",
+          "gene_name": "adk",
+          "definition": "",
+          "orthologies": [
+            {
+              "ko_id": "K00939",
+              "description": "adenylate kinase [EC:2.7.4.3]"
+            }
+          ],
+          "pathways": [
+            {
+              "pathway_id": "mmy00230",
+              "name": "Purine metabolism"
+            },
+            {
+              "pathway_id": "mmy00730",
+              "name": "Thiamine metabolism"
+            },
+            {
+              "pathway_id": "mmy01100",
+              "name": "Metabolic pathways"
+            },
+            {
+              "pathway_id": "mmy01110",
+              "name": "Biosynthesis of secondary metabolites"
+            },
+            {
+              "pathway_id": "mmy01232",
+              "name": "Nucleotide metabolism"
+            },
+            {
+              "pathway_id": "mmy01240",
+              "name": "Biosynthesis of cofactors"
+            }
+          ],
+          "motif_pfam": [
+            "ADK",
+            "AAA_17",
+            "ADK_lid",
+            "AAA_18",
+            "AAA",
+            "AAA_33",
+            "AAA_22",
+            "Trm112p",
+            "AAA_28",
+            "nSTAND3",
+            "SRP54",
+            "Imm72",
+            "DUF5402",
+            "AAA_5"
+          ],
+          "aa_sequence": "MNIMLLGAPGCGKGTQAEQLVNKLNFIQVSTGDLMRKEISLNTRLGLKCQEYMNAGKYVPDQIVNQIVSQFLKNTNDKLIFDGYPRTLEQAKSLEQMLDLYNKKIDYVFYIDVNDQILIKRITNRLVCPLCKASFNLETRKPKQEGLCDFDNTKLVKRSDDSLDKVQIRLQTYKEQTLPLIDYFKTNSKFIEIKADDLSAEQVFNQIKGELKI",
+          "aa_length": 213,
+          "nt_sequence": "ATGAATATTATGCTATTAGGAGCACCTGGTTGTGGAAAAGGAACACAAGCAGAACAACTTGTAAATAAATTAAATTTTATTCAAGTATCAACTGGTGATTTAATGAGAAAAGAAATTTCATTAAACACTAGATTAGGTTTAAAGTGTCAAGAATATATGAATGCTGGTAAATATGTTCCAGATCAAATTGTTAATCAAATCGTTAGTCAGTTTTTAAAAAATACTAATGATAAATTAATATTTGATGGATATCCAAGAACTTTAGAACAAGCTAAATCATTAGAACAAATGTTAGATTTATATAATAAAAAAATTGATTATGTTTTTTATATTGATGTAAATGATCAAATTTTAATTAAAAGAATTACAAACAGATTAGTTTGTCCATTATGTAAAGCTAGTTTTAATTTAGAAACTAGAAAACCAAAACAAGAAGGTCTTTGTGATTTTGATAATACTAAATTAGTTAAAAGAAGCGATGATAGTTTAGATAAAGTTCAAATAAGACTACAAACTTATAAAGAACAAACTTTACCTTTAATTGATTATTTTAAAACTAATTCTAAATTTATTGAAATTAAAGCAGATGATTTATCAGCTGAACAAGTTTTTAATCAAATCAAAGGAGAATTAAAAATTTAA",
+          "nt_length": 642,
+          "db_links": {
+            "NCBI-ProteinID": [
+              "CAE77343"
+            ],
+            "UniProt": [
+              "Q6MSP5"
+            ]
+          },
+          "raw_kegg_url": "https://www.kegg.jp/entry/mmy:MSC_0725"
+        },
+        "string": {
+          "query_identifier": "adk",
+          "species_taxon": 272632,
+          "interactions": [
+            {
+              "partner_string_id": "272632.MSC_0724",
+              "partner_preferred_name": "map",
+              "combined_score": 981,
+              "neighborhood_score": 845,
+              "fusion_score": 0,
+              "cooccurrence_score": 421,
+              "coexpression_score": 754,
+              "experimental_score": 77,
+              "database_score": 0,
+              "textmining_score": 229
+            },
+            {
+              "partner_string_id": "272632.MSC_0218",
+              "partner_preferred_name": "gmk",
+              "combined_score": 975,
+              "neighborhood_score": 45,
+              "fusion_score": 0,
+              "cooccurrence_score": 153,
+              "coexpression_score": 179,
+              "experimental_score": 769,
+              "database_score": 0,
+              "textmining_score": 863
+            },
+            {
+              "partner_string_id": "272632.MSC_0727",
+              "partner_preferred_name": "rplO",
+              "combined_score": 965,
+              "neighborhood_score": 658,
+              "fusion_score": 0,
+              "cooccurrence_score": 228,
+              "coexpression_score": 853,
+              "experimental_score": 0,
+              "database_score": 0,
+              "textmining_score": 222
+            },
+            {
+              "partner_string_id": "272632.MSC_0726",
+              "partner_preferred_name": "secY",
+              "combined_score": 964,
+              "neighborhood_score": 658,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 853,
+              "experimental_score": 0,
+              "database_score": 0,
+              "textmining_score": 353
+            },
+            {
+              "partner_string_id": "272632.MSC_0849",
+              "partner_preferred_name": "purB",
+              "combined_score": 957,
+              "neighborhood_score": 46,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 206,
+              "experimental_score": 184,
+              "database_score": 900,
+              "textmining_score": 422
+            },
+            {
+              "partner_string_id": "272632.MSC_0728",
+              "partner_preferred_name": "rpsE",
+              "combined_score": 953,
+              "neighborhood_score": 639,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 853,
+              "experimental_score": 0,
+              "database_score": 0,
+              "textmining_score": 185
+            },
+            {
+              "partner_string_id": "272632.MSC_0730",
+              "partner_preferred_name": "rplF",
+              "combined_score": 953,
+              "neighborhood_score": 598,
+              "fusion_score": 0,
+              "cooccurrence_score": 151,
+              "coexpression_score": 853,
+              "experimental_score": 0,
+              "database_score": 0,
+              "textmining_score": 188
+            },
+            {
+              "partner_string_id": "272632.MSC_0729",
+              "partner_preferred_name": "rplR",
+              "combined_score": 952,
+              "neighborhood_score": 623,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 853,
+              "experimental_score": 0,
+              "database_score": 0,
+              "textmining_score": 216
+            },
+            {
+              "partner_string_id": "272632.MSC_0732",
+              "partner_preferred_name": "rplE",
+              "combined_score": 952,
+              "neighborhood_score": 513,
+              "fusion_score": 0,
+              "cooccurrence_score": 247,
+              "coexpression_score": 853,
+              "experimental_score": 0,
+              "database_score": 0,
+              "textmining_score": 229
+            },
+            {
+              "partner_string_id": "272632.MSC_0731",
+              "partner_preferred_name": "rpsH",
+              "combined_score": 949,
+              "neighborhood_score": 592,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 853,
+              "experimental_score": 0,
+              "database_score": 0,
+              "textmining_score": 228
+            },
+            {
+              "partner_string_id": "272632.MSC_0261",
+              "partner_preferred_name": "pyk",
+              "combined_score": 946,
+              "neighborhood_score": 127,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 117,
+              "experimental_score": 51,
+              "database_score": 900,
+              "textmining_score": 379
+            },
+            {
+              "partner_string_id": "272632.MSC_0474",
+              "partner_preferred_name": "apt",
+              "combined_score": 945,
+              "neighborhood_score": 160,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 181,
+              "experimental_score": 0,
+              "database_score": 900,
+              "textmining_score": 301
+            },
+            {
+              "partner_string_id": "272632.MSC_0855",
+              "partner_preferred_name": "nrdF",
+              "combined_score": 938,
+              "neighborhood_score": 44,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 0,
+              "experimental_score": 0,
+              "database_score": 900,
+              "textmining_score": 411
+            },
+            {
+              "partner_string_id": "272632.MSC_0853",
+              "partner_preferred_name": "nrdE",
+              "combined_score": 935,
+              "neighborhood_score": 67,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 0,
+              "experimental_score": 0,
+              "database_score": 900,
+              "textmining_score": 362
+            },
+            {
+              "partner_string_id": "272632.MSC_0741",
+              "partner_preferred_name": "rpsS",
+              "combined_score": 927,
+              "neighborhood_score": 348,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 853,
+              "experimental_score": 0,
+              "database_score": 0,
+              "textmining_score": 301
+            },
+            {
+              "partner_string_id": "272632.MSC_0735",
+              "partner_preferred_name": "rplN",
+              "combined_score": 926,
+              "neighborhood_score": 348,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 853,
+              "experimental_score": 126,
+              "database_score": 0,
+              "textmining_score": 227
+            },
+            {
+              "partner_string_id": "272632.MSC_0742",
+              "partner_preferred_name": "rplB",
+              "combined_score": 926,
+              "neighborhood_score": 348,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 852,
+              "experimental_score": 0,
+              "database_score": 0,
+              "textmining_score": 301
+            },
+            {
+              "partner_string_id": "272632.MSC_0744",
+              "partner_preferred_name": "rplD",
+              "combined_score": 925,
+              "neighborhood_score": 348,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 850,
+              "experimental_score": 0,
+              "database_score": 0,
+              "textmining_score": 296
+            },
+            {
+              "partner_string_id": "272632.MSC_0722",
+              "partner_preferred_name": "rpsK",
+              "combined_score": 925,
+              "neighborhood_score": 348,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 853,
+              "experimental_score": 122,
+              "database_score": 0,
+              "textmining_score": 219
+            },
+            {
+              "partner_string_id": "272632.MSC_0159",
+              "partner_preferred_name": "fusA",
+              "combined_score": 923,
+              "neighborhood_score": 184,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 790,
+              "experimental_score": 59,
+              "database_score": 0,
+              "textmining_score": 582
+            }
+          ],
+          "raw_string_url": "https://string-db.org/cgi/network?identifiers=adk&species=272632"
+        },
+        "esm2": {
+          "sequence_id": "adk",
+          "sequence_length_aa": 213,
+          "model_id": "facebook/esm2_t33_650M_UR50D",
+          "mean_embedding": {
+            "__ndarray_shape__": [
+              1280
+            ],
+            "__dtype__": "float32"
+          },
+          "per_residue_log_likelihood": {
+            "__ndarray_shape__": [
+              213
+            ],
+            "__dtype__": "float32"
+          },
+          "mean_log_likelihood": -0.19818390905857086,
+          "mean_variant_effect": 0.044930510222911835
+        },
+        "evo2": null,
+        "fba": {
+          "gene_id": "MMSYN1_0651",
+          "model_id": "MMSYN",
+          "wildtype_growth_rate": 0.34239311982314585,
+          "knockout_growth_rate": 0.0013440550524949357,
+          "growth_ratio": 0.003925473307375954,
+          "is_essential": true,
+          "threshold_ratio": 0.01,
+          "objective_id": "EX_biomass_c",
+          "status": "infeasible"
+        },
+        "errors": {
+          "evo2": "ImportError: The 'evo2' package is required to run Evo2 inference but is not installed. Install per https://github.com/arcinstitute/evo2"
+        }
+      },
+      "channels_populated": [
+        "uniprot",
+        "kegg",
+        "string",
+        "esm2",
+        "fba"
+      ],
+      "errors": {
+        "evo2": "ImportError: The 'evo2' package is required to run Evo2 inference but is not installed. Install per https://github.com/arcinstitute/evo2"
+      },
+      "elapsed_s": 23.07
+    },
+    {
+      "case_id": "eno_syn3a",
+      "gene_symbol": "eno",
+      "ground_truth": "essential",
+      "design_axis": "metabolic_essential_glycolysis",
+      "verdict": {
+        "case_id": "eno_syn3a",
+        "classification": "uncertain",
+        "confidence": 0.0,
+        "reasoning": "Could not parse structured verdict from response",
+        "raw_response": "## Analysis of eno (JCVISYN3A_0213) \u2014 Enolase in Mycoplasma mycoides JCVI-syn3A\n\n### UniProt\nEnolase (EC 4.2.1.11) catalyzes the reversible conversion of 2-phosphoglycerate to"
+      },
+      "bundle": {
+        "case": {
+          "case_id": "eno_syn3a",
+          "gene_symbol": "eno",
+          "locus_tag": "JCVISYN3A_0213",
+          "organism_taxon": 2144189,
+          "uniprot_taxon": 272632,
+          "organism_strain": "Mycoplasma mycoides JCVI-syn3A",
+          "kegg_gene_id": "",
+          "string_species": 272632,
+          "metabolic_model": "iJCVISyn3A",
+          "protein_sequence": "MSRIERIFAREILDSRGTPTVEVEVWTEFGGYGCAKAPSGASTGVNEALELRDGDKARYNGKGVLKAVKNVNEIIAHKLIGIDALDQLTVDRIMLDLDGTEFKTKLGANGILAVSLAVAKAAASELDIPLYKYLGGVQAKKLPVPMLNVINGGEHADSAIDFQEFMIMPVGAKSFSEALRWSSETFQALKSLLKSKKDITAVGDEGGFAPNFEWAYEKHDLKSFKAKTPAEIALDLLVEAIKKAGYKPGKDGIMIAMDCASSELYLEDKKYHFKKIEKVTNQEWSLTTDEMISYLEKLVDNYPIISIEDGLAETDWEGFTKLTQKIGDKVQIVGDDLFTTNPKFIKQGISKKAANSTLIKLNQIGTLSETVEAITMTQKAGWTAVVSHRSGETEDTTIADLAVAFNTGQIKTGSMSRSDRIAKYNRLLQIESELEKNAVYDGLEAFYNLNK",
+          "dna_sequence": "ATGTCAAGAATAGAAAGAATTTTCGCTCGTGAAATTCTAGATTCAAGAGGAACACCAACAGTTGAAGTTGAAGTTTGAACTGAATTTGGTGGATATGGTTGTGCTAAAGCTCCTTCTGGTGCTTCAACTGGAGTTAATGAAGCTTTAGAATTAAGAGATGGAGATAAAGCTCGTTATAATGGTAAAGGTGTATTAAAAGCAGTTAAAAATGTTAATGAAATAATTGCTCATAAATTAATCGGAATTGATGCTTTAGATCAATTAACAGTAGATAGAATAATGCTAGATTTAGATGGAACAGAATTTAAAACTAAATTAGGAGCTAATGGAATTTTAGCTGTTTCTTTAGCTGTTGCAAAAGCTGCTGCTAGTGAATTAGATATTCCATTATATAAATATTTAGGTGGAGTTCAAGCAAAAAAACTACCAGTTCCTATGCTAAATGTTATTAATGGTGGAGAACATGCTGATTCAGCTATTGATTTTCAAGAATTTATGATTATGCCAGTTGGAGCAAAATCATTTAGTGAAGCTTTAAGATGATCTTCTGAAACTTTTCAAGCTTTAAAATCATTATTAAAATCTAAAAAAGATATTACTGCTGTTGGTGATGAAGGTGGATTTGCTCCTAACTTTGAATGAGCATATGAAAAACACGATTTAAAATCATTTAAAGCAAAAACACCAGCTGAAATCGCTTTAGATCTATTAGTTGAAGCTATTAAAAAAGCAGGATACAAACCAGGAAAAGATGGAATTATGATCGCAATGGATTGTGCTTCATCTGAACTATATTTAGAAGATAAAAAATATCATTTCAAAAAAATCGAAAAAGTAACTAACCAAGAATGATCATTAACTACAGATGAAATGATTTCATATTTAGAAAAACTTGTTGATAATTATCCAATTATTTCAATTGAAGATGGATTAGCTGAAACTGACTGAGAAGGATTTACTAAATTAACTCAAAAAATTGGTGATAAAGTTCAAATTGTTGGAGATGACTTATTTACAACAAACCCTAAATTTATTAAACAAGGTATCAGTAAAAAAGCTGCAAACTCAACTTTAATTAAGCTAAACCAAATTGGTACTTTAAGTGAAACTGTTGAAGCAATTACTATGACTCAAAAAGCAGGATGAACTGCAGTTGTATCACATAGATCTGGTGAAACTGAAGATACAACTATTGCTGATTTAGCTGTTGCATTTAACACAGGACAAATTAAAACTGGATCAATGTCAAGAAGTGATAGAATTGCAAAATACAATAGATTATTACAAATTGAATCTGAACTTGAAAAAAATGCTGTATATGATGGATTAGAAGCATTTTATAATTTAAACAAATAA",
+          "design_axis": "metabolic_essential_glycolysis",
+          "ground_truth_essentiality": "essential",
+          "ground_truth_source": "Breuer 2019 eLife. Enolase (phosphopyruvate hydratase); glycolysis. In iJCVIsyn3A with no bypass in the reduced metabolism; FBA-positive expected. (This gene was mis-resolved to KsgA via KEGG symbol search; GenBank gives the correct enolase, motivating the GenBank-grounded sourcing used here.)",
+          "design_rationale": "Enolase (phosphopyruvate hydratase); glycolysis. In iJCVIsyn3A with no bypass in the reduced metabolism; FBA-positive expected. (This gene was mis-resolved to KsgA via KEGG symbol search; GenBank gives the correct enolase, motivating the GenBank-grounded sourcing used here.)",
+          "fba_gene_id": "MMSYN1_0213"
+        },
+        "uniprot": {
+          "accession": "Q6MTZ2",
+          "locus_tag": "MSC_0253",
+          "protein_name": "Enolase",
+          "gene_name": "eno",
+          "organism_name": "Mycoplasma mycoides subsp. mycoides SC (strain CCUG 32753 / NCTC 10114 / PG1)",
+          "organism_taxon": 272632,
+          "sequence": "MSRIERIFAREILDSRGTPTVEVEVWTEFGGYGCAKAPSGASTGVNEALELRDGDKARYNGKGVLKAVKNVNEIIAPKLIGVDALDQLTVDRIMLDLDGTEFKTKLGANGILAVSLAVAKSAASELDIPLYKYLGGVQAKKLPVPMLNVINGGEHADSAIDFQEFMIMPVGAKSFSEALRWSSETFQALKSLLKSKKDITAVGDEGGFAPNFEWAYEKHDLKSFKAKTPAEIALDLLVEAIKKAGYKPGKDGIMIAMDCASSELYLEDKKYHFKKIEKVTNQEWSLTTDEMISYLEKLVDNYPIISIEDGLAETDWEGFTKLTQKIGDKVQIVGDDLFTTNPKFIKQGINKKAANSTLIKLNQIGTLSETVEAITMTQKAGWTAVVSHRSGETEDTTIADLAVAFNTGQIKTGSMSRSDRIAKYNRLLQIESELDKNAVYDGLEAFYNLKK",
+          "sequence_length_aa": 451,
+          "function_description": "Catalyzes the reversible conversion of 2-phosphoglycerate (2-PG) into phosphoenolpyruvate (PEP). It is essential for the degradation of carbohydrates via glycolysis",
+          "ec_numbers": [
+            "4.2.1.11"
+          ],
+          "pfam_domains": [
+            "PF00113",
+            "PF03952"
+          ],
+          "interpro_ids": [
+            "IPR000941",
+            "IPR036849",
+            "IPR029017",
+            "IPR020810",
+            "IPR020809",
+            "IPR020811"
+          ],
+          "go_terms": [
+            {
+              "go_id": "GO:0009986",
+              "name": "cell surface",
+              "aspect": "C"
+            },
+            {
+              "go_id": "GO:0005576",
+              "name": "extracellular region",
+              "aspect": "C"
+            },
+            {
+              "go_id": "GO:0000015",
+              "name": "phosphopyruvate hydratase complex",
+              "aspect": "C"
+            },
+            {
+              "go_id": "GO:0000287",
+              "name": "magnesium ion binding",
+              "aspect": "F"
+            },
+            {
+              "go_id": "GO:0004634",
+              "name": "phosphopyruvate hydratase activity",
+              "aspect": "F"
+            },
+            {
+              "go_id": "GO:0006096",
+              "name": "glycolytic process",
+              "aspect": "P"
+            }
+          ],
+          "subcellular_locations": [
+            "Cytoplasm",
+            "Secreted",
+            "Cell surface"
+          ],
+          "kegg_xrefs": [
+            "mmy:MSC_0253"
+          ],
+          "eggnog_xrefs": [
+            "COG0148"
+          ],
+          "pdb_xrefs": [],
+          "raw_uniprot_url": "https://www.uniprot.org/uniprotkb/Q6MTZ2"
+        },
+        "kegg": null,
+        "string": {
+          "query_identifier": "eno",
+          "species_taxon": 272632,
+          "interactions": [
+            {
+              "partner_string_id": "272632.MSC_0261",
+              "partner_preferred_name": "pyk",
+              "combined_score": 996,
+              "neighborhood_score": 347,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 809,
+              "experimental_score": 167,
+              "database_score": 900,
+              "textmining_score": 743
+            },
+            {
+              "partner_string_id": "272632.MSC_0825",
+              "partner_preferred_name": "gpm",
+              "combined_score": 990,
+              "neighborhood_score": 184,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 804,
+              "experimental_score": 155,
+              "database_score": 900,
+              "textmining_score": 415
+            },
+            {
+              "partner_string_id": "272632.MSC_0505",
+              "partner_preferred_name": "pgi",
+              "combined_score": 990,
+              "neighborhood_score": 184,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 773,
+              "experimental_score": 171,
+              "database_score": 800,
+              "textmining_score": 729
+            },
+            {
+              "partner_string_id": "272632.MSC_0678",
+              "partner_preferred_name": "pgk",
+              "combined_score": 989,
+              "neighborhood_score": 184,
+              "fusion_score": 0,
+              "cooccurrence_score": 157,
+              "coexpression_score": 853,
+              "experimental_score": 786,
+              "database_score": 0,
+              "textmining_score": 587
+            },
+            {
+              "partner_string_id": "272632.MSC_0823",
+              "partner_preferred_name": "tpi",
+              "combined_score": 982,
+              "neighborhood_score": 184,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 853,
+              "experimental_score": 760,
+              "database_score": 0,
+              "textmining_score": 471
+            },
+            {
+              "partner_string_id": "272632.MSC_0679",
+              "partner_preferred_name": "gap",
+              "combined_score": 980,
+              "neighborhood_score": 184,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 838,
+              "experimental_score": 756,
+              "database_score": 0,
+              "textmining_score": 459
+            },
+            {
+              "partner_string_id": "272632.MSC_0139",
+              "partner_preferred_name": "fbaA2",
+              "combined_score": 950,
+              "neighborhood_score": 85,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 498,
+              "experimental_score": 146,
+              "database_score": 800,
+              "textmining_score": 471
+            },
+            {
+              "partner_string_id": "272632.MSC_0260",
+              "partner_preferred_name": "pfk",
+              "combined_score": 933,
+              "neighborhood_score": 343,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 746,
+              "experimental_score": 0,
+              "database_score": 0,
+              "textmining_score": 635
+            },
+            {
+              "partner_string_id": "272632.MSC_0372",
+              "partner_preferred_name": "tkt",
+              "combined_score": 930,
+              "neighborhood_score": 59,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 333,
+              "experimental_score": 173,
+              "database_score": 800,
+              "textmining_score": 436
+            },
+            {
+              "partner_string_id": "272632.MSC_0744",
+              "partner_preferred_name": "rplD",
+              "combined_score": 922,
+              "neighborhood_score": 184,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 417,
+              "experimental_score": 826,
+              "database_score": 0,
+              "textmining_score": 173
+            },
+            {
+              "partner_string_id": "272632.MSC_0509",
+              "partner_preferred_name": "gapN",
+              "combined_score": 897,
+              "neighborhood_score": 52,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 140,
+              "experimental_score": 74,
+              "database_score": 800,
+              "textmining_score": 426
+            },
+            {
+              "partner_string_id": "272632.MSC_0218",
+              "partner_preferred_name": "gmk",
+              "combined_score": 876,
+              "neighborhood_score": 102,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 170,
+              "experimental_score": 793,
+              "database_score": 0,
+              "textmining_score": 292
+            },
+            {
+              "partner_string_id": "272632.MSC_0610",
+              "partner_preferred_name": "dnaK",
+              "combined_score": 858,
+              "neighborhood_score": 129,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 0,
+              "experimental_score": 786,
+              "database_score": 0,
+              "textmining_score": 301
+            },
+            {
+              "partner_string_id": "272632.MSC_0725",
+              "partner_preferred_name": "adk",
+              "combined_score": 853,
+              "neighborhood_score": 116,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 134,
+              "experimental_score": 757,
+              "database_score": 0,
+              "textmining_score": 304
+            },
+            {
+              "partner_string_id": "272632.MSC_0278",
+              "partner_preferred_name": "rpsD",
+              "combined_score": 849,
+              "neighborhood_score": 184,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 768,
+              "experimental_score": 154,
+              "database_score": 0,
+              "textmining_score": 169
+            },
+            {
+              "partner_string_id": "272632.MSC_0828",
+              "partner_preferred_name": "deoC",
+              "combined_score": 827,
+              "neighborhood_score": 125,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 0,
+              "experimental_score": 0,
+              "database_score": 800,
+              "textmining_score": 95
+            },
+            {
+              "partner_string_id": "272632.MSC_0274",
+              "partner_preferred_name": "crr",
+              "combined_score": 821,
+              "neighborhood_score": 44,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 103,
+              "experimental_score": 0,
+              "database_score": 0,
+              "textmining_score": 808
+            },
+            {
+              "partner_string_id": "272632.MSC_0159",
+              "partner_preferred_name": "fusA",
+              "combined_score": 801,
+              "neighborhood_score": 114,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 693,
+              "experimental_score": 166,
+              "database_score": 0,
+              "textmining_score": 230
+            },
+            {
+              "partner_string_id": "272632.MSC_0722",
+              "partner_preferred_name": "rpsK",
+              "combined_score": 790,
+              "neighborhood_score": 184,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 716,
+              "experimental_score": 155,
+              "database_score": 0,
+              "textmining_score": 55
+            },
+            {
+              "partner_string_id": "272632.MSC_0370",
+              "partner_preferred_name": "MSC_0370",
+              "combined_score": 788,
+              "neighborhood_score": 54,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 0,
+              "experimental_score": 786,
+              "database_score": 0,
+              "textmining_score": 0
+            }
+          ],
+          "raw_string_url": "https://string-db.org/cgi/network?identifiers=eno&species=272632"
+        },
+        "esm2": {
+          "sequence_id": "eno",
+          "sequence_length_aa": 451,
+          "model_id": "facebook/esm2_t33_650M_UR50D",
+          "mean_embedding": {
+            "__ndarray_shape__": [
+              1280
+            ],
+            "__dtype__": "float32"
+          },
+          "per_residue_log_likelihood": {
+            "__ndarray_shape__": [
+              451
+            ],
+            "__dtype__": "float32"
+          },
+          "mean_log_likelihood": -0.25103870034217834,
+          "mean_variant_effect": 0.08344099670648575
+        },
+        "evo2": null,
+        "fba": {
+          "gene_id": "MMSYN1_0213",
+          "model_id": "MMSYN",
+          "wildtype_growth_rate": 0.34239311982314585,
+          "knockout_growth_rate": 0.0013440550524949435,
+          "growth_ratio": 0.003925473307375977,
+          "is_essential": true,
+          "threshold_ratio": 0.01,
+          "objective_id": "EX_biomass_c",
+          "status": "infeasible"
+        },
+        "errors": {
+          "evo2": "ImportError: The 'evo2' package is required to run Evo2 inference but is not installed. Install per https://github.com/arcinstitute/evo2"
+        }
+      },
+      "channels_populated": [
+        "uniprot",
+        "string",
+        "esm2",
+        "fba"
+      ],
+      "errors": {
+        "evo2": "ImportError: The 'evo2' package is required to run Evo2 inference but is not installed. Install per https://github.com/arcinstitute/evo2"
+      },
+      "elapsed_s": 6.96
+    },
+    {
+      "case_id": "ftsZ_syn3a",
+      "gene_symbol": "ftsZ",
+      "ground_truth": "essential",
+      "design_axis": "cross_organism_bridge_division",
+      "verdict": {
+        "case_id": "ftsZ_syn3a",
+        "classification": "essential",
+        "confidence": 0.99,
+        "reasoning": "FtsZ is the master cell division GTPase that forms the contractile Z-ring; without it, bacterial cells cannot divide and are therefore inviable. UniProt explicitly annotates it as essential, STRING shows strong experimental interaction evidence within the divisome complex, and ESM-2 confirms strong purifying selection. FtsZ is a core component of the JCVI-syn3A minimal genome, and its essentiality is supported by extensive cross-organism experimental data.",
+        "raw_response": "## Reasoning Through the Evidence\n\n### UniProt\nThe annotation is unambiguous: FtsZ is described as an \"essential cell division protein\" that forms the contractile Z-ring at the future division site. The Z-ring is the master organizer of bacterial cell division, recruiting the entire divisome machinery. Without FtsZ, bacteria cannot divide. The GO terms confirm GTP binding/GTPase activity (the mechanistic basis for Z-ring dynamics) and division septum assembly. This is one of the most conserved and well-characterized essential proteins in bacteria.\n\n### KEGG\nConfirms orthology to K03531 (cell division protein FtsZ), a universally conserved cell division GTPase. The tubulin-family Pfam domains are consistent with its role as the prokaryotic tubulin homolog. No pathway membership issues here \u2014 this is a structural/regulatory cell division protein, not a metabolic enzyme.\n\n### STRING\nFtsZ shows extremely high-confidence interactions (combined scores 751\u2013999) with multiple partners, two of which (MSC_0589, MSC_0587) have very high experimental scores (991 and 850 respectively), suggesting direct physical interaction data. These are likely adjacent genes in the *dcw* (division and cell wall) cluster. This is consistent with FtsZ being a central hub in the cell division protein interaction network.\n\n### ESM-2\nThe mean log-likelihood of -0.2525 is relatively high (less negative), and the mean variant effect of 0.0568 is low, suggesting the protein is under strong purifying selection \u2014 consistent with an essential function. The sequence is well-conserved across evolution.\n\n### Evo2\nQuery failed \u2014 no information available from this channel.\n\n### FBA\nThe FBA query failed due to a gene ID mismatch (model uses MMSYN1_0522 format). However, FBA would not be expected to flag FtsZ as essential anyway, since FtsZ is a cell division protein and genome-scale metabolic models do not model cell division machinery. This is a known limitation of FBA for this class of genes.\n\n### Synthesis and Conflict Assessment\nThere are no meaningful conflicts across the available channels. UniProt explicitly states essentiality, STRING confirms its central role in a well-defined protein complex with strong experimental evidence, and ESM-2 confirms strong purifying selection. FtsZ is one of the most studied essential genes in all of bacterial biology. Even in the minimal genome of JCVI-syn3A, FtsZ is retained (it is gene 0522), consistent with its known inclusion in the essential gene set of JCVI-syn3 (the minimal cell). FBA and Evo2 failures do not introduce conflicting evidence \u2014 they simply reduce available channels.\n\n```json\n{\n  \"classification\": \"essential\",\n  \"confidence\": 0.99,\n  \"reasoning\": \"FtsZ is the master cell division GTPase that forms the contractile Z-ring; without it, bacterial cells cannot divide and are therefore inviable. UniProt explicitly annotates it as essential, STRING shows strong experimental interaction evidence within the divisome complex, and ESM-2 confirms strong purifying selection. FtsZ is a core component of the JCVI-syn3A minimal genome, and its essentiality is supported by extensive cross-organism experimental data.\"\n}\n```"
+      },
+      "bundle": {
+        "case": {
+          "case_id": "ftsZ_syn3a",
+          "gene_symbol": "ftsZ",
+          "locus_tag": "JCVISYN3A_0522",
+          "organism_taxon": 2144189,
+          "uniprot_taxon": 272632,
+          "organism_strain": "Mycoplasma mycoides JCVI-syn3A",
+          "kegg_gene_id": "mmy:MSC_0588",
+          "string_species": 272632,
+          "metabolic_model": "iJCVISyn3A",
+          "protein_sequence": "MTNEFKQIARIKVLGVGGAGNNAIRRMFEENVQGVEFYIINTDAQILESSPVPNKIILGEKTTKGLGAGGNPEVGKAAAIESEEELRKVVEGADLIFIAAGMGGGTGTGAAPVIAKIAQESGALVIGIVTKPFIFEGRHRNVNAKEGLEELRKHVDSVIVVSNDKLLEYIGSIPIAESFKEADTILKQGVQTITDLIAVPATINLDFADVKSVMSKKGNALFGIGVASGKDKAVEAAKEAINSKLLEASIEGAKDIIVNITGGRTVSLNDAYDAVGVISQAVNNKELNIVFGMAINDDLTDDDEIIVTVIATGFENKNLQNQEPNIIKTPRVEPVVQQTQPSKPVQQEQEEEQEEVDEFDDEMSLTTTDDTEEDFNDDDFPTFLK",
+          "dna_sequence": "ATGACAAACGAATTTAAACAAATAGCAAGAATTAAAGTACTTGGTGTTGGTGGGGCTGGAAATAATGCCATTAGAAGAATGTTTGAAGAAAATGTTCAAGGTGTTGAATTTTATATCATAAATACCGATGCACAAATATTAGAATCATCACCAGTACCAAACAAAATTATTTTAGGAGAAAAAACTACTAAAGGATTAGGAGCTGGAGGAAATCCTGAAGTAGGAAAAGCAGCAGCTATTGAAAGTGAAGAAGAATTAAGAAAAGTAGTTGAAGGTGCTGATTTAATCTTTATTGCTGCTGGAATGGGAGGAGGTACTGGAACTGGTGCTGCTCCTGTAATAGCTAAAATTGCTCAAGAATCTGGAGCCTTAGTAATTGGAATTGTAACTAAACCATTCATTTTTGAAGGAAGACATAGAAATGTTAATGCAAAAGAAGGTTTAGAAGAATTAAGAAAACATGTTGATTCAGTAATCGTTGTTTCAAATGACAAATTATTAGAATATATTGGATCTATTCCAATTGCTGAATCATTTAAAGAAGCTGACACTATTTTAAAACAAGGTGTTCAAACTATTACTGATTTAATCGCAGTACCTGCAACTATTAACTTAGATTTTGCAGATGTTAAATCAGTTATGTCAAAAAAAGGAAATGCTTTATTTGGAATAGGAGTTGCTTCTGGAAAAGATAAAGCTGTTGAAGCTGCAAAAGAAGCAATTAATTCTAAATTATTAGAAGCTTCAATTGAAGGAGCTAAAGATATTATTGTAAATATTACTGGTGGAAGAACAGTAAGTTTAAATGATGCTTATGATGCAGTTGGAGTTATTAGTCAAGCTGTAAATAATAAAGAATTAAATATTGTTTTTGGTATGGCTATTAATGATGATTTAACAGATGATGATGAAATCATTGTAACTGTTATTGCCACTGGTTTTGAAAACAAAAACTTACAAAACCAAGAACCAAATATTATAAAAACACCAAGAGTTGAACCTGTAGTTCAACAAACTCAACCAAGTAAACCTGTTCAACAAGAACAAGAAGAAGAACAAGAAGAAGTAGACGAATTTGATGATGAAATGAGTCTAACTACAACAGATGACACTGAAGAAGATTTTAATGATGATGACTTTCCGACATTTTTAAAATAG",
+          "design_axis": "cross_organism_bridge_division",
+          "ground_truth_essentiality": "essential",
+          "ground_truth_source": "Breuer 2019 eLife. Cell-division GTPase; direct cross-organism bridge to the E. coli ftsZ case. Absent from iJCVIsyn3A (as in E. coli iML1515), so FBA stays silent and the verdict rests on annotation + sequence channels.",
+          "design_rationale": "Cell-division GTPase; direct cross-organism bridge to the E. coli ftsZ case. Absent from iJCVIsyn3A (as in E. coli iML1515), so FBA stays silent and the verdict rests on annotation + sequence channels.",
+          "fba_gene_id": "MMSYN1_0522"
+        },
+        "uniprot": {
+          "accession": "Q6MT25",
+          "locus_tag": "MSC_0588",
+          "protein_name": "Cell division protein FtsZ",
+          "gene_name": "ftsZ",
+          "organism_name": "Mycoplasma mycoides subsp. mycoides SC (strain CCUG 32753 / NCTC 10114 / PG1)",
+          "organism_taxon": 272632,
+          "sequence": "MTNEFKQIARIKVLGVGGAGNNAIRRMFEENVQGVEFYIINTDAQILESSPVPNKIILGEKTTKGLGAGGNPEVGKAAAIESEEELRKVVEGADLIFIAAGMGGGTGTGAAPVIAKIAQESGALVIGIVTKPFIFEGRHRNVNAKEGLEELRKYVDSVIVVSNDKLLEYIGSIPIVESFKEADTILKQGVQTITDLIAVPATINLDFADVKSVMSKKGNALFGIGVASGKDKAVEAAKEAINSKLLEASIEGAKDIIVNITGGRTVSLNDAYDAVGVISQAVNNKELNIVFGMAINDDLTDDDEIIVTVIATGFENKNLQNQESNIIKTPRVEPVVQQAQPSKPIQQEQEEEQHEEVDEFDDEMSLTTTDDTEEDFNDDDFPTFLK",
+          "sequence_length_aa": 386,
+          "function_description": "Essential cell division protein that forms a contractile ring structure (Z ring) at the future cell division site. The regulation of the ring assembly controls the timing and the location of cell division. One of the functions of the FtsZ ring is to recruit other cell division proteins to the septum to produce a new cell wall between the dividing cells. Binds GTP and shows GTPase activity",
+          "ec_numbers": [],
+          "pfam_domains": [
+            "PF12327",
+            "PF00091"
+          ],
+          "interpro_ids": [
+            "IPR000158",
+            "IPR020805",
+            "IPR045061",
+            "IPR024757",
+            "IPR008280",
+            "IPR037103",
+            "IPR018316",
+            "IPR036525",
+            "IPR003008"
+          ],
+          "go_terms": [
+            {
+              "go_id": "GO:0032153",
+              "name": "cell division site",
+              "aspect": "C"
+            },
+            {
+              "go_id": "GO:0005737",
+              "name": "cytoplasm",
+              "aspect": "C"
+            },
+            {
+              "go_id": "GO:0005525",
+              "name": "GTP binding",
+              "aspect": "F"
+            },
+            {
+              "go_id": "GO:0003924",
+              "name": "GTPase activity",
+              "aspect": "F"
+            },
+            {
+              "go_id": "GO:0000917",
+              "name": "division septum assembly",
+              "aspect": "P"
+            },
+            {
+              "go_id": "GO:0043093",
+              "name": "FtsZ-dependent cytokinesis",
+              "aspect": "P"
+            },
+            {
+              "go_id": "GO:0051258",
+              "name": "protein polymerization",
+              "aspect": "P"
+            }
+          ],
+          "subcellular_locations": [
+            "Cytoplasm"
+          ],
+          "kegg_xrefs": [
+            "mmy:MSC_0588"
+          ],
+          "eggnog_xrefs": [
+            "COG0206"
+          ],
+          "pdb_xrefs": [],
+          "raw_uniprot_url": "https://www.uniprot.org/uniprotkb/Q6MT25"
+        },
+        "kegg": {
+          "kegg_gene_id": "mmy:MSC_0588",
+          "organism_code": "mmy",
+          "locus_tag": "MSC_0588",
+          "gene_name": "ftsZ",
+          "definition": "",
+          "orthologies": [
+            {
+              "ko_id": "K03531",
+              "description": "cell division protein FtsZ"
+            }
+          ],
+          "pathways": [],
+          "motif_pfam": [
+            "Tubulin",
+            "FtsZ_C",
+            "Tubulin_2",
+            "NAD_binding_10"
+          ],
+          "aa_sequence": "MTNEFKQIARIKVLGVGGAGNNAIRRMFEENVQGVEFYIINTDAQILESSPVPNKIILGEKTTKGLGAGGNPEVGKAAAIESEEELRKVVEGADLIFIAAGMGGGTGTGAAPVIAKIAQESGALVIGIVTKPFIFEGRHRNVNAKEGLEELRKYVDSVIVVSNDKLLEYIGSIPIVESFKEADTILKQGVQTITDLIAVPATINLDFADVKSVMSKKGNALFGIGVASGKDKAVEAAKEAINSKLLEASIEGAKDIIVNITGGRTVSLNDAYDAVGVISQAVNNKELNIVFGMAINDDLTDDDEIIVTVIATGFENKNLQNQESNIIKTPRVEPVVQQAQPSKPIQQEQEEEQHEEVDEFDDEMSLTTTDDTEEDFNDDDFPTFLK",
+          "aa_length": 386,
+          "nt_sequence": "ATGACAAACGAATTTAAACAAATAGCAAGAATTAAAGTACTTGGTGTTGGTGGGGCTGGGAATAATGCCATTAGAAGAATGTTTGAAGAAAATGTTCAAGGTGTTGAATTTTATATCATAAATACCGATGCACAAATATTAGAATCATCACCAGTACCAAACAAAATTATTTTAGGAGAAAAAACTACTAAAGGATTAGGAGCTGGAGGAAATCCTGAAGTAGGAAAAGCAGCAGCTATTGAAAGTGAAGAAGAATTAAGAAAAGTAGTTGAAGGTGCTGATTTAATCTTTATTGCTGCTGGAATGGGAGGAGGTACTGGAACTGGTGCTGCTCCTGTAATAGCTAAAATTGCTCAAGAATCTGGAGCTTTAGTAATTGGAATTGTAACTAAACCATTCATTTTTGAAGGAAGACATAGAAATGTTAATGCAAAAGAAGGTTTAGAAGAATTAAGAAAATATGTTGATTCAGTAATCGTTGTTTCAAATGACAAATTATTAGAATATATTGGATCTATTCCAATTGTTGAATCATTTAAAGAAGCTGATACTATTTTAAAACAAGGTGTTCAAACTATTACTGATTTGATCGCAGTACCTGCAACTATTAACTTAGATTTTGCAGATGTTAAATCAGTTATGTCAAAAAAAGGAAATGCTTTATTTGGAATAGGAGTTGCTTCTGGAAAAGATAAAGCTGTTGAAGCTGCAAAAGAAGCAATTAATTCTAAATTATTAGAAGCTTCAATTGAAGGAGCTAAAGATATTATTGTAAATATTACTGGTGGAAGAACAGTAAGTTTAAATGATGCTTATGATGCAGTTGGAGTTATTAGTCAAGCTGTAAATAATAAAGAATTAAATATTGTTTTTGGTATGGCTATTAATGATGATTTAACAGATGATGATGAAATCATTGTAACTGTTATTGCAACTGGTTTTGAAAATAAAAACTTACAAAACCAAGAATCAAATATTATAAAAACACCAAGAGTTGAACCTGTAGTTCAACAAGCTCAACCAAGTAAACCTATTCAACAAGAACAAGAAGAAGAACAACACGAAGAAGTAGACGAATTTGATGATGAAATGAGTCTAACTACAACAGATGACACTGAAGAAGATTTTAATGATGATGACTTTCCGACATTTTTAAAATAG",
+          "nt_length": 1161,
+          "db_links": {
+            "NCBI-ProteinID": [
+              "CAE77211"
+            ],
+            "UniProt": [
+              "Q6MT25"
+            ]
+          },
+          "raw_kegg_url": "https://www.kegg.jp/entry/mmy:MSC_0588"
+        },
+        "string": {
+          "query_identifier": "ftsZ",
+          "species_taxon": 272632,
+          "interactions": [
+            {
+              "partner_string_id": "272632.MSC_0589",
+              "partner_preferred_name": "MSC_0589",
+              "combined_score": 999,
+              "neighborhood_score": 666,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 843,
+              "experimental_score": 991,
+              "database_score": 0,
+              "textmining_score": 301
+            },
+            {
+              "partner_string_id": "272632.MSC_0587",
+              "partner_preferred_name": "MSC_0587",
+              "combined_score": 984,
+              "neighborhood_score": 797,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 367,
+              "experimental_score": 850,
+              "database_score": 0,
+              "textmining_score": 301
+            },
+            {
+              "partner_string_id": "272632.MSC_0592",
+              "partner_preferred_name": "mraZ",
+              "combined_score": 965,
+              "neighborhood_score": 733,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 110,
+              "experimental_score": 0,
+              "database_score": 0,
+              "textmining_score": 864
+            },
+            {
+              "partner_string_id": "272632.MSC_0591",
+              "partner_preferred_name": "rsmH",
+              "combined_score": 961,
+              "neighborhood_score": 733,
+              "fusion_score": 0,
+              "cooccurrence_score": 213,
+              "coexpression_score": 0,
+              "experimental_score": 0,
+              "database_score": 0,
+              "textmining_score": 829
+            },
+            {
+              "partner_string_id": "272632.MSC_0347",
+              "partner_preferred_name": "rpsO",
+              "combined_score": 834,
+              "neighborhood_score": 69,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 142,
+              "experimental_score": 0,
+              "database_score": 0,
+              "textmining_score": 808
+            },
+            {
+              "partner_string_id": "272632.MSC_0595",
+              "partner_preferred_name": "pheT",
+              "combined_score": 829,
+              "neighborhood_score": 608,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 242,
+              "experimental_score": 0,
+              "database_score": 0,
+              "textmining_score": 470
+            },
+            {
+              "partner_string_id": "272632.MSC_0586",
+              "partner_preferred_name": "MSC_0586",
+              "combined_score": 751,
+              "neighborhood_score": 751,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 0,
+              "experimental_score": 0,
+              "database_score": 0,
+              "textmining_score": 0
+            },
+            {
+              "partner_string_id": "272632.MSC_0279",
+              "partner_preferred_name": "MSC_0279",
+              "combined_score": 737,
+              "neighborhood_score": 0,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 129,
+              "experimental_score": 604,
+              "database_score": 0,
+              "textmining_score": 301
+            },
+            {
+              "partner_string_id": "272632.MSC_0298",
+              "partner_preferred_name": "MSC_0298",
+              "combined_score": 713,
+              "neighborhood_score": 66,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 112,
+              "experimental_score": 564,
+              "database_score": 0,
+              "textmining_score": 301
+            },
+            {
+              "partner_string_id": "272632.MSC_0516",
+              "partner_preferred_name": "gtsA",
+              "combined_score": 706,
+              "neighborhood_score": 48,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 0,
+              "experimental_score": 704,
+              "database_score": 0,
+              "textmining_score": 0
+            },
+            {
+              "partner_string_id": "272632.MSC_0159",
+              "partner_preferred_name": "fusA",
+              "combined_score": 692,
+              "neighborhood_score": 101,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 138,
+              "experimental_score": 500,
+              "database_score": 0,
+              "textmining_score": 301
+            },
+            {
+              "partner_string_id": "272632.MSC_0487",
+              "partner_preferred_name": "pstB",
+              "combined_score": 684,
+              "neighborhood_score": 99,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 0,
+              "experimental_score": 623,
+              "database_score": 0,
+              "textmining_score": 146
+            },
+            {
+              "partner_string_id": "272632.MSC_0610",
+              "partner_preferred_name": "dnaK",
+              "combined_score": 676,
+              "neighborhood_score": 184,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 0,
+              "experimental_score": 198,
+              "database_score": 0,
+              "textmining_score": 545
+            },
+            {
+              "partner_string_id": "272632.MSC_0421",
+              "partner_preferred_name": "recA",
+              "combined_score": 652,
+              "neighborhood_score": 72,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 0,
+              "experimental_score": 508,
+              "database_score": 0,
+              "textmining_score": 301
+            },
+            {
+              "partner_string_id": "272632.MSC_0007",
+              "partner_preferred_name": "gyrA",
+              "combined_score": 630,
+              "neighborhood_score": 50,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 0,
+              "experimental_score": 563,
+              "database_score": 0,
+              "textmining_score": 182
+            },
+            {
+              "partner_string_id": "272632.MSC_0511",
+              "partner_preferred_name": "parC",
+              "combined_score": 630,
+              "neighborhood_score": 50,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 0,
+              "experimental_score": 563,
+              "database_score": 0,
+              "textmining_score": 182
+            },
+            {
+              "partner_string_id": "272632.MSC_0590",
+              "partner_preferred_name": "MSC_0590",
+              "combined_score": 608,
+              "neighborhood_score": 608,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 0,
+              "experimental_score": 0,
+              "database_score": 0,
+              "textmining_score": 0
+            },
+            {
+              "partner_string_id": "272632.MSC_0564",
+              "partner_preferred_name": "rsmI",
+              "combined_score": 599,
+              "neighborhood_score": 77,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 0,
+              "experimental_score": 0,
+              "database_score": 0,
+              "textmining_score": 583
+            },
+            {
+              "partner_string_id": "272632.MSC_0039",
+              "partner_preferred_name": "ftsH",
+              "combined_score": 581,
+              "neighborhood_score": 0,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 0,
+              "experimental_score": 0,
+              "database_score": 0,
+              "textmining_score": 581
+            },
+            {
+              "partner_string_id": "272632.MSC_0089",
+              "partner_preferred_name": "secA",
+              "combined_score": 561,
+              "neighborhood_score": 182,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 157,
+              "experimental_score": 198,
+              "database_score": 0,
+              "textmining_score": 301
+            }
+          ],
+          "raw_string_url": "https://string-db.org/cgi/network?identifiers=ftsZ&species=272632"
+        },
+        "esm2": {
+          "sequence_id": "ftsZ",
+          "sequence_length_aa": 383,
+          "model_id": "facebook/esm2_t33_650M_UR50D",
+          "mean_embedding": {
+            "__ndarray_shape__": [
+              1280
+            ],
+            "__dtype__": "float32"
+          },
+          "per_residue_log_likelihood": {
+            "__ndarray_shape__": [
+              383
+            ],
+            "__dtype__": "float32"
+          },
+          "mean_log_likelihood": -0.2524542808532715,
+          "mean_variant_effect": 0.05678229033946991
+        },
+        "evo2": null,
+        "fba": null,
+        "errors": {
+          "evo2": "ImportError: The 'evo2' package is required to run Evo2 inference but is not installed. Install per https://github.com/arcinstitute/evo2",
+          "fba": "KeyError: \"gene 'MMSYN1_0522' not in model 'MMSYN'\""
+        }
+      },
+      "channels_populated": [
+        "uniprot",
+        "kegg",
+        "string",
+        "esm2"
+      ],
+      "errors": {
+        "evo2": "ImportError: The 'evo2' package is required to run Evo2 inference but is not installed. Install per https://github.com/arcinstitute/evo2",
+        "fba": "KeyError: \"gene 'MMSYN1_0522' not in model 'MMSYN'\""
+      },
+      "elapsed_s": 21.64
+    },
+    {
+      "case_id": "rpsB_syn3a",
+      "gene_symbol": "rpsB",
+      "ground_truth": "essential",
+      "design_axis": "cross_organism_bridge_translation",
+      "verdict": {
+        "case_id": "rpsB_syn3a",
+        "classification": "essential",
+        "confidence": 0.97,
+        "reasoning": "rpsB encodes uS2, a core structural protein of the 30S ribosomal subunit required for translation. UniProt, KEGG, and STRING all confirm its fundamental role in ribosome assembly, with ESM-2 showing strong purifying selection (near-zero mean variant effect). In JCVI-Syn3A, a minimal genome organism where every retained gene is critical, core ribosomal proteins are universally essential; deletion of rpsB would abolish protein synthesis entirely. FBA failure is expected and non-informative for translation machinery.",
+        "raw_response": "## Reasoning Through the Evidence\n\n### UniProt\nrpsB encodes the Small Ribosomal Subunit Protein uS2 (S2), a core structural component of the 30S ribosomal subunit. GO terms explicitly annotate it as a \"structural constituent of ribosome\" involved in \"translation.\" This is a foundational translation factor \u2014 without functional ribosomes, the cell cannot synthesize any proteins and is inviable. uS2 is not a peripheral or accessory ribosomal protein; it is a primary component of the small subunit platform domain.\n\n### KEGG\nConfirms membership in the Ribosome pathway (mmy03010) and assigns KO:K02967 (small subunit ribosomal protein S2). This is one of the universally conserved ribosomal proteins found across all domains of life.\n\n### STRING\nAll top 10 interaction partners are ribosomal proteins (rplF, rpsE, rpsF, rplS, rpsL, rpsP, rpsM, rpmC, rpmA, rpsD) with combined scores of 999 and experimental scores of 991. This reflects its deep integration into the ribosomal machinery \u2014 not just co-expression or text-mining, but direct physical interactions experimentally confirmed. This strongly supports essentiality through structural necessity.\n\n### ESM-2\nMean log-likelihood of -0.1618 and mean variant effect of 0.0225. The near-zero variant effect score indicates that this protein is under strong purifying selection \u2014 mutations are highly deleterious. This is consistent with an essential structural protein where sequence integrity is critical for function.\n\n### Evo2\nQuery failed \u2014 no data available.\n\n### FBA\nQuery failed due to gene ID mismatch (\"MMSYN1_0540\" vs. the model gene naming scheme). However, this is not surprising: FBA metabolic models typically do not include ribosomal proteins, as translation is not modeled as a metabolic flux. Had FBA worked, it would likely not flag rpsB as essential (consistent with how FBA handles all ribosomal genes). This does NOT indicate non-essentiality.\n\n### Synthesis\nThere is no conflict between channels here. FBA failing is expected and irrelevant \u2014 ribosomal proteins are outside the scope of metabolic models. The critical information comes from UniProt (structural ribosomal protein required for translation), KEGG (core ribosome pathway, universally conserved ortholog), STRING (ultra-high-confidence physical interactions with ribosomal partners), and ESM-2 (strong purifying selection). In JCVI-Syn3A, a minimal synthetic organism with only ~473 genes, the ribosome is a non-negotiable core function. Indeed, transposon-sequencing studies of JCVI-Syn3.0 and similar minimal genomes consistently retain all core ribosomal proteins as essential. rpsB is a primary structural component of the small ribosomal subunit \u2014 deletion would eliminate translation entirely, making it unconditionally essential.\n\n```json\n{\n  \"classification\": \"essential\",\n  \"confidence\": 0.97,\n  \"reasoning\": \"rpsB encodes uS2, a core structural protein of the 30S ribosomal subunit required for translation. UniProt, KEGG, and STRING all confirm its fundamental role in ribosome assembly, with ESM-2 showing strong purifying selection (near-zero mean variant effect). In JCVI-Syn3A, a minimal genome organism where every retained gene is critical, core ribosomal proteins are universally essential; deletion of rpsB would abolish protein synthesis entirely. FBA failure is expected and non-informative for translation machinery.\"\n}\n```"
+      },
+      "bundle": {
+        "case": {
+          "case_id": "rpsB_syn3a",
+          "gene_symbol": "rpsB",
+          "locus_tag": "JCVISYN3A_0540",
+          "organism_taxon": 2144189,
+          "uniprot_taxon": 272632,
+          "organism_strain": "Mycoplasma mycoides JCVI-syn3A",
+          "kegg_gene_id": "mmy:MSC_0608",
+          "string_species": 272632,
+          "metabolic_model": "iJCVISyn3A",
+          "protein_sequence": "MSREITREELSAAGVQYGHQTKRWNPKMKSYIYGVKNKNHIIDLEKTITHLNTAQKLLETLGSKQQKILFVGTKRSGKNAVKEAALRSGNFYINNRWLGGTLTNLKTILIRIKALWEIEEEEKKGRLSLRTKKEQIKILKEKAKLEKALGGIKQMHKLPAAIVVVDPKGDEIAVKEAKKLNIPVIAICDTNADPDMIDYVIPGNDDLQESVNLIINILVEAYAEGAQIKMNPSVLKTVAPKREPRQNRVMTPVVENQSTEQQASENVSNTQVSNEPVTPVVEVEKSSEPKAE",
+          "dna_sequence": "ATGTCAAGAGAAATAACAAGAGAAGAATTATCTGCAGCTGGAGTTCAATATGGACACCAAACTAAAAGATGAAATCCTAAAATGAAATCTTATATTTATGGAGTAAAAAATAAAAATCACATTATTGATTTAGAAAAAACTATTACTCATTTAAATACAGCTCAAAAATTATTAGAAACTTTAGGAAGCAAACAACAAAAAATTTTATTTGTAGGAACTAAACGTTCTGGAAAAAATGCTGTTAAAGAAGCAGCTTTAAGAAGTGGAAATTTCTATATTAATAATAGATGATTAGGTGGAACTTTAACTAATTTAAAGACTATTTTAATTAGAATTAAAGCTTTATGAGAAATTGAAGAAGAAGAAAAAAAAGGTCGTTTATCTTTAAGAACTAAAAAAGAACAAATTAAAATTTTAAAAGAAAAAGCTAAATTAGAAAAAGCACTTGGTGGAATTAAACAAATGCATAAATTACCAGCAGCTATTGTTGTTGTTGATCCAAAAGGTGATGAAATTGCTGTTAAAGAAGCAAAAAAATTAAACATCCCTGTAATTGCTATTTGTGATACTAATGCTGATCCAGATATGATTGATTATGTAATTCCTGGAAATGATGATTTACAAGAATCAGTAAACTTAATTATTAACATTTTAGTTGAAGCATATGCTGAAGGTGCTCAAATTAAAATGAATCCTTCAGTTTTAAAAACTGTTGCTCCAAAAAGAGAACCAAGACAAAATAGAGTTATGACACCAGTTGTTGAAAATCAATCTACTGAACAACAAGCTAGTGAAAATGTTTCAAACACACAAGTTTCAAACGAACCTGTAACTCCAGTAGTTGAAGTTGAAAAATCAAGTGAACCAAAAGCTGAATAA",
+          "design_axis": "cross_organism_bridge_translation",
+          "ground_truth_essentiality": "essential",
+          "ground_truth_source": "Breuer 2019 eLife. 30S ribosomal protein S2; translation. Cross-organism bridge to the E. coli rpsB case. Absent from iJCVIsyn3A (as in E. coli iML1515); FBA-silent. NOTE: the M. mycoides UniProt proxy protein (128 aa) differs from the syn3A protein (292 aa), so the GenBank translation is used for the sequence channels and the proxy is annotation-only.",
+          "design_rationale": "30S ribosomal protein S2; translation. Cross-organism bridge to the E. coli rpsB case. Absent from iJCVIsyn3A (as in E. coli iML1515); FBA-silent. NOTE: the M. mycoides UniProt proxy protein (128 aa) differs from the syn3A protein (292 aa), so the GenBank translation is used for the sequence channels and the proxy is annotation-only.",
+          "fba_gene_id": "MMSYN1_0540"
+        },
+        "uniprot": {
+          "accession": "Q6MT08",
+          "locus_tag": "MSC_0608",
+          "protein_name": "Small ribosomal subunit protein uS2",
+          "gene_name": "rpsB",
+          "organism_name": "Mycoplasma mycoides subsp. mycoides SC (strain CCUG 32753 / NCTC 10114 / PG1)",
+          "organism_taxon": 272632,
+          "sequence": "MSREITREELSAAGVQYGHQTKRWNPKMKSYIYGVKNKNHIIDLEKTITHLNTAQKLLETLGSKQQKILFVGTKRSGKNAVKEAALRSGNFYINNRWLGGTLTNLKTILIRIKALWEIEEEKKKVVYL",
+          "sequence_length_aa": 128,
+          "function_description": "",
+          "ec_numbers": [],
+          "pfam_domains": [
+            "PF00318"
+          ],
+          "interpro_ids": [
+            "IPR001865",
+            "IPR005706",
+            "IPR023591"
+          ],
+          "go_terms": [
+            {
+              "go_id": "GO:0022627",
+              "name": "cytosolic small ribosomal subunit",
+              "aspect": "C"
+            },
+            {
+              "go_id": "GO:0003735",
+              "name": "structural constituent of ribosome",
+              "aspect": "F"
+            },
+            {
+              "go_id": "GO:0006412",
+              "name": "translation",
+              "aspect": "P"
+            }
+          ],
+          "subcellular_locations": [],
+          "kegg_xrefs": [
+            "mmy:MSC_0608"
+          ],
+          "eggnog_xrefs": [
+            "COG0052"
+          ],
+          "pdb_xrefs": [],
+          "raw_uniprot_url": "https://www.uniprot.org/uniprotkb/Q6MT08"
+        },
+        "kegg": {
+          "kegg_gene_id": "mmy:MSC_0608",
+          "organism_code": "mmy",
+          "locus_tag": "MSC_0608",
+          "gene_name": "rpsB",
+          "definition": "",
+          "orthologies": [
+            {
+              "ko_id": "K02967",
+              "description": "small subunit ribosomal protein S2"
+            }
+          ],
+          "pathways": [
+            {
+              "pathway_id": "mmy03010",
+              "name": "Ribosome"
+            }
+          ],
+          "motif_pfam": [
+            "Ribosomal_S2",
+            "DUF5131",
+            "UBL_AVO1",
+            "UCP018868"
+          ],
+          "aa_sequence": "MSREITREELSAAGVQYGHQTKRWNPKMKSYIYGVKNKNHIIDLEKTITHLNTAQKLLETLGSKQQKILFVGTKRSGKNAVKEAALRSGNFYINNRWLGGTLTNLKTILIRIKALWEIEEEKKKVVYL",
+          "aa_length": 128,
+          "nt_sequence": "ATGTCAAGAGAAATAACAAGAGAAGAATTATCTGCAGCTGGAGTTCAATATGGACACCAAACTAAAAGATGAAATCCTAAAATGAAATCCTATATTTATGGAGTAAAAAATAAAAATCACATTATTGATTTAGAAAAAACTATTACTCATTTAAATACAGCTCAAAAATTATTAGAAACTTTAGGAAGTAAACAACAAAAAATTTTATTTGTAGGAACTAAACGTTCTGGAAAAAATGCTGTTAAAGAAGCAGCTTTAAGAAGTGGAAATTTCTATATTAATAATAGATGATTAGGTGGAACTTTAACTAATTTAAAAACTATTTTAATTAGAATTAAAGCTTTATGAGAAATTGAAGAAGAAAAAAAAAAGGTCGTTTATCTTTAA",
+          "nt_length": 387,
+          "db_links": {
+            "NCBI-ProteinID": [
+              "CAE77230"
+            ],
+            "UniProt": [
+              "Q6MT08"
+            ]
+          },
+          "raw_kegg_url": "https://www.kegg.jp/entry/mmy:MSC_0608"
+        },
+        "string": {
+          "query_identifier": "rpsB",
+          "species_taxon": 272632,
+          "interactions": [
+            {
+              "partner_string_id": "272632.MSC_0730",
+              "partner_preferred_name": "rplF",
+              "combined_score": 999,
+              "neighborhood_score": 99,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 853,
+              "experimental_score": 991,
+              "database_score": 0,
+              "textmining_score": 474
+            },
+            {
+              "partner_string_id": "272632.MSC_0728",
+              "partner_preferred_name": "rpsE",
+              "combined_score": 999,
+              "neighborhood_score": 103,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 853,
+              "experimental_score": 991,
+              "database_score": 731,
+              "textmining_score": 470
+            },
+            {
+              "partner_string_id": "272632.MSC_0027",
+              "partner_preferred_name": "rpsF",
+              "combined_score": 999,
+              "neighborhood_score": 94,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 853,
+              "experimental_score": 991,
+              "database_score": 731,
+              "textmining_score": 301
+            },
+            {
+              "partner_string_id": "272632.MSC_0428",
+              "partner_preferred_name": "rplS",
+              "combined_score": 999,
+              "neighborhood_score": 163,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 853,
+              "experimental_score": 991,
+              "database_score": 0,
+              "textmining_score": 301
+            },
+            {
+              "partner_string_id": "272632.MSC_0157",
+              "partner_preferred_name": "rpsL",
+              "combined_score": 999,
+              "neighborhood_score": 103,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 853,
+              "experimental_score": 991,
+              "database_score": 731,
+              "textmining_score": 301
+            },
+            {
+              "partner_string_id": "272632.MSC_0425",
+              "partner_preferred_name": "rpsP",
+              "combined_score": 999,
+              "neighborhood_score": 132,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 853,
+              "experimental_score": 991,
+              "database_score": 731,
+              "textmining_score": 301
+            },
+            {
+              "partner_string_id": "272632.MSC_0723",
+              "partner_preferred_name": "rpsM",
+              "combined_score": 999,
+              "neighborhood_score": 184,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 853,
+              "experimental_score": 991,
+              "database_score": 731,
+              "textmining_score": 301
+            },
+            {
+              "partner_string_id": "272632.MSC_0737",
+              "partner_preferred_name": "rpmC",
+              "combined_score": 999,
+              "neighborhood_score": 77,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 853,
+              "experimental_score": 991,
+              "database_score": 0,
+              "textmining_score": 301
+            },
+            {
+              "partner_string_id": "272632.MSC_0560",
+              "partner_preferred_name": "rpmA",
+              "combined_score": 999,
+              "neighborhood_score": 113,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 853,
+              "experimental_score": 991,
+              "database_score": 0,
+              "textmining_score": 452
+            },
+            {
+              "partner_string_id": "272632.MSC_0278",
+              "partner_preferred_name": "rpsD",
+              "combined_score": 999,
+              "neighborhood_score": 184,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 853,
+              "experimental_score": 991,
+              "database_score": 731,
+              "textmining_score": 301
+            },
+            {
+              "partner_string_id": "272632.MSC_0722",
+              "partner_preferred_name": "rpsK",
+              "combined_score": 999,
+              "neighborhood_score": 184,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 853,
+              "experimental_score": 991,
+              "database_score": 731,
+              "textmining_score": 301
+            },
+            {
+              "partner_string_id": "272632.MSC_0734",
+              "partner_preferred_name": "rplX",
+              "combined_score": 999,
+              "neighborhood_score": 105,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 853,
+              "experimental_score": 991,
+              "database_score": 164,
+              "textmining_score": 301
+            },
+            {
+              "partner_string_id": "272632.MSC_0736",
+              "partner_preferred_name": "rpsQ",
+              "combined_score": 999,
+              "neighborhood_score": 107,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 853,
+              "experimental_score": 991,
+              "database_score": 731,
+              "textmining_score": 301
+            },
+            {
+              "partner_string_id": "272632.MSC_0994",
+              "partner_preferred_name": "rplK",
+              "combined_score": 999,
+              "neighborhood_score": 52,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 853,
+              "experimental_score": 991,
+              "database_score": 0,
+              "textmining_score": 301
+            },
+            {
+              "partner_string_id": "272632.MSC_0742",
+              "partner_preferred_name": "rplB",
+              "combined_score": 999,
+              "neighborhood_score": 105,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 853,
+              "experimental_score": 991,
+              "database_score": 0,
+              "textmining_score": 469
+            },
+            {
+              "partner_string_id": "272632.MSC_0223",
+              "partner_preferred_name": "rplT",
+              "combined_score": 999,
+              "neighborhood_score": 168,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 852,
+              "experimental_score": 991,
+              "database_score": 0,
+              "textmining_score": 417
+            },
+            {
+              "partner_string_id": "272632.MSC_0738",
+              "partner_preferred_name": "rplP",
+              "combined_score": 999,
+              "neighborhood_score": 108,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 853,
+              "experimental_score": 991,
+              "database_score": 0,
+              "textmining_score": 469
+            },
+            {
+              "partner_string_id": "272632.MSC_0347",
+              "partner_preferred_name": "rpsO",
+              "combined_score": 999,
+              "neighborhood_score": 180,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 850,
+              "experimental_score": 991,
+              "database_score": 731,
+              "textmining_score": 301
+            },
+            {
+              "partner_string_id": "272632.MSC_0720",
+              "partner_preferred_name": "rplQ",
+              "combined_score": 999,
+              "neighborhood_score": 122,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 850,
+              "experimental_score": 991,
+              "database_score": 0,
+              "textmining_score": 301
+            },
+            {
+              "partner_string_id": "272632.MSC_0727",
+              "partner_preferred_name": "rplO",
+              "combined_score": 999,
+              "neighborhood_score": 106,
+              "fusion_score": 0,
+              "cooccurrence_score": 0,
+              "coexpression_score": 853,
+              "experimental_score": 991,
+              "database_score": 0,
+              "textmining_score": 301
+            }
+          ],
+          "raw_string_url": "https://string-db.org/cgi/network?identifiers=rpsB&species=272632"
+        },
+        "esm2": {
+          "sequence_id": "rpsB",
+          "sequence_length_aa": 241,
+          "model_id": "facebook/esm2_t33_650M_UR50D",
+          "mean_embedding": {
+            "__ndarray_shape__": [
+              1280
+            ],
+            "__dtype__": "float32"
+          },
+          "per_residue_log_likelihood": {
+            "__ndarray_shape__": [
+              241
+            ],
+            "__dtype__": "float32"
+          },
+          "mean_log_likelihood": -0.16178812086582184,
+          "mean_variant_effect": 0.022465653717517853
+        },
+        "evo2": null,
+        "fba": null,
+        "errors": {
+          "evo2": "ImportError: The 'evo2' package is required to run Evo2 inference but is not installed. Install per https://github.com/arcinstitute/evo2",
+          "fba": "KeyError: \"gene 'MMSYN1_0540' not in model 'MMSYN'\""
+        }
+      },
+      "channels_populated": [
+        "uniprot",
+        "kegg",
+        "string",
+        "esm2"
+      ],
+      "errors": {
+        "evo2": "ImportError: The 'evo2' package is required to run Evo2 inference but is not installed. Install per https://github.com/arcinstitute/evo2",
+        "fba": "KeyError: \"gene 'MMSYN1_0540' not in model 'MMSYN'\""
+      },
+      "elapsed_s": 22.24
+    }
+  ]
+}

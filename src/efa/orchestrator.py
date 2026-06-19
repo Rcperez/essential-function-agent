@@ -463,10 +463,17 @@ def gather_all_evidence(
         except Exception as e:
             bundle.errors["uniprot"] = f"{type(e).__name__}: {e}"
 
-    if "kegg" in tools:
+    if "kegg" in tools and case.kegg_gene_id:
+        parts = case.kegg_gene_id.split(":", 1)
         try:
             m = getattr(tools["kegg"], methods["kegg"])
-            bundle.kegg = m(*case.kegg_gene_id.split(":", 1))
+            if len(parts) == 2:
+                bundle.kegg = m(parts[0], parts[1])
+            else:
+                bundle.errors["kegg"] = (
+                    f"kegg_gene_id {case.kegg_gene_id!r} not in "
+                    f"'org:locus' form; skipped"
+                )
         except Exception as e:
             bundle.errors["kegg"] = f"{type(e).__name__}: {e}"
 
