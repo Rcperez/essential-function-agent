@@ -7,15 +7,8 @@
     "A_eager"
   ],
   "architecture_B_status": {
-    "status": "refused",
-    "finding": "The B-architecture tool-use loop could not be run on the syn3A cases: the Anthropic API returned stop_reason='refusal' (zero content blocks, one output token) on the first call for every case. The A-architecture (single-shot classification of pre-gathered evidence) ran without refusal on the identical cases, data, and organism. Adding an explicit, truthful research-context preamble (published Breuer 2019 classifications, public model organism, reproduction-not-generation) did not clear the refusal. Interpretation: the safety classifier appears sensitive to the AGENTIC FRAMING of an essential-gene investigation over a synthetic-cell model organism (JCVI-syn3A, derived from M. mycoides) \u2014 autonomous tool-driven investigation reads as higher dual-use risk than the same task framed as evidence interpretation, independent of the (published, public) underlying science. Recorded as a finding rather than worked around; no prompt-evasion was attempted beyond a single honest grounding attempt. Reported to Anthropic as a candidate false positive on legitimate published-reproduction research.",
-    "diagnostic": {
-      "stop_reason": "refusal",
-      "content_blocks": 0,
-      "output_tokens": 1,
-      "input_tokens_approx": 2166,
-      "cleared_by_research_context": false
-    }
+    "status": "superseded_by_measurement",
+    "correction": "An earlier version of this field claimed the refusal was specific to the B (agentic) architecture and that A ran without refusal on syn3A. Controlled measurement (syn3a_refusal_matrix.json) falsifies that: syn3A essentiality analysis is refused near-deterministically under BOTH architectures and BOTH Anthropic models (syn3A A=15/15, B=14/15 on Sonnet 4.6; 30/30 across Sonnet+Opus; E. coli 0/12). The trigger is the synthetic-minimal-organism identity (JCVI-syn3A / M. mycoides lineage), NOT the architecture and NOT the prompt framing. See the matrix artifact."
   },
   "n_cases": 5,
   "records": [
@@ -450,7 +443,8 @@
       "errors": {
         "evo2": "ImportError: The 'evo2' package is required to run Evo2 inference but is not installed. Install per https://github.com/arcinstitute/evo2"
       },
-      "elapsed_s": 12.74
+      "elapsed_s": 12.74,
+      "refusal_note": "Empty content / API refusal, not a genuine uncertain verdict (see run_caveat and syn3a_refusal_matrix.json)."
     },
     {
       "case_id": "adk_syn3a",
@@ -1302,7 +1296,8 @@
       "errors": {
         "evo2": "ImportError: The 'evo2' package is required to run Evo2 inference but is not installed. Install per https://github.com/arcinstitute/evo2"
       },
-      "elapsed_s": 6.96
+      "elapsed_s": 6.96,
+      "refusal_note": "Empty content / API refusal, not a genuine uncertain verdict (see run_caveat and syn3a_refusal_matrix.json)."
     },
     {
       "case_id": "ftsZ_syn3a",
@@ -2128,5 +2123,6 @@
       },
       "elapsed_s": 22.24
     }
-  ]
+  ],
+  "run_caveat": "This A-only run predates the controlled refusal measurement. Per that measurement, syn3A essentiality analysis is refused near-deterministically by the Anthropic safety layer. The 'uncertain (confidence 0.00)' verdicts here for pyrG and eno are A-side REFUSALS (empty content, stop_reason='refusal'), not genuine uncertain classifications. The 'essential' verdicts that did appear (adk, ftsZ, rpsB) reflect calls that happened not to refuse in this single run; given the measured near-saturation they should NOT be read as reliable 3/5 accuracy. The reliable, reproducible syn3A result is the refusal itself, now characterized across architectures, models, and providers."
 }

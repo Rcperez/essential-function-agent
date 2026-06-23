@@ -1,0 +1,15 @@
+False positive: gene-essentiality classification for JCVI-syn3A (a published
+minimal synthetic bacterium) returns stop_reason='refusal' on both Sonnet 4.6
+and Opus 4.8. The identical task on E. coli K-12 genes works fine. This is
+reproduction of published science (Breuer 2019 eLife; iJCVIsyn3A model;
+genome CP016816.2) — classifying whether a KNOWN gene is essential, a fact
+already in the literature, with no uplift toward building/modifying anything.
+Adding explicit research context did not clear it; the trigger is the
+organism's synthetic-minimal-genome identity, not the task. Measured across
+providers: Anthropic refuses syn3A 30/30 (Sonnet+Opus); OpenAI gpt-4o and
+Gemini 2.5-pro both comply 15/15 with genuine classifications; all three
+answer E. coli normally. Please calibrate so analysis of published
+essentiality for public, literature-characterized organisms (including
+synthetic minimal cells) is distinguished from genuinely dual-use design
+requests. This blocks Claude for a whole legitimate synbio research area
+while competitors remain usable.
